@@ -20,14 +20,13 @@ describe('ClassyResource', () => {
     expect(classyResource._classy).to.equal(classy);
     expect(classyResource._urlData).to.equal(urlData);
   });
-  
+
   it('should create an instance with ._classy and ._urlData', () => {
     const urlData = {
       a: 'a'
     };
     const classyResource = new ClassyResource(classy, urlData);
-        
-    console.log(classyResource);
+
     expect(classyResource._classy).to.equal(classy);
     expect(classyResource._urlData).to.equal(urlData);
   });

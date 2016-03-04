@@ -17,16 +17,14 @@ gulp.task('clean', () => {
   del(config.paths.js.dist);
 });
 
-gulp.task('babel', ['babel-src']);
-
-gulp.task('babel-src', () => {
+gulp.task('babel', () => {
   gulp.src(config.paths.js.src)
     .pipe(babel())
     .pipe(gulp.dest(config.paths.js.dist));
 });
 
 gulp.task('watch', () => {
-  gulp.watch(config.paths.js.src, ['babel-src']);
+  gulp.watch(config.paths.js.src, ['babel']);
 });
 
 gulp.task('default', () => {

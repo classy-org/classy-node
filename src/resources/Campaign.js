@@ -1,25 +1,16 @@
-var CalculatorMixin = Base => class extends Base {
-  bfn() {
-    return this.b;
-  }
-};
+import ClassyResource from '../ClassyResource';
 
-var RandomizerMixin = Base => class extends Base {
-  afn() {
-    return this.a;
-  }
-};
+class Campaign extends ClassyResource {
+  constructor(Classy) {
+    super(Classy);
+    
+    this.path = 'campaign';
 
-class Foo {
-  constructor(a) {
-    this.a = a;
-  }
-}
-class Bar extends CalculatorMixin(RandomizerMixin(Foo)) {
-  constructor(a, b) {
-    super(a);
-    this.b = b;
+    this.create = this.createMethod({
+      method: "POST",
+      path: '/campaigns/{campaignId}/{test}'
+    });    
   }
 }
 
-export default Bar;
+export default Campaign;

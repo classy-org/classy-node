@@ -4,16 +4,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _utils = require('./utils');
+exports.default = function (spec) {
+  var _arguments = arguments;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var ClassyMethod = function ClassyMethod(spec) {
-  _classCallCheck(this, ClassyMethod);
-
-  var urlParams = spec.urlParams,
+  var urlParams = spec.urlParams || [],
       requestMethod = (spec.method || 'GET').toUpperCase(),
-      commandPath = typeof spec.path === 'function' ? spec.path : _utils.utils.makeURLInterpolator(spec.path || '');
+      commandPath = _utils.utils.makeURLInterpolator(spec.path || '');
+
+  console.log(spec.path, commandPath('a'));
+
+  return function () {
+    var args = [].slice.call(_arguments);
+
+    for (var i = 0, l = urlParams.length; i < l; ++i) {}
+
+    var a = new Promise(function (resolve, reject) {
+      resolve(urlParams);
+    });
+
+    return a;
+  };
 };
 
-exports.default = ClassyMethod;
+var _utils = require('./utils');

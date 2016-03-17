@@ -16,7 +16,7 @@ var utils = exports.utils = {
       '\n': '\\n', '\"': '\\\"',
       '\u2028': '\\u2028', '\u2029': '\\u2029'
     };
-    return function makeURLInterpolator(str) {
+    return function (str) {
       return new Function('o', 'return "' + str.replace(/["\n\r\u2028\u2029]/g, function ($0) {
         return rc[$0];
       }).replace(/\{([\s\S]+?)\}/g, '" + encodeURIComponent(o["$1"]) + "') + '";');

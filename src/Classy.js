@@ -24,6 +24,11 @@ export default class Classy {
     this._setApiField('basePath', config.basePath);
     this._setApiField('strictSsl', config.strictSsl);
     this._prepResources();
+    
+    var a = this.campaign.create('1', '2', {
+      'test': 'test'
+    });
+    console.log(a);
   }
   
   /** 'Public' methods */
@@ -40,9 +45,10 @@ export default class Classy {
   
   _prepResources() {
     for (let name in resources) {
-      this[
-        name[0].toLowerCase() + name.substring(1)
-      ] = new resources[name](this);
+      const resourceName = name[0].toLowerCase() + name.substring(1),
+        resourceInstance = new resources[name](this);
+      
+      this[resourceName] = resourceInstance;
     }
   }
 }

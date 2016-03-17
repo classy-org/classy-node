@@ -12,5 +12,5 @@ var _campaign2 = _interopRequireDefault(_campaign);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var resources = exports.resources = {
-  'Test': _campaign2.default
+  'Campaign': _campaign2.default
 };

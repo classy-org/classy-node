@@ -34,6 +34,8 @@ var Classy = function () {
     this._setApiField('basePath', config.basePath);
     this._setApiField('strictSsl', config.strictSsl);
     this._prepResources();
+
+    console.log(this.campaign.create('a'));
   }
 
   /** 'Public' methods */
@@ -58,7 +60,10 @@ var Classy = function () {
     key: '_prepResources',
     value: function _prepResources() {
       for (var name in _resources.resources) {
-        this[name[0].toLowerCase() + name.substring(1)] = new _resources.resources[name](this);
+        var resourceName = name[0].toLowerCase() + name.substring(1),
+            resourceInstance = new _resources.resources[name](this);
+
+        this[resourceName] = resourceInstance;
       }
     }
   }]);

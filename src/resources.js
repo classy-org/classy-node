@@ -1,5 +1,5 @@
-import Bar from './resources/campaign';
+import Campaign from './resources/campaign';
 
 export const resources = {
-  'Test': Bar
+  'Campaign': Campaign
 };

@@ -8,9 +8,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _utils = require('./utils');
 
-var _classyMethod = require('./classyMethod');
+var _path = require('path');
 
-var _classyMethod2 = _interopRequireDefault(_classyMethod);
+var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21,9 +21,8 @@ var ClassyResource = function () {
     _classCallCheck(this, ClassyResource);
 
     /** Public properties */
-    this.basePath = _utils.utils.makeURLInterpolator(Classy.getApiField('basePath'));
+    this.basePath = Classy.getApiField('basePath');
     this.path = _utils.utils.makeURLInterpolator(this.path || '');
-    this.method = _classyMethod2.default;
 
     /** Private properties */
     this._classy = Classy;
@@ -31,13 +30,55 @@ var ClassyResource = function () {
   }
 
   _createClass(ClassyResource, [{
-    key: 'createUrlData',
-    value: function createUrlData() {
-      for (var i in this._urlData) {
-        if (this._urlData.hasOwnProperty(i)) {
-          urlData[i] = this._urlData[i];
+    key: '_createFullPath',
+    value: function _createFullPath(commandPath, urlData) {
+      return _path2.default.join(this.basePath, commandPath(urlData)).replace(/\\/g, '/');
+    }
+  }, {
+    key: '_populateUrlParams',
+    value: function _populateUrlParams(params, args) {
+      var urlData = {};
+
+      for (var i in params) {
+        if (typeof args[i] !== "undefined") {
+          urlData[params[i]] = args[i];
         }
       }
+
+      return urlData;
+    }
+  }, {
+    key: 'createMethod',
+    value: function createMethod(spec) {
+      var _this = this;
+
+      var OPTIONAL_REGEX = /^\?.*/g;
+      var PARAM_REGEX = /\{(.*?)\}/g;
+
+      var commandPath = _utils.utils.makeURLInterpolator(spec.path),
+          requestMethod = (spec.method || 'GET').toUpperCase(),
+          urlParams = _utils.utils.getRegexMatches(spec.path, PARAM_REGEX);
+
+      return function () {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        var self = _this,
+            urlData = _this._populateUrlParams(urlParams, args);
+
+        for (var i = 0; i < urlParams.length; i++) {
+          var arg = args[0],
+              param = urlParams[i],
+              optional = OPTIONAL_REGEX.test(param);
+
+          /** Add required param error handling */
+        }
+
+        var requestPath = _this._createFullPath(commandPath, urlData);
+
+        return requestPath;
+      };
     }
   }]);
 

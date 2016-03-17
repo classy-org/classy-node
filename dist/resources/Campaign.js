@@ -8,10 +8,6 @@ var _ClassyResource2 = require('../ClassyResource');
 
 var _ClassyResource3 = _interopRequireDefault(_ClassyResource2);
 
-var _classyMethod = require('../classyMethod');
-
-var _classyMethod2 = _interopRequireDefault(_classyMethod);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,10 +26,9 @@ var Campaign = function (_ClassyResource) {
 
     _this.path = 'campaign';
 
-    _this.create = (0, _classyMethod2.default)({
+    _this.create = _this.createMethod({
       method: "POST",
-      path: '/campaigns/{campaignId}',
-      urlParams: ["campaignId"]
+      path: '/campaigns/{campaignId}/{test}'
     });
     return _this;
   }

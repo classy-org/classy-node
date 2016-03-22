@@ -1,5 +1,7 @@
 import Campaign from './resources/campaign';
+import Oauth from './resources/Oauth';
 
 export const resources = {
-  'Campaign': Campaign
+  'Campaign': Campaign,
+  'Oauth': Oauth
 };

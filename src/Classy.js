@@ -6,7 +6,7 @@ export default class Classy {
     this.DEFAULT_PATH = '2.0';
     this.DEFAULT_STRICT_SSL = true;
 
-    this._api = {
+    this.api = {
       baseUrl: this.DEFAULT_BASE_URL,
       basePath: this.DEFAULT_PATH,
       strictSsl: this.DEFAULT_STRICT_SSL
@@ -24,22 +24,17 @@ export default class Classy {
     this._setApiField('basePath', config.basePath);
     this._setApiField('strictSsl', config.strictSsl);
     this._prepResources();
-    
-    var a = this.campaign.create('1', '2', {
-      'test': 'test'
-    });
-    console.log(a);
   }
   
   /** 'Public' methods */
   getApiField(key) {
-    return this._api[key];
+    return this.api[key];
   }
 
   /** 'Private' methods */
   _setApiField(key, value) {
     if (typeof value !== "undefined") {
-      this._api[key] = value;      
+      this.api[key] = value;      
     }
   }
   

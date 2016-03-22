@@ -1,10 +1,15 @@
 import {utils} from './utils';
 import path from 'path';
+import request from 'request';
+import requestDebug from 'request-debug';
+
+requestDebug(request);
 
 export default class ClassyResource {
   constructor(Classy, urlData) {  
     /** Public properties */
     this.basePath = Classy.getApiField('basePath');
+    this.baseUrl = Classy.getApiField('baseUrl');
     this.path = utils.makeURLInterpolator(this.path || '');
     
     /** Private properties */
@@ -12,11 +17,15 @@ export default class ClassyResource {
     this._urlData = urlData;   
   }
   
-  _createFullPath(commandPath, urlData) {
-    return path.join(
-      this.basePath,
+  _createFullPath(oauth, commandPath, urlData) {
+    var fullPath = path.join(
+      oauth ? '' : this.basePath,
       commandPath(urlData)
     ).replace(/\\/g, '/');
+    
+    fullPath = path.normalize(fullPath);
+
+    return fullPath;
   }
   
   _populateUrlParams(params, args) {
@@ -48,12 +57,39 @@ export default class ClassyResource {
           param = urlParams[i],
           optional = OPTIONAL_REGEX.test(param);
         
-        /** Add required param error handling */
+        /** TODO: Add required param error handling */
       }
       
-      let requestPath = this._createFullPath(commandPath, urlData);
-      
-      return requestPath;
+      let requestPath = this._createFullPath(spec.oauth, commandPath, urlData);
+
+      return this._makeRequest(requestPath, requestMethod);
     }
+  }
+  
+  _makeRequest(path, method) {
+    let promise = new Promise((resolve, reject) => {
+      let headers = {
+        'Authorization': 'Bearer ' + '1482e68e53714b85a969d10cd8724b37',
+        'Accept': 'application/json'
+      };
+      
+      request({
+        baseUrl: this.baseUrl,
+        uri: path,
+        method: method,
+        json: true,
+        headers: headers,
+        rejectUnauthorized: false
+      }, (err, response, body) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(body);
+        }
+      });
+      
+    });
+      
+    return promise;
   }
 }

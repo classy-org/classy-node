@@ -5,9 +5,15 @@ import Classy from '../src/Classy';
 describe('Classy', () => {
 
   it('should create instance with key, secret, and defaults', () => {
-    const classy = new Classy({
+    let classy = new Classy({
       key: 'api_key',
-      secret: 'api_secret'
+      secret: 'api_secret',
+      baseUrl: 'https://dev-gateway.classy-test.org'
+    });
+    
+    /** Just for testing */
+    classy.campaign.retrieve('2355').then(function(response) {
+    }).catch(function(err) {
     });
 
     // expect(classy._api.key).to.equal('api_key');

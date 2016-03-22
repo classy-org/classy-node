@@ -35,6 +35,7 @@ var Classy = function () {
     this._setApiField('strictSsl', config.strictSsl);
     this._prepResources();
 
+    /** Just for testing */
     var a = this.campaign.create('1', '2', {
       'test': 'test'
     });

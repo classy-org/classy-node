@@ -6,9 +6,9 @@ class Campaign extends ClassyResource {
     
     this.path = 'campaign';
 
-    this.create = this.createMethod({
-      method: "POST",
-      path: '/campaigns/{campaignId}/{test}'
+    this.retrieve = this.createMethod({
+      method: "GET",
+      path: '/campaigns/{campaignId}'
     });    
   }
 }

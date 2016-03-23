@@ -16,7 +16,7 @@ var utils = exports.utils = {
    * https://gist.github.com/padolsey/6008842
    * Outputs a new function with interpolated object property values.
    * Use like so:
-   *   var fn = makeURLInterpolator('some/url/{param1}/{param2}');
+   *   let fn = makeURLInterpolator('some/url/{param1}/{param2}');
    *   fn({ param1: 123, param2: 456 }); // => 'some/url/123/456'
    */
   makeURLInterpolator: function () {
@@ -31,22 +31,67 @@ var utils = exports.utils = {
       }).replace(/\{([\s\S]+?)\}/g, '" + encodeURIComponent(o["$1"]) + "') + '";');
     };
   }(),
-  getDataFromArgs: function getDataFromArgs(args) {
-    if (args.length > 0) {
-      if (_lodash2.default.isPlainObject(args[0])) {
-        return args.shift();
-      }
-    }
 
-    return {};
-  },
+  /**
+   * Returns an array of matches for an executed
+   * regex search on a string. Used to find params 
+   * in a resource URI.
+   * 
+   * @param  {string} string String upon which the regex is executed
+   * @param  {regex} regex  Regex to execute
+   * @param  {integer} index  Capturing group to target
+   * @return {[type]}        Match groups extracted from regex execution
+   */
   getRegexMatches: function getRegexMatches(string, regex, index) {
     index || (index = 1); // default to the first capturing group
-    var matches = [];
-    var match;
+    var matches = [],
+        match = undefined;
+
     while (match = regex.exec(string)) {
       matches.push(match[index]);
     }
+
     return matches;
+  },
+
+  /**
+   * Checks the options object for the telltale
+   * signs of each grant_type and returns whichever
+   * grant type it lands on.
+   * 
+   * Defaults to "client_credentials"
+   * 
+   * @param  {object} options Object developer defined for the oauth request
+   * @return {string}         The appropriate grant_type for the API request
+   */
+  generateOauthGrantType: function generateOauthGrantType(options) {
+    var grantType = "";
+    if (options.username && options.password) {
+      grantType = "password";
+    } else if (options.refreshToken) {
+      grantType = "refresh_token";
+    } else {
+      grantType = "client_credentials";
+    }
+
+    return grantType;
+  },
+
+  /**
+   * Simply checks the resolved URI to see if
+   * we are making an auth request.
+   * 
+   * @param  {string} resolvedPath The resolved URI
+   * @return {boolean}              Indicates whether this is an auth request
+   */
+  isAuthRequest: function isAuthRequest(resolvedPath) {
+    switch (resolvedPath) {
+      case "/oauth2/auth":
+        return true;
+        break;
+      default:
+        return false;
+        break;
+    }
   }
 };

@@ -1,10 +1,10 @@
-import ClassyResource from '../ClassyResource';
+import Resource from '../ClassyResource';
 
-class Campaign extends ClassyResource {
+class Campaigns extends Resource {
   constructor(Classy) {
     super(Classy);
     
-    this.path = 'campaign';
+    this.path = 'campaigns';
 
     this.retrieve = this.createMethod({
       method: "GET",
@@ -13,4 +13,4 @@ class Campaign extends ClassyResource {
   }
 }
 
-export default Campaign;
+export default Campaigns;

@@ -4,8 +4,8 @@
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "jscs .",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
-    "test:watch": "npm run test -- --watch"
+    "mocha": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
+    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha"
   },
   "keywords": [
     "classy",
@@ -31,15 +31,16 @@
   "main": "src/classy.js",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.1.1",
     "lodash": "^4.0.0",
     "request": "^2.69.0",
-    "request-debug": "^0.2.0"
+    "request-debug": "^0.2.0",
+    "require-dir": "^0.3.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
+    "babel-istanbul": "^0.7.0",
     "babel-preset-es2015": "^6.5.0",
     "chai": "^3.5.0",
     "del": "^2.2.0",
@@ -47,6 +48,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-jshint": "^2.0.0",
     "gulp-mocha": "^2.2.0",
+    "isparta": "^4.0.0",
     "jshint": "^2.9.1",
     "mocha": "^2.4.5",
     "run-sequence": "^1.1.5"

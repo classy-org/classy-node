@@ -1,18 +1,30 @@
 /** Just for testing */
 
-import Classy from '../src/Classy';
+import Classy from '../dist/Classy';
 
 let classy = new Classy({
-  key: 'api_key',
-  secret: 'api_secret',
+  clientId: 'fbnwFsTgUox9VAPTsHfJXk5KiyScSU',
+  clientSecret: 'XlX9sSH0sHHxTVIoBilbxcEYbQrrtLsYhtwNSrwuN0vgID0164xYY',
   baseUrl: 'https://dev-gateway.classy-test.org'
 });
 
+let app = classy.app();
 
-classy.oauth.createAppToken({
+app.then((response) => {
   
-}).then(function(response) {
-  console.log(response);
-}).catch(function(err) {
-  console.log(err);
+  classy.oauth.auth({
+    username: 'mlingner@classy.org',
+    password: 'classydev!'
+  }).then((response) => {
+    
+    classy.me.retrieve().then((response) => {
+      console.log(response);
+    });
+    
+    classy.campaigns.retrieve(2355).then((response) => {
+      console.log(response);
+    });
+    
+  });
+
 });

@@ -4,10 +4,10 @@ import request from 'request';
 import requestDebug from 'request-debug';
 import _ from 'lodash';
 
-// requestDebug(request);
+requestDebug(request);
 
 export default class ClassyResource {
-  constructor(Classy, urlData) {  
+  constructor(Classy, urlData) {
     /** Public properties */
     this.basePath = Classy.basePath;
     this.baseUrl = Classy.baseUrl;
@@ -28,7 +28,8 @@ export default class ClassyResource {
       
     return (...args) => {
       let self = this,
-        urlData = this._populateUrlParams(urlParams, args);
+        urlData = this._populateUrlParams(urlParams, args),
+        data = utils.getDataFromArgs(args);
 
       for (let i = 0; i < urlParams.length; i++) {
         let arg = args[0],
@@ -68,7 +69,7 @@ export default class ClassyResource {
       }
 
       // Make the request and return a promise
-      return this._makeRequest(requestPath, requestMethod, requestHeaders, form);
+      return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
     }
   }
   
@@ -166,17 +167,20 @@ export default class ClassyResource {
    * @param  {object} form    Request form (optional)
    * @return {promise}         Promise based on API request
    */
-  _makeRequest(path, method, headers, form) {
+  _makeRequest(path, method, headers, form, data) {
     let self = this;
     let promise = new Promise((resolve, reject) => {
-      request({
+      let requestParams ={
         baseUrl: this.baseUrl,
         uri: path,
         method: method,
         headers: headers,
         rejectUnauthorized: false,
-        form: form
-      }, (err, response, body) => {
+        form: form,
+        body: JSON.stringify(data)
+      };
+      
+      request(requestParams, (err, response, body) => {
         if (err) {
           reject(err);
         } else {

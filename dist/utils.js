@@ -26,7 +26,6 @@ var utils = exports.utils = {
     };
     return function (str) {
       return new Function('o', 'return "' + str.replace(/["\n\r\u2028\u2029]/g, function ($0) {
-        console.log('////////', $0);
         return rc[$0];
       }).replace(/\{([\s\S]+?)\}/g, '" + encodeURIComponent(o["$1"]) + "') + '";');
     };
@@ -92,6 +91,19 @@ var utils = exports.utils = {
       default:
         return false;
         break;
+    }
+  },
+
+  /**
+   * Return the data argument from a list of arguments
+   */
+  getDataFromArgs: function getDataFromArgs(args) {
+    if (args.length > 0) {
+      if (_lodash2.default.isObject(args[args.length - 1])) {
+        return _lodash2.default.last(args);
+      }
+    } else {
+      return {};
     }
   }
 };

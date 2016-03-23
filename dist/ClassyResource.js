@@ -28,7 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// requestDebug(request);
+(0, _requestDebug2.default)(_request2.default);
 
 var ClassyResource = function () {
   function ClassyResource(Classy, urlData) {
@@ -62,7 +62,8 @@ var ClassyResource = function () {
         }
 
         var self = _this,
-            urlData = _this._populateUrlParams(urlParams, args);
+            urlData = _this._populateUrlParams(urlParams, args),
+            data = _utils.utils.getDataFromArgs(args);
 
         for (var i = 0; i < urlParams.length; i++) {
           var arg = args[0],
@@ -96,7 +97,7 @@ var ClassyResource = function () {
         }
 
         // Make the request and return a promise
-        return _this._makeRequest(requestPath, requestMethod, requestHeaders, form);
+        return _this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
       };
     }
 
@@ -206,19 +207,22 @@ var ClassyResource = function () {
 
   }, {
     key: '_makeRequest',
-    value: function _makeRequest(path, method, headers, form) {
+    value: function _makeRequest(path, method, headers, form, data) {
       var _this2 = this;
 
       var self = this;
       var promise = new Promise(function (resolve, reject) {
-        (0, _request2.default)({
+        var requestParams = {
           baseUrl: _this2.baseUrl,
           uri: path,
           method: method,
           headers: headers,
           rejectUnauthorized: false,
-          form: form
-        }, function (err, response, body) {
+          form: form,
+          body: JSON.stringify(data)
+        };
+
+        (0, _request2.default)(requestParams, function (err, response, body) {
           if (err) {
             reject(err);
           } else {

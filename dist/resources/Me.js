@@ -24,8 +24,6 @@ var Me = function (_Resource) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Me).call(this, Classy));
 
-    _this.path = 'me';
-
     _this.retrieve = _this.createMethod({
       method: "GET",
       path: '/me'

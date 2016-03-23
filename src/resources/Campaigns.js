@@ -4,12 +4,15 @@ class Campaigns extends Resource {
   constructor(Classy) {
     super(Classy);
     
-    this.path = 'campaigns';
-
     this.retrieve = this.createMethod({
       method: "GET",
       path: '/campaigns/{campaignId}'
-    });    
+    });
+    
+    this.update = this.createMethod({
+      method: "PUT",
+      path: '/campaigns/{campaignId}'
+    })
   }
 }
 

@@ -19,7 +19,6 @@ export const utils = {
         'return "' + (
           str
           .replace(/["\n\r\u2028\u2029]/g, ($0) => {
-            console.log('////////', $0);
             return rc[$0];
           })
           .replace(/\{([\s\S]+?)\}/g, '" + encodeURIComponent(o["$1"]) + "')
@@ -88,6 +87,19 @@ export const utils = {
       default:
         return false;
         break;
+    }
+  },
+  
+  /**
+   * Return the data argument from a list of arguments
+   */
+  getDataFromArgs: (args) => {
+    if (args.length > 0) {
+      if (_.isObject(args[args.length - 1])) {
+        return _.last(args);
+      }
+    } else {
+      return {};      
     }
   }
 }

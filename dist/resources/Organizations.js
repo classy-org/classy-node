@@ -16,25 +16,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Oauth = function (_Resource) {
-  _inherits(Oauth, _Resource);
+var Organizations = function (_Resource) {
+  _inherits(Organizations, _Resource);
 
-  function Oauth(Classy) {
-    _classCallCheck(this, Oauth);
+  function Organizations(Classy) {
+    _classCallCheck(this, Organizations);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Oauth).call(this, Classy));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy));
 
-    _this.auth = _this.createMethod({
+    _this.createCampaign = _this.createMethod({
       method: "POST",
-      path: '/oauth2/auth',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      path: '/organizations/{organizationId}/campaigns'
     });
     return _this;
   }
 
-  return Oauth;
+  return Organizations;
 }(_ClassyResource2.default);
 
-exports.default = Oauth;
+exports.default = Organizations;

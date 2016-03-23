@@ -24,10 +24,13 @@ var Campaigns = function (_Resource) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Campaigns).call(this, Classy));
 
-    _this.path = 'campaigns';
-
     _this.retrieve = _this.createMethod({
       method: "GET",
+      path: '/campaigns/{campaignId}'
+    });
+
+    _this.update = _this.createMethod({
+      method: "PUT",
       path: '/campaigns/{campaignId}'
     });
     return _this;

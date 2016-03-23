@@ -28,7 +28,7 @@
   "engines": {
     "node": ">=v4.0.0"
   },
-  "main": "src/classy.js",
+  "main": "dist/Classy.js",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.0.0",

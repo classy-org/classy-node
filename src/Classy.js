@@ -1,7 +1,7 @@
 import resources from './resources';
 import _ from 'lodash';
 
-export default class Classy {
+module.exports = class Classy {
   constructor(config) {
     const DEFAULT_BASE_URL = 'https://api.classy.org';
     const DEFAULT_PATH = '2.0';

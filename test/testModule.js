@@ -1,6 +1,6 @@
 /** Just for testing */
 
-import Classy from '../dist/Classy';
+import Classy from '../src/Classy';
 
 let classy = new Classy({
   clientId: 'fbnwFsTgUox9VAPTsHfJXk5KiyScSU',
@@ -16,13 +16,18 @@ app.then((response) => {
     username: 'mlingner@classy.org',
     password: 'classydev!'
   }).then((response) => {
-    
-    classy.me.retrieve().then((response) => {
-      console.log(response);
-    });
-    
-    classy.campaigns.retrieve(2355).then((response) => {
-      console.log(response);
+    classy.organizations.createCampaign(34, {
+      name: 'Node-SDK Campaign',
+      goal: 3.50,
+      type: "crowdfunding",
+      started_at: '2016-03-23 07:00:00',
+      timezone_identifier:"US/Central"
+    }).then((response) => {
+      
+      classy.campaigns.update(response.id, {
+        name: "Edited Node-SDK Campaign!"
+      });
+      
     });
     
   });

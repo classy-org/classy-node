@@ -22,11 +22,12 @@ var Me = function (_Resource) {
   function Me(Classy) {
     _classCallCheck(this, Me);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Me).call(this, Classy));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Me).call(this, Classy, {
+      path: '/me'
+    }));
 
     _this.retrieve = _this.createMethod({
-      method: "GET",
-      path: '/me'
+      method: 'GET'
     });
     return _this;
   }

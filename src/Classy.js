@@ -115,7 +115,7 @@ module.exports = class Classy {
 
   _prepResources() {
     for (let name in resources) {
-      const resourceName = name[0].toLowerCase() + name.substring(1),
+      const resourceName = _.camelCase(name),
         resourceInstance = new resources[name](this);
 
       this[resourceName] = resourceInstance;

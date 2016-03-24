@@ -22,7 +22,7 @@ module.exports = function () {
     var DEFAULT_PATH = '2.0';
     var DEFAULT_STRICT_SSL = true;
 
-    if (typeof config === "undefined" || typeof config.clientId === "undefined" || typeof config.clientSecret === "undefined") {
+    if (_lodash2.default.isUndefined(config) || _lodash2.default.isUndefined(config.clientId) || _lodash2.default.isUndefined(config.clientSecret)) {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
     }
 
@@ -53,19 +53,19 @@ module.exports = function () {
   _createClass(Classy, [{
     key: 'app',
     value: function app() {
-      var self = this;
+      var _this = this;
 
       var promise = new Promise(function (resolve, reject) {
         var timeoutId = undefined;
         var timeout = function timeout() {
-          timeoutId = setTimeout(getToken, self.appToken.expiresIn);
+          timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
         };
 
         // Make the actual token call
         var getToken = function getToken() {
-          self.oauth.auth({
-            client_id: self.clientId,
-            client_secret: self.clientSecret
+          _this.oauth.auth({
+            client_id: _this.clientId,
+            client_secret: _this.clientSecret
           }).then(function (response) {
             // Loop timeout and resolve init promise
             clearTimeout(timeoutId);
@@ -88,7 +88,7 @@ module.exports = function () {
     key: 'setTokens',
     value: function setTokens(grantType, tokenResponse) {
       switch (grantType) {
-        case "client_credentials":
+        case 'client_credentials':
           this.appToken = {
             value: tokenResponse.access_token,
             expiresIn: tokenResponse.expires_in * 1000,
@@ -96,7 +96,7 @@ module.exports = function () {
           };
           break;
 
-        case "refresh_token":
+        case 'refresh_token':
           this.memberToken = {
             value: tokenResponse.access_token,
             refreshToken: tokenResponse.refresh_token,
@@ -105,7 +105,7 @@ module.exports = function () {
           };
           break;
 
-        case "password":
+        case 'password':
           this.memberToken = {
             value: tokenResponse.access_token,
             refreshToken: tokenResponse.refresh_token,
@@ -122,7 +122,7 @@ module.exports = function () {
     key: '_prepResources',
     value: function _prepResources() {
       for (var name in _resources2.default) {
-        var resourceName = name[0].toLowerCase() + name.substring(1),
+        var resourceName = _lodash2.default.camelCase(name),
             resourceInstance = new _resources2.default[name](this);
 
         this[resourceName] = resourceInstance;

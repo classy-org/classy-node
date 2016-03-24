@@ -33,9 +33,9 @@ var utils = exports.utils = {
 
   /**
    * Returns an array of matches for an executed
-   * regex search on a string. Used to find params 
+   * regex search on a string. Used to find params
    * in a resource URI.
-   * 
+   *
    * @param  {string} string String upon which the regex is executed
    * @param  {regex} regex  Regex to execute
    * @param  {integer} index  Capturing group to target
@@ -57,20 +57,20 @@ var utils = exports.utils = {
    * Checks the options object for the telltale
    * signs of each grant_type and returns whichever
    * grant type it lands on.
-   * 
+   *
    * Defaults to "client_credentials"
-   * 
+   *
    * @param  {object} options Object developer defined for the oauth request
    * @return {string}         The appropriate grant_type for the API request
    */
   generateOauthGrantType: function generateOauthGrantType(options) {
-    var grantType = "";
+    var grantType = '';
     if (options.username && options.password) {
-      grantType = "password";
+      grantType = 'password';
     } else if (options.refreshToken) {
-      grantType = "refresh_token";
+      grantType = 'refresh_token';
     } else {
-      grantType = "client_credentials";
+      grantType = 'client_credentials';
     }
 
     return grantType;
@@ -79,13 +79,13 @@ var utils = exports.utils = {
   /**
    * Simply checks the resolved URI to see if
    * we are making an auth request.
-   * 
+   *
    * @param  {string} resolvedPath The resolved URI
    * @return {boolean}              Indicates whether this is an auth request
    */
   isAuthRequest: function isAuthRequest(resolvedPath) {
     switch (resolvedPath) {
-      case "/oauth2/auth":
+      case '/oauth2/auth':
         return true;
         break;
       default:

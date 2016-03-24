@@ -16,27 +16,25 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Oauth = function (_Resource) {
-  _inherits(Oauth, _Resource);
+var FundraisingTeams = function (_Resource) {
+  _inherits(FundraisingTeams, _Resource);
 
-  function Oauth(Classy) {
-    _classCallCheck(this, Oauth);
+  function FundraisingTeams(Classy) {
+    _classCallCheck(this, FundraisingTeams);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Oauth).call(this, Classy, {
-      path: '/oauth2'
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FundraisingTeams).call(this, Classy, {
+      includeBasic: ['retrieve'],
+      path: '/fundraising-teams'
     }));
 
-    _this.auth = _this.createMethod({
-      method: 'POST',
-      path: '/auth',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+    _this.retrieveFundraisingPages = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/fundraising-pages'
     });
     return _this;
   }
 
-  return Oauth;
+  return FundraisingTeams;
 }(_ClassyResource2.default);
 
-exports.default = Oauth;
+exports.default = FundraisingTeams;

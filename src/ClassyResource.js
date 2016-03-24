@@ -3,6 +3,7 @@ import path from 'path';
 import request from 'request';
 import requestDebug from 'request-debug';
 import _ from 'lodash';
+import basicMethods from './basicMethods';
 
 requestDebug(request);
 
@@ -16,15 +17,22 @@ export default class ClassyResource {
     /** Private properties */
     this._classy = Classy;
     this._urlData = urlData;
+
+    // Add basic methods
+    if (urlData.includeBasic) {
+      this._addBasicMethods(urlData.includeBasic);
+    }
   }
 
   createMethod(spec) {
     const OPTIONAL_REGEX = /^\?.*/g;
     const PARAM_REGEX = /\{(.*?)\}/g;
 
-    let commandPath = utils.makeURLInterpolator(spec.path),
+    let specPath = (!_.isUndefined(spec.path) ? spec.path : ''),
+      path = this._urlData.path + specPath,
+      commandPath = utils.makeURLInterpolator(path),
       requestMethod = (spec.method || 'GET').toUpperCase(),
-      urlParams = utils.getRegexMatches(spec.path, PARAM_REGEX);
+      urlParams = utils.getRegexMatches(path, PARAM_REGEX);
 
     return (...args) => {
       let _this = this,
@@ -70,6 +78,19 @@ export default class ClassyResource {
       // Make the request and return a promise
       return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
     };
+  }
+
+  /**
+   * Adds basic methods to the resource based on
+   * the passed array.
+   *
+   * @param {array} basicMethodList A list of basic methods to add
+   */
+  _addBasicMethods(basicMethodList) {
+    let _this = this;
+    _.each(basicMethodList, (method) => {
+      _this[method] = _this.createMethod(basicMethods[method]);
+    });
   }
 
   /**

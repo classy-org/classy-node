@@ -24,6 +24,10 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _basicMethods = require('./basicMethods');
+
+var _basicMethods2 = _interopRequireDefault(_basicMethods);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42,27 +46,34 @@ var ClassyResource = function () {
     /** Private properties */
     this._classy = Classy;
     this._urlData = urlData;
+
+    // Add basic methods
+    if (urlData.includeBasic) {
+      this._addBasicMethods(urlData.includeBasic);
+    }
   }
 
   _createClass(ClassyResource, [{
     key: 'createMethod',
     value: function createMethod(spec) {
-      var _this = this;
+      var _this2 = this;
 
       var OPTIONAL_REGEX = /^\?.*/g;
       var PARAM_REGEX = /\{(.*?)\}/g;
 
-      var commandPath = _utils.utils.makeURLInterpolator(spec.path),
+      var specPath = !_lodash2.default.isUndefined(spec.path) ? spec.path : '',
+          path = this._urlData.path + specPath,
+          commandPath = _utils.utils.makeURLInterpolator(path),
           requestMethod = (spec.method || 'GET').toUpperCase(),
-          urlParams = _utils.utils.getRegexMatches(spec.path, PARAM_REGEX);
+          urlParams = _utils.utils.getRegexMatches(path, PARAM_REGEX);
 
       return function () {
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
 
-        var self = _this,
-            urlData = _this._populateUrlParams(urlParams, args),
+        var _this = _this2,
+            urlData = _this2._populateUrlParams(urlParams, args),
             data = _utils.utils.getDataFromArgs(args);
 
         for (var i = 0; i < urlParams.length; i++) {
@@ -77,36 +88,53 @@ var ClassyResource = function () {
         var isAuthRequest = _utils.utils.isAuthRequest(resolvedPath);
 
         //
-        var requestPath = _this._createFullPath(resolvedPath, isAuthRequest);
+        var requestPath = _this2._createFullPath(resolvedPath, isAuthRequest);
 
         // Choose token for Authorization header
-        var token = _this._chooseToken(_this._classy.appToken, _this._classy.memberToken, spec.useAppToken);
+        var token = _this2._chooseToken(_this2._classy.appToken, _this2._classy.memberToken, spec.useAppToken);
 
         // Merge default headers with spec headers
         var requestHeaders = {
-          'Authorization': 'Bearer ' + token.value,
-          'Accept': 'application/json',
+          Authorization: 'Bearer ' + token.value,
+          Accept: 'application/json',
           'Content-Type': 'application/json'
         };
+
         _lodash2.default.merge(requestHeaders, spec.headers);
 
         // Handle auth requests
         var form = false;
         if (isAuthRequest) {
-          form = _this._generateAuthForm(args);
+          form = _this2._generateAuthForm(args);
         }
 
         // Make the request and return a promise
-        return _this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
+        return _this2._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
       };
     }
 
     /**
-     * Create a full path based on the populated 
+     * Adds basic methods to the resource based on
+     * the passed array.
+     *
+     * @param {array} basicMethodList A list of basic methods to add
+     */
+
+  }, {
+    key: '_addBasicMethods',
+    value: function _addBasicMethods(basicMethodList) {
+      var _this = this;
+      _lodash2.default.each(basicMethodList, function (method) {
+        _this[method] = _this.createMethod(_basicMethods2.default[method]);
+      });
+    }
+
+    /**
+     * Create a full path based on the populated
      * URI and the basePath defined when the Classy
      * instance was initialized. Returns something like
      * /2.0/campaigns/23456 or /oauth2/auth.
-     * 
+     *
      * @param  {string}  resolvedPath  The populated URI
      * @param  {Boolean} isAuthRequest Determines whether to append basePath
      * @return {string}                The full URI for the upcoming request
@@ -123,9 +151,9 @@ var ClassyResource = function () {
     }
 
     /**
-     * Maps URL params from the spec to arguments 
+     * Maps URL params from the spec to arguments
      * used in the actual resource call.
-     * 
+     *
      * @param  {array} params URL params from the spec
      * @param  {array} args   Arguments used in the resource call
      * @return {object}        A key/value mapping between params and args
@@ -137,7 +165,7 @@ var ClassyResource = function () {
       var urlData = {};
 
       for (var i in params) {
-        if (typeof args[i] !== "undefined") {
+        if (!_lodash2.default.isUndefined(args[i])) {
           urlData[params[i]] = args[i];
         }
       }
@@ -147,9 +175,9 @@ var ClassyResource = function () {
 
     /**
      * If there's no member token or if the endpoint
-     * specifically asks to use the app token, use the 
+     * specifically asks to use the app token, use the
      * app token. Otherwise, use the member token.
-     * 
+     *
      * @param  {object} appToken    Application token
      * @param  {object} memberToken Member token
      * @param  {boolean} useAppToken Forces appToken token to win
@@ -173,10 +201,10 @@ var ClassyResource = function () {
     /**
      * Handles authentication requests by adding
      * the appropriate x-www-form-urlencoded data
-     * to the request. Camel cased keys will be 
+     * to the request. Camel cased keys will be
      * converted to snake case.
-     * 
-     * @param  {array} args 
+     *
+     * @param  {array} args
      * @return {object}      A form object for the request
      */
 
@@ -185,8 +213,8 @@ var ClassyResource = function () {
     value: function _generateAuthForm(args) {
       var form = _lodash2.default.mapKeys(args[0], function (value, key) {
         return _lodash2.default.snakeCase(key);
-      });
-      var grantType = _utils.utils.generateOauthGrantType(args[0]);
+      }),
+          grantType = _utils.utils.generateOauthGrantType(args[0]);
 
       form.grant_type = grantType;
       form.client_id = this._classy.clientId;
@@ -197,7 +225,7 @@ var ClassyResource = function () {
 
     /**
      * Makes a request to Classy's API.
-     * 
+     *
      * @param  {string} path    Request URI
      * @param  {string} method  Request method
      * @param  {object} headers Request headers
@@ -208,12 +236,12 @@ var ClassyResource = function () {
   }, {
     key: '_makeRequest',
     value: function _makeRequest(path, method, headers, form, data) {
-      var _this2 = this;
+      var _this3 = this;
 
-      var self = this;
+      var _this = this;
       var promise = new Promise(function (resolve, reject) {
         var requestParams = {
-          baseUrl: _this2.baseUrl,
+          baseUrl: _this3.baseUrl,
           uri: path,
           method: method,
           headers: headers,
@@ -221,7 +249,7 @@ var ClassyResource = function () {
           form: form
         };
 
-        if (method === "GET") {
+        if (method === 'GET') {
           requestParams.qs = data;
         } else {
           requestParams.body = JSON.stringify(data);
@@ -235,7 +263,7 @@ var ClassyResource = function () {
 
             // Set tokens if it's a token request
             if (!_lodash2.default.isUndefined(form.grant_type)) {
-              self._classy.setTokens(form.grant_type, body);
+              _this._classy.setTokens(form.grant_type, body);
             }
 
             resolve(body);

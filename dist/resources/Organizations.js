@@ -22,16 +22,19 @@ var Organizations = function (_Resource) {
   function Organizations(Classy) {
     _classCallCheck(this, Organizations);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy, {
+      includeBasic: ['retrieve'],
+      path: '/organizations'
+    }));
 
     _this.createCampaign = _this.createMethod({
-      method: "POST",
-      path: '/organizations/{organizationId}/campaigns'
+      method: 'POST',
+      path: '/{id}/campaigns'
     });
 
-    _this.retrieveCampaign = _this.createMethod({
-      method: "GET",
-      path: '/organizations/{organizationId}/campaigns'
+    _this.retrieveCampaigns = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/campaigns'
     });
     return _this;
   }

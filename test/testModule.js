@@ -11,16 +11,14 @@ let classy = new Classy({
 let app = classy.app();
 
 app.then((response) => {
-  
+
   classy.oauth.auth({
     username: 'mlingner@classy.org',
     password: 'classydev!'
   }).then((response) => {
-      
-    classy.organizations.retrieveCampaign(34, {
-      with: 'organization'
-    });
-    
+
+    classy.me.retrieve();
+
   });
 
 });

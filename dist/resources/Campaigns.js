@@ -22,16 +22,14 @@ var Campaigns = function (_Resource) {
   function Campaigns(Classy) {
     _classCallCheck(this, Campaigns);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Campaigns).call(this, Classy));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Campaigns).call(this, Classy, {
+      includeBasic: ['retrieve', 'update'],
+      path: '/campaigns'
+    }));
 
-    _this.retrieve = _this.createMethod({
-      method: "GET",
-      path: '/campaigns/{campaignId}'
-    });
-
-    _this.update = _this.createMethod({
-      method: "PUT",
-      path: '/campaigns/{campaignId}'
+    _this.createFundraisingPage = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/fundraising-pages'
     });
     return _this;
   }

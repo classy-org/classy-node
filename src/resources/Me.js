@@ -5,9 +5,9 @@ class Me extends Resource {
     super(Classy);
 
     this.retrieve = this.createMethod({
-      method: "GET",
+      method: 'GET',
       path: '/me'
-    });    
+    });
   }
 }
 

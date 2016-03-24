@@ -5,12 +5,12 @@ class Organizations extends Resource {
     super(Classy);
 
     this.createCampaign = this.createMethod({
-      method: "POST",
+      method: 'POST',
       path: '/organizations/{organizationId}/campaigns'
     });
-    
+
     this.retrieveCampaign = this.createMethod({
-      method: "GET",
+      method: 'GET',
       path: '/organizations/{organizationId}/campaigns'
     });
   }

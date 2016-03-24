@@ -1,0 +1,6 @@
+{
+    "preset": "airbnb",
+    "maxErrors":"1000",
+    "disallowMultipleVarDecl": false,
+    "requireTrailingComma": false
+}

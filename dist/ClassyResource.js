@@ -218,9 +218,14 @@ var ClassyResource = function () {
           method: method,
           headers: headers,
           rejectUnauthorized: false,
-          form: form,
-          body: JSON.stringify(data)
+          form: form
         };
+
+        if (method === "GET") {
+          requestParams.qs = data;
+        } else {
+          requestParams.body = JSON.stringify(data);
+        }
 
         (0, _request2.default)(requestParams, function (err, response, body) {
           if (err) {

@@ -28,6 +28,11 @@ var Organizations = function (_Resource) {
       method: "POST",
       path: '/organizations/{organizationId}/campaigns'
     });
+
+    _this.retrieveCampaign = _this.createMethod({
+      method: "GET",
+      path: '/organizations/{organizationId}/campaigns'
+    });
     return _this;
   }
 

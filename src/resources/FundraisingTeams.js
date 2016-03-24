@@ -7,7 +7,7 @@ class FundraisingTeams extends Resource {
       path: '/fundraising-teams'
     });
 
-    this.retrieveFundraisingPages = this.createMethod({
+    this.listFundraisingPages = this.createMethod({
       method: 'GET',
       path: '/{id}/fundraising-pages'
     });

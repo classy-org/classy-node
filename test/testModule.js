@@ -17,7 +17,7 @@ app.then((response) => {
     password: 'classydev!'
   }).then((response) => {
 
-    classy.me.retrieve();
+    classy.fundraisingTeams.listFundraisingPages(52262);
 
   });
 

@@ -27,7 +27,7 @@ var FundraisingTeams = function (_Resource) {
       path: '/fundraising-teams'
     }));
 
-    _this.retrieveFundraisingPages = _this.createMethod({
+    _this.listFundraisingPages = _this.createMethod({
       method: 'GET',
       path: '/{id}/fundraising-pages'
     });

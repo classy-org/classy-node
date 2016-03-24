@@ -31,6 +31,16 @@ var Campaigns = function (_Resource) {
       method: 'POST',
       path: '/{id}/fundraising-pages'
     });
+
+    _this.createFaq = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/faqs'
+    });
+
+    _this.listFaqs = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/faqs'
+    });
     return _this;
   }
 

@@ -11,6 +11,16 @@ class Campaigns extends Resource {
       method: 'POST',
       path: '/{id}/fundraising-pages'
     });
+
+    this.createFaq = this.createMethod({
+      method: 'POST',
+      path: '/{id}/faqs'
+    });
+
+    this.listFaqs = this.createMethod({
+      method: 'GET',
+      path: '/{id}/faqs'
+    });
   }
 }
 

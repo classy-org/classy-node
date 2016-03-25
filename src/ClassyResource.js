@@ -5,8 +5,6 @@ import requestDebug from 'request-debug';
 import _ from 'lodash';
 import basicMethods from './basicMethods';
 
-requestDebug(request);
-
 export default class ClassyResource {
   constructor(Classy, urlData) {
     /** Public properties */
@@ -17,6 +15,11 @@ export default class ClassyResource {
     /** Private properties */
     this._classy = Classy;
     this._urlData = urlData;
+
+    // Request debug setting
+    if (this._classy.requestDebug) {
+      requestDebug(request);
+    }
 
     // Add basic methods
     if (urlData.includeBasic) {

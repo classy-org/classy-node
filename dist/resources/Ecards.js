@@ -23,7 +23,7 @@ var Ecards = function (_Resource) {
     _classCallCheck(this, Ecards);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Ecards).call(this, Classy, {
-      includeBasic: ['retrieve', 'update', 'delete'],
+      includeBasic: ['retrieve', 'update', 'del'],
       path: '/eCards'
     }));
   }

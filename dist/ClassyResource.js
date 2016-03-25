@@ -32,8 +32,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-(0, _requestDebug2.default)(_request2.default);
-
 var ClassyResource = function () {
   function ClassyResource(Classy, urlData) {
     _classCallCheck(this, ClassyResource);
@@ -46,6 +44,11 @@ var ClassyResource = function () {
     /** Private properties */
     this._classy = Classy;
     this._urlData = urlData;
+
+    // Request debug setting
+    if (this._classy.requestDebug) {
+      (0, _requestDebug2.default)(_request2.default);
+    }
 
     // Add basic methods
     if (urlData.includeBasic) {

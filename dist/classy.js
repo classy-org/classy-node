@@ -21,6 +21,7 @@ module.exports = function () {
     var DEFAULT_BASE_URL = 'https://api.classy.org';
     var DEFAULT_PATH = '2.0';
     var DEFAULT_STRICT_SSL = true;
+    var DEFAULT_REQUEST_DEBUG = true;
 
     if (_lodash2.default.isUndefined(config) || _lodash2.default.isUndefined(config.clientId) || _lodash2.default.isUndefined(config.clientSecret)) {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
@@ -34,6 +35,8 @@ module.exports = function () {
     this.clientSecret = config.clientSecret;
 
     // Override defaults if asked
+    this.requestDebug = !_lodash2.default.isUndefined(config.requestDebug) ? config.requestDebug : DEFAULT_REQUEST_DEBUG;
+
     this.basePath = !_lodash2.default.isUndefined(config.basePath) ? config.basePath : DEFAULT_PATH;
 
     this.baseUrl = !_lodash2.default.isUndefined(config.baseUrl) ? config.baseUrl : DEFAULT_BASE_URL;

@@ -6,6 +6,7 @@ module.exports = class Classy {
     const DEFAULT_BASE_URL = 'https://api.classy.org';
     const DEFAULT_PATH = '2.0';
     const DEFAULT_STRICT_SSL = true;
+    const DEFAULT_REQUEST_DEBUG = true;
 
     if (_.isUndefined(config)
     ||  _.isUndefined(config.clientId)
@@ -21,6 +22,12 @@ module.exports = class Classy {
     this.clientSecret = config.clientSecret;
 
     // Override defaults if asked
+    this.requestDebug = (
+      !_.isUndefined(config.requestDebug) ?
+      config.requestDebug :
+      DEFAULT_REQUEST_DEBUG
+    );
+
     this.basePath = (
       !_.isUndefined(config.basePath) ?
       config.basePath :

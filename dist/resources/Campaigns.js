@@ -27,6 +27,21 @@ var Campaigns = function (_Resource) {
       path: '/campaigns'
     }));
 
+    _this.publish = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/publish'
+    });
+
+    _this.unpublish = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/unpublish'
+    });
+
+    _this.deactivate = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/deactivate'
+    });
+
     _this.createFundraisingPage = _this.createMethod({
       method: 'POST',
       path: '/{id}/fundraising-pages'

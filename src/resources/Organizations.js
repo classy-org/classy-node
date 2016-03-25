@@ -12,7 +12,7 @@ class Organizations extends Resource {
       path: '/{id}/campaigns'
     });
 
-    this.retrieveCampaigns = this.createMethod({
+    this.listCampaigns = this.createMethod({
       method: 'GET',
       path: '/{id}/campaigns'
     });

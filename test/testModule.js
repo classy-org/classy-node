@@ -17,7 +17,7 @@ app.then((response) => {
     password: 'classydev!'
   }).then((response) => {
 
-    classy.fundraisingTeams.listFundraisingPages(52262);
+    classy.campaigns.deactivate(2004);
 
   });
 

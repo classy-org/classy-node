@@ -32,7 +32,7 @@ var Organizations = function (_Resource) {
       path: '/{id}/campaigns'
     });
 
-    _this.retrieveCampaigns = _this.createMethod({
+    _this.listCampaigns = _this.createMethod({
       method: 'GET',
       path: '/{id}/campaigns'
     });

@@ -7,6 +7,21 @@ class Campaigns extends Resource {
       path: '/campaigns'
     });
 
+    this.publish = this.createMethod({
+      method: 'POST',
+      path: '/{id}/publish'
+    });
+
+    this.unpublish = this.createMethod({
+      method: 'POST',
+      path: '/{id}/unpublish'
+    });
+
+    this.deactivate = this.createMethod({
+      method: 'POST',
+      path: '/{id}/deactivate'
+    });
+
     this.createFundraisingPage = this.createMethod({
       method: 'POST',
       path: '/{id}/fundraising-pages'

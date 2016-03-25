@@ -67,6 +67,16 @@ var Campaigns = function (_Resource) {
       path: '/{id}/transactions'
     });
 
+    _this.listQuestions = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/questions'
+    });
+
+    _this.createQuestion = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/questions'
+    });
+
     return _this;
   }
 

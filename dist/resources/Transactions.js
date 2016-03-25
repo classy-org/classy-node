@@ -23,6 +23,7 @@ var Transactions = function (_Resource) {
     _classCallCheck(this, Transactions);
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Transactions).call(this, Classy, {
+      includeBasic: ['retrieve', 'update'],
       path: '/transactions'
     }));
 

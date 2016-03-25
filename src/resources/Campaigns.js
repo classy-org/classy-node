@@ -37,6 +37,16 @@ class Campaigns extends Resource {
       path: '/{id}/faqs'
     });
 
+    this.listTransactions = this.createMethod({
+      method: 'GET',
+      path: '/{id}/transactions'
+    });
+
+    this.createTransaction = this.createMethod({
+      method: 'POST',
+      path: '/{id}/transactions'
+    });
+
   }
 }
 

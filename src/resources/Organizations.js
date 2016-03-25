@@ -32,6 +32,11 @@ class Organizations extends Resource {
       path: '/{id}/supporters'
     });
 
+    this.listTransactions = this.createMethod({
+      method: 'GET',
+      path: '/{id}/transactions'
+    });
+
   }
 }
 

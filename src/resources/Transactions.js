@@ -3,6 +3,7 @@ import Resource from '../ClassyResource';
 class Transactions extends Resource {
   constructor(Classy) {
     super(Classy, {
+      includeBasic: ['retrieve', 'update'],
       path: '/transactions'
     });
 

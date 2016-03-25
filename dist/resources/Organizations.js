@@ -52,6 +52,11 @@ var Organizations = function (_Resource) {
       path: '/{id}/supporters'
     });
 
+    _this.listTransactions = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/transactions'
+    });
+
     return _this;
   }
 

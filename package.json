@@ -31,6 +31,7 @@
   "main": "dist/Classy.js",
   "license": "MIT",
   "dependencies": {
+    "jscs": "^2.11.0",
     "lodash": "^4.0.0",
     "qs": "^6.1.0",
     "request": "^2.69.0",

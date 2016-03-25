@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class CampaignCredentialSets extends Resource {
   constructor(Classy) {
     super(Classy, {
-      includeBasic: ['retrieve', 'update', 'del'],
+      basic: ['retrieve', 'update', 'del'],
       path: '/campaign-credential-sets'
     });
 

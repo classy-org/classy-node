@@ -51,8 +51,18 @@ var ClassyResource = function () {
     }
 
     // Add basic methods
-    if (urlData.includeBasic) {
-      this._addBasicMethods(urlData.includeBasic);
+    if (urlData.basic) {
+      this._addBasicMethods(urlData.basic);
+    }
+
+    // Add list methods
+    if (urlData.lists) {
+      this._addListMethods(urlData.lists);
+    }
+
+    // Add create methods
+    if (urlData.creates) {
+      this._addCreateMethods(urlData.creates);
     }
   }
 
@@ -120,15 +130,62 @@ var ClassyResource = function () {
      * Adds basic methods to the resource based on
      * the passed array.
      *
-     * @param {array} basicMethodList A list of basic methods to add
+     * @param {array} basics A list of basic methods to add
      */
 
   }, {
     key: '_addBasicMethods',
-    value: function _addBasicMethods(basicMethodList) {
+    value: function _addBasicMethods(basics) {
       var _this = this;
-      _lodash2.default.each(basicMethodList, function (method) {
+      _lodash2.default.each(basics, function (method) {
         _this[method] = _this.createMethod(_basicMethods2.default[method]);
+      });
+    }
+
+    /**
+     * Adds list methods to the resource based on
+     * the passed array. Lists are resources associated
+     * with the called resource, e.g. campaigns.listFaqs(#)
+     *
+     * @param {array} lists A list of list methods to add
+     */
+
+  }, {
+    key: '_addListMethods',
+    value: function _addListMethods(lists) {
+      var _this = this;
+
+      _lodash2.default.each(lists, function (method) {
+        var methodName = _lodash2.default.upperFirst(_lodash2.default.camelCase(method));
+
+        _this['list' + methodName] = _this.createMethod({
+          method: 'GET',
+          path: '/{id}/' + method
+        });
+      });
+    }
+
+    /**
+     * Adds list methods to the resource based on
+     * the passed array. Lists are resources associated
+     * with the called resource, e.g. campaigns.listFaqs(#)
+     *
+     * @param {array} lists A list of list methods to add
+     */
+
+  }, {
+    key: '_addCreateMethods',
+    value: function _addCreateMethods(lists) {
+      var _this = this;
+
+      _lodash2.default.each(lists, function (method) {
+        var methodName = _lodash2.default.upperFirst(_lodash2.default.camelCase(method));
+        methodName = methodName.substr(0, methodName.length - 1);
+
+        _this['create' + methodName] = _this.createMethod({
+          method: 'POST',
+          path: '/{id}/' + method
+        });
       });
     }
 

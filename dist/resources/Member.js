@@ -22,18 +22,11 @@ var Members = function (_Resource) {
   function Members(Classy) {
     _classCallCheck(this, Members);
 
-    /** Lists */
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Members).call(this, Classy, {
-      includeBasic: ['retrieve'],
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Members).call(this, Classy, {
+      basic: ['retrieve'],
+      lists: ['organizations'],
       path: '/members'
     }));
-
-    _this.listOrganizations = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/organizations'
-    });
-    return _this;
   }
 
   return Members;

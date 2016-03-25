@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class Designations extends Resource {
   constructor(Classy) {
     super(Classy, {
-      includeBasic: ['update'],
+      basic: ['update'],
       path: '/designations'
     });
 

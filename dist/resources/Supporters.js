@@ -23,7 +23,7 @@ var Supporters = function (_Resource) {
     _classCallCheck(this, Supporters);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Supporters).call(this, Classy, {
-      includeBasic: ['retrieve'],
+      basic: ['retrieve'],
       path: '/supporters'
     }));
   }

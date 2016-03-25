@@ -23,7 +23,7 @@ var Faqs = function (_Resource) {
     _classCallCheck(this, Faqs);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Faqs).call(this, Classy, {
-      includeBasic: ['retrieve', 'del', 'update'],
+      basic: ['retrieve', 'del', 'update'],
       path: '/faqs'
     }));
   }

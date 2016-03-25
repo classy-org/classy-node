@@ -23,7 +23,7 @@ var Designations = function (_Resource) {
     _classCallCheck(this, Designations);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Designations).call(this, Classy, {
-      includeBasic: ['update'],
+      basic: ['update'],
       path: '/designations'
     }));
   }

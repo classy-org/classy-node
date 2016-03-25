@@ -23,7 +23,7 @@ var Registrations = function (_Resource) {
     _classCallCheck(this, Registrations);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Registrations).call(this, Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
       path: '/registrations'
     }));
   }

@@ -3,20 +3,11 @@ import Resource from '../ClassyResource';
 class FundraisingTeams extends Resource {
   constructor(Classy) {
     super(Classy, {
-      includeBasic: ['retrieve'],
+      basic: ['retrieve'],
+      lists: ['activity', 'fundraising-pages'],
       path: '/fundraising-teams'
     });
 
-    /** Lists */
-    this.listActivity = this.createMethod({
-      method: 'GET',
-      path: '/{id}/activity'
-    });
-
-    this.listFundraisingPages = this.createMethod({
-      method: 'GET',
-      path: '/{id}/fundraising-pages'
-    });
   }
 }
 

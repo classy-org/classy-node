@@ -23,7 +23,7 @@ var RecurringDonationPlans = function (_Resource) {
     _classCallCheck(this, RecurringDonationPlans);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(RecurringDonationPlans).call(this, Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
       path: '/recurring-donation-plans'
     }));
   }

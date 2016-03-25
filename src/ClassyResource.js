@@ -22,8 +22,18 @@ export default class ClassyResource {
     }
 
     // Add basic methods
-    if (urlData.includeBasic) {
-      this._addBasicMethods(urlData.includeBasic);
+    if (urlData.basic) {
+      this._addBasicMethods(urlData.basic);
+    }
+
+    // Add list methods
+    if (urlData.lists) {
+      this._addListMethods(urlData.lists);
+    }
+
+    // Add create methods
+    if (urlData.creates) {
+      this._addCreateMethods(urlData.creates);
     }
   }
 
@@ -87,12 +97,53 @@ export default class ClassyResource {
    * Adds basic methods to the resource based on
    * the passed array.
    *
-   * @param {array} basicMethodList A list of basic methods to add
+   * @param {array} basics A list of basic methods to add
    */
-  _addBasicMethods(basicMethodList) {
+  _addBasicMethods(basics) {
     let _this = this;
-    _.each(basicMethodList, (method) => {
+    _.each(basics, (method) => {
       _this[method] = _this.createMethod(basicMethods[method]);
+    });
+  }
+
+  /**
+   * Adds list methods to the resource based on
+   * the passed array. Lists are resources associated
+   * with the called resource, e.g. campaigns.listFaqs(#)
+   *
+   * @param {array} lists A list of list methods to add
+   */
+  _addListMethods(lists) {
+    let _this = this;
+
+    _.each(lists, (method) => {
+      let methodName = _.upperFirst(_.camelCase(method));
+
+      _this['list' + methodName] = _this.createMethod({
+        method: 'GET',
+        path: '/{id}/' + method
+      });
+    });
+  }
+
+  /**
+   * Adds list methods to the resource based on
+   * the passed array. Lists are resources associated
+   * with the called resource, e.g. campaigns.listFaqs(#)
+   *
+   * @param {array} lists A list of list methods to add
+   */
+  _addCreateMethods(lists) {
+    let _this = this;
+
+    _.each(lists, (method) => {
+      let methodName = _.upperFirst(_.camelCase(method));
+      methodName = methodName.substr(0, methodName.length - 1);
+
+      _this['create' + methodName] = _this.createMethod({
+        method: 'POST',
+        path: '/{id}/' + method
+      });
     });
   }
 

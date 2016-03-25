@@ -22,23 +22,11 @@ var FundraisingTeams = function (_Resource) {
   function FundraisingTeams(Classy) {
     _classCallCheck(this, FundraisingTeams);
 
-    /** Lists */
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FundraisingTeams).call(this, Classy, {
-      includeBasic: ['retrieve'],
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(FundraisingTeams).call(this, Classy, {
+      basic: ['retrieve'],
+      lists: ['activity', 'fundraising-pages'],
       path: '/fundraising-teams'
     }));
-
-    _this.listActivity = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/activity'
-    });
-
-    _this.listFundraisingPages = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/fundraising-pages'
-    });
-    return _this;
   }
 
   return FundraisingTeams;

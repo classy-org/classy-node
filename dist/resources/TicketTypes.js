@@ -23,7 +23,7 @@ var TicketTypes = function (_Resource) {
     _classCallCheck(this, TicketTypes);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(TicketTypes).call(this, Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
       path: '/ticket-types'
     }));
   }

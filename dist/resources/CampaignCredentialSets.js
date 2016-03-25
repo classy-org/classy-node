@@ -23,7 +23,7 @@ var CampaignCredentialSets = function (_Resource) {
     _classCallCheck(this, CampaignCredentialSets);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(CampaignCredentialSets).call(this, Classy, {
-      includeBasic: ['retrieve', 'update', 'del'],
+      basic: ['retrieve', 'update', 'del'],
       path: '/campaign-credential-sets'
     }));
   }

@@ -23,7 +23,7 @@ var Dedications = function (_Resource) {
     _classCallCheck(this, Dedications);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Dedications).call(this, Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
       path: '/dedications'
     }));
   }

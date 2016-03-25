@@ -3,56 +3,22 @@ import Resource from '../ClassyResource';
 class Organizations extends Resource {
   constructor(Classy) {
     super(Classy, {
-      includeBasic: ['retrieve'],
+      basic: ['retrieve'],
+      lists: [
+        'activity',
+        'campaigns',
+        'designations',
+        'supporters',
+        'recurring-donation-plans',
+        'transactions',
+        'designations',
+        'engagement-settings'
+      ],
+      creates: [
+        'designations',
+        'campaigns'
+      ],
       path: '/organizations'
-    });
-
-    /** Lists */
-    this.listActivity = this.createMethod({
-      method: 'GET',
-      path: '/{id}/activity'
-    });
-
-    this.listCampaigns = this.createMethod({
-      method: 'GET',
-      path: '/{id}/campaigns'
-    });
-
-    this.listDesignations = this.createMethod({
-      method: 'GET',
-      path: '/{id}/designations'
-    });
-
-    this.listSupporters = this.createMethod({
-      method: 'GET',
-      path: '/{id}/supporters'
-    });
-
-    this.listRecurringDonationPlans = this.createMethod({
-      method: 'GET',
-      path: '/{id}/recurring-donation-plans'
-    });
-
-    this.listTransactions = this.createMethod({
-      method: 'GET',
-      path: '/{id}/transactions'
-    });
-
-    /** Creates */
-    this.createDesignation = this.createMethod({
-      method: 'POST',
-      path: '/{id}/designations'
-    });
-
-    this.createCampaign = this.createMethod({
-      method: 'POST',
-      path: '/{id}/campaigns'
-    });
-
-    /** Retrieves */
-    this.retrieveEngagementSettings = this.createMethod({
-      method: 'GET',
-      path: '/{id}/engagement-settings'
     });
 
     /** Updates */

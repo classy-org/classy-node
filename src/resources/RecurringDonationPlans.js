@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class RecurringDonationPlans extends Resource {
   constructor(Classy) {
     super(Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
       path: '/recurring-donation-plans'
     });
 

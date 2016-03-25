@@ -23,7 +23,7 @@ var AppealSet = function (_Resource) {
     _classCallCheck(this, AppealSet);
 
     return _possibleConstructorReturn(this, Object.getPrototypeOf(AppealSet).call(this, Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
       path: '/appeal-set'
     }));
   }

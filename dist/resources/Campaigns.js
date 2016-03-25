@@ -25,7 +25,9 @@ var Campaigns = function (_Resource) {
     /** Custom */
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Campaigns).call(this, Classy, {
-      includeBasic: ['retrieve', 'update'],
+      basic: ['retrieve', 'update'],
+      lists: ['activity', 'credential-sets', 'ecards', 'faqs', 'fundraising-teams', 'questions', 'recurring-donation-plans', 'transactions', 'ticket-types'],
+      creates: ['appeal-sets', 'credential-sets', 'ecards', 'faqs', 'questions', 'ticket-types', 'fundraising-pages', 'transactions'],
       path: '/campaigns'
     }));
 
@@ -37,98 +39,6 @@ var Campaigns = function (_Resource) {
     _this.unpublish = _this.createMethod({
       method: 'POST',
       path: '/{id}/unpublish'
-    });
-
-    _this.deactivate = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/deactivate'
-    });
-
-    /** Lists */
-    _this.listActivity = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/activity'
-    });
-
-    _this.listCredentialSets = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/credential-sets'
-    });
-
-    _this.listEcards = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/ecards'
-    });
-
-    _this.listFaqs = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/faqs'
-    });
-
-    _this.listFundraisingTeams = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/fundraising-teams'
-    });
-
-    _this.listQuestions = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/questions'
-    });
-
-    _this.listRecurringDonationPlans = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/recurring-donation-plans'
-    });
-
-    _this.listTransactions = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/transactions'
-    });
-
-    _this.listTicketTypes = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/ticket-types'
-    });
-
-    /** Creates */
-    _this.createAppealSet = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/appeal-set'
-    });
-
-    _this.createCredentialSet = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/credential-sets'
-    });
-
-    _this.createEcard = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/ecards'
-    });
-
-    _this.createFaq = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/faqs'
-    });
-
-    _this.createQuestion = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/questions'
-    });
-
-    _this.createTicketType = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/ticket-types'
-    });
-
-    _this.createFundraisingPage = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/fundraising-pages'
-    });
-
-    _this.createTransaction = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/transactions'
     });
 
     /** Retrieves */

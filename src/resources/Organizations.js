@@ -16,6 +16,16 @@ class Organizations extends Resource {
       method: 'GET',
       path: '/{id}/campaigns'
     });
+
+    this.listDesignations = this.createMethod({
+      method: 'GET',
+      path: '/{id}/designations'
+    });
+
+    this.createDesignation = this.createMethod({
+      method: 'POST',
+      path: '/{id}/designations'
+    });
   }
 }
 

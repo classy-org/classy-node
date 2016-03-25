@@ -17,7 +17,7 @@ app.then((response) => {
     password: 'classydev!'
   }).then((response) => {
 
-    classy.campaigns.deactivate(2004);
+    classy.designations.update(24554, {"name":"NODE-SDK-DESIGNATION-TEST"});
 
   });
 

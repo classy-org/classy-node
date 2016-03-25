@@ -1,8 +1,8 @@
-# Classy Node [![Build Status](https://travis-ci.org/classy-org/classy-node.png?branch=master)](https://travis-ci/classy-org/classy-node)
+# Classy Node [![Build Status](https://travis-ci.org/classy-org/classy-node.png?branch=master)](https://travis-ci.org/classy-org/classy-node)
 
 Built for the creativity and flexibility of the world's most innovative minds, create impactful apps and integrations that make social enterprises more efficient and effective. Engineer the world for good with the Classy API.
 
-Request access by visiting [developers.classy.org](https://developers.classy.org/overview/welcome).
+Request access and learn more by visiting [developers.classy.org](https://developers.classy.org/overview/welcome).
 
 ## Important notice
 
@@ -11,6 +11,59 @@ Classy Node is currently in development and is not ready for use on production.
 ## Installation
 
 `npm install classy-node`
+
+## Overview
+
+Start by instantiating your `classy` instance. We recommend storing your client ID and client secret as environment variables.
+
+```
+var Classy = require('classy-node');
+
+var classy = new Classy({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
+});
+```
+
+Then, use `classy.app()` obtain an application token and make calls as a trusted Classy application:
+
+```
+classy.app().then(function() {
+  // Make calls on behalf of the application
+});
+```
+
+In order to make calls on behalf of a member, first set the member context by passing either a `refreshToken` or a `username` & `password` into the `oauth` resource's `auth` endpoint:
+
+```
+// With a username & password
+classy.oauth.auth({
+  username: 'USERNAME_GOES_HERE',
+  password: 'PASSWORD_GOES_HERE'
+});
+
+// With a refresh token
+classy.oauth.auth({
+  refreshToken: 'REFRESH_TOKEN_GOES_HERE'
+});
+```
+
+Every resource method returns a promise:
+
+```
+classy.campaigns.get(19).then(function(response) {
+  // Do something with the response
+}).catch(function(error) {
+  // Do something with the error
+});
+```
+
+## Contributing
+
+When submitting a pull request, please make sure that you've written [good commit messages](http://chris.beams.io/posts/git-commit/) that have titles shorter than 50 characters, include a reference to an issue in the body, and clearly describe what your commit achieves. Use the body to explain what you did and why you did it. Thanks!
+
+You can run our tests with `npm test` and get coverage reports with `npm run coverage`.
+
 
 ## More information
 

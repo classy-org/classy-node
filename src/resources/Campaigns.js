@@ -57,6 +57,16 @@ class Campaigns extends Resource {
       path: '/{id}/questions'
     });
 
+    this.listTicketTypes = this.createMethod({
+      method: 'GET',
+      path: '/{id}/ticket-types'
+    });
+
+    this.createTicketType = this.createMethod({
+      method: 'POST',
+      path: '/{id}/ticket-types'
+    });
+
   }
 }
 

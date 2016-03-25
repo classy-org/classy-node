@@ -77,6 +77,16 @@ var Campaigns = function (_Resource) {
       path: '/{id}/questions'
     });
 
+    _this.listTicketTypes = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/ticket-types'
+    });
+
+    _this.createTicketType = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/ticket-types'
+    });
+
     return _this;
   }
 

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Classy API wrapper",
   "scripts": {
-    "lint": "jscs .",
+    "lint": "jscs ./src",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha"
   },

@@ -1,10 +1,13 @@
 /** Just for testing */
 
 import Classy from '../src/Classy';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 let classy = new Classy({
-  clientId: 'fbnwFsTgUox9VAPTsHfJXk5KiyScSU',
-  clientSecret: 'XlX9sSH0sHHxTVIoBilbxcEYbQrrtLsYhtwNSrwuN0vgID0164xYY',
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
   baseUrl: 'https://dev-gateway.classy-test.org'
 });
 

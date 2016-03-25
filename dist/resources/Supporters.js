@@ -16,46 +16,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Organizations = function (_Resource) {
-  _inherits(Organizations, _Resource);
+var Supporters = function (_Resource) {
+  _inherits(Supporters, _Resource);
 
-  function Organizations(Classy) {
-    _classCallCheck(this, Organizations);
+  function Supporters(Classy) {
+    _classCallCheck(this, Supporters);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy, {
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Supporters).call(this, Classy, {
       includeBasic: ['retrieve'],
-      path: '/organizations'
+      path: '/supporters'
     }));
-
-    _this.createCampaign = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/campaigns'
-    });
-
-    _this.listCampaigns = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/campaigns'
-    });
-
-    _this.listDesignations = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/designations'
-    });
-
-    _this.createDesignation = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/designations'
-    });
-
-    _this.listSupporters = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/supporters'
-    });
-
-    return _this;
   }
 
-  return Organizations;
+  return Supporters;
 }(_ClassyResource2.default);
 
-exports.default = Organizations;
+exports.default = Supporters;

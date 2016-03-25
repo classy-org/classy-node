@@ -56,6 +56,7 @@ var Campaigns = function (_Resource) {
       method: 'GET',
       path: '/{id}/faqs'
     });
+
     return _this;
   }
 

@@ -17,10 +17,7 @@ app.then((response) => {
     password: 'classydev!'
   }).then((response) => {
 
-    classy.dedications.retrieve(105929, {
-      type: 'honor',
-      city: 'NODE-SDK'
-    });
+    classy.supporters.retrieve(1439);
 
   });
 

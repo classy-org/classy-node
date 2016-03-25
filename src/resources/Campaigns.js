@@ -36,6 +36,7 @@ class Campaigns extends Resource {
       method: 'GET',
       path: '/{id}/faqs'
     });
+
   }
 }
 

@@ -26,6 +26,12 @@ class Organizations extends Resource {
       method: 'POST',
       path: '/{id}/designations'
     });
+
+    this.listSupporters = this.createMethod({
+      method: 'GET',
+      path: '/{id}/supporters'
+    });
+
   }
 }
 

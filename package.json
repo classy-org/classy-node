@@ -1,6 +1,6 @@
 {
   "name": "classy-node",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "jscs .",
@@ -15,16 +15,16 @@
     "donations",
     "fundraising"
   ],
-  "homepage": "https://github.com/mlingner/classy-node",
+  "homepage": "https://github.com/classy-org/classy-node",
   "author": "Classy, Inc. <support@classy.org> (https://classy.org)",
   "contributors": [
     "Matt Lingner <mlingner@gmail.com> (http://mattlingner.com)"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mlingner/classy-node.git"
+    "url": "git://github.com/classy-org/classy-node.git"
   },
-  "bugs": "https://github.com/mlingner/classy-node/issues",
+  "bugs": "https://github.com/classy-org/classy-node/issues",
   "engines": {
     "node": ">=v4.0.0"
   },

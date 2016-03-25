@@ -16,32 +16,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FundraisingTeams = function (_Resource) {
-  _inherits(FundraisingTeams, _Resource);
+var RecurringDonationPlans = function (_Resource) {
+  _inherits(RecurringDonationPlans, _Resource);
 
-  function FundraisingTeams(Classy) {
-    _classCallCheck(this, FundraisingTeams);
+  function RecurringDonationPlans(Classy) {
+    _classCallCheck(this, RecurringDonationPlans);
 
-    /** Lists */
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FundraisingTeams).call(this, Classy, {
-      includeBasic: ['retrieve'],
-      path: '/fundraising-teams'
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(RecurringDonationPlans).call(this, Classy, {
+      includeBasic: ['retrieve', 'update'],
+      path: '/recurring-donation-plans'
     }));
-
-    _this.listActivity = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/activity'
-    });
-
-    _this.listFundraisingPages = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/fundraising-pages'
-    });
-    return _this;
   }
 
-  return FundraisingTeams;
+  return RecurringDonationPlans;
 }(_ClassyResource2.default);
 
-exports.default = FundraisingTeams;
+exports.default = RecurringDonationPlans;

@@ -16,32 +16,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FundraisingTeams = function (_Resource) {
-  _inherits(FundraisingTeams, _Resource);
+var CampaignCredentialSets = function (_Resource) {
+  _inherits(CampaignCredentialSets, _Resource);
 
-  function FundraisingTeams(Classy) {
-    _classCallCheck(this, FundraisingTeams);
+  function CampaignCredentialSets(Classy) {
+    _classCallCheck(this, CampaignCredentialSets);
 
-    /** Lists */
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FundraisingTeams).call(this, Classy, {
-      includeBasic: ['retrieve'],
-      path: '/fundraising-teams'
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(CampaignCredentialSets).call(this, Classy, {
+      includeBasic: ['retrieve', 'update', 'del'],
+      path: '/campaign-credential-sets'
     }));
-
-    _this.listActivity = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/activity'
-    });
-
-    _this.listFundraisingPages = _this.createMethod({
-      method: 'GET',
-      path: '/{id}/fundraising-pages'
-    });
-    return _this;
   }
 
-  return FundraisingTeams;
+  return CampaignCredentialSets;
 }(_ClassyResource2.default);
 
-exports.default = FundraisingTeams;
+exports.default = CampaignCredentialSets;

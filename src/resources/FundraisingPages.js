@@ -6,6 +6,14 @@ class FundraisingPages extends Resource {
       includeBasic: ['retrieve', 'update', 'del'],
       path: '/fundraising-pages'
     });
+
+    /** Lists */
+    this.listActivity = this.createMethod({
+      method: 'GET',
+      path: '/{id}/activity'
+    });
+
+    /** Creates */
   }
 }
 

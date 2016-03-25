@@ -22,14 +22,16 @@ var Organizations = function (_Resource) {
   function Organizations(Classy) {
     _classCallCheck(this, Organizations);
 
+    /** Lists */
+
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy, {
       includeBasic: ['retrieve'],
       path: '/organizations'
     }));
 
-    _this.createCampaign = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/campaigns'
+    _this.listActivity = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/activity'
     });
 
     _this.listCampaigns = _this.createMethod({
@@ -42,19 +44,42 @@ var Organizations = function (_Resource) {
       path: '/{id}/designations'
     });
 
-    _this.createDesignation = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/designations'
-    });
-
     _this.listSupporters = _this.createMethod({
       method: 'GET',
       path: '/{id}/supporters'
     });
 
+    _this.listRecurringDonationPlans = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/recurring-donation-plans'
+    });
+
     _this.listTransactions = _this.createMethod({
       method: 'GET',
       path: '/{id}/transactions'
+    });
+
+    /** Creates */
+    _this.createDesignation = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/designations'
+    });
+
+    _this.createCampaign = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/campaigns'
+    });
+
+    /** Retrieves */
+    _this.retrieveEngagementSettings = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/engagement-settings'
+    });
+
+    /** Updates */
+    _this.updateEngagementSettings = _this.createMethod({
+      method: 'PUT',
+      path: '/{id}/engagement-settings'
     });
 
     return _this;

@@ -7,6 +7,7 @@ class Campaigns extends Resource {
       path: '/campaigns'
     });
 
+    /** Custom */
     this.publish = this.createMethod({
       method: 'POST',
       path: '/{id}/publish'
@@ -22,14 +23,20 @@ class Campaigns extends Resource {
       path: '/{id}/deactivate'
     });
 
-    this.createFundraisingPage = this.createMethod({
-      method: 'POST',
-      path: '/{id}/fundraising-pages'
+    /** Lists */
+    this.listActivity = this.createMethod({
+      method: 'GET',
+      path: '/{id}/activity'
     });
 
-    this.createFaq = this.createMethod({
-      method: 'POST',
-      path: '/{id}/faqs'
+    this.listCredentialSets = this.createMethod({
+      method: 'GET',
+      path: '/{id}/credential-sets'
+    });
+
+    this.listEcards = this.createMethod({
+      method: 'GET',
+      path: '/{id}/ecards'
     });
 
     this.listFaqs = this.createMethod({
@@ -37,14 +44,9 @@ class Campaigns extends Resource {
       path: '/{id}/faqs'
     });
 
-    this.listTransactions = this.createMethod({
+    this.listFundraisingTeams = this.createMethod({
       method: 'GET',
-      path: '/{id}/transactions'
-    });
-
-    this.createTransaction = this.createMethod({
-      method: 'POST',
-      path: '/{id}/transactions'
+      path: '/{id}/fundraising-teams'
     });
 
     this.listQuestions = this.createMethod({
@@ -52,9 +54,14 @@ class Campaigns extends Resource {
       path: '/{id}/questions'
     });
 
-    this.createQuestion = this.createMethod({
-      method: 'POST',
-      path: '/{id}/questions'
+    this.listRecurringDonationPlans = this.createMethod({
+      method: 'GET',
+      path: '/{id}/recurring-donation-plans'
+    });
+
+    this.listTransactions = this.createMethod({
+      method: 'GET',
+      path: '/{id}/transactions'
     });
 
     this.listTicketTypes = this.createMethod({
@@ -62,9 +69,51 @@ class Campaigns extends Resource {
       path: '/{id}/ticket-types'
     });
 
+    /** Creates */
+    this.createAppealSet = this.createMethod({
+      method: 'POST',
+      path: '/{id}/appeal-set'
+    });
+
+    this.createCredentialSet = this.createMethod({
+      method: 'POST',
+      path: '/{id}/credential-sets'
+    });
+
+    this.createEcard = this.createMethod({
+      method: 'POST',
+      path: '/{id}/ecards'
+    });
+
+    this.createFaq = this.createMethod({
+      method: 'POST',
+      path: '/{id}/faqs'
+    });
+
+    this.createQuestion = this.createMethod({
+      method: 'POST',
+      path: '/{id}/questions'
+    });
+
     this.createTicketType = this.createMethod({
       method: 'POST',
       path: '/{id}/ticket-types'
+    });
+
+    this.createFundraisingPage = this.createMethod({
+      method: 'POST',
+      path: '/{id}/fundraising-pages'
+    });
+
+    this.createTransaction = this.createMethod({
+      method: 'POST',
+      path: '/{id}/transactions'
+    });
+
+    /** Retrieves */
+    this.retrieveAppealSet = this.createMethod({
+      method: 'GET',
+      path: '/{id}/appeal-set'
     });
 
   }

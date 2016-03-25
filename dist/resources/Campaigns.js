@@ -22,6 +22,8 @@ var Campaigns = function (_Resource) {
   function Campaigns(Classy) {
     _classCallCheck(this, Campaigns);
 
+    /** Custom */
+
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Campaigns).call(this, Classy, {
       includeBasic: ['retrieve', 'update'],
       path: '/campaigns'
@@ -42,14 +44,20 @@ var Campaigns = function (_Resource) {
       path: '/{id}/deactivate'
     });
 
-    _this.createFundraisingPage = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/fundraising-pages'
+    /** Lists */
+    _this.listActivity = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/activity'
     });
 
-    _this.createFaq = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/faqs'
+    _this.listCredentialSets = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/credential-sets'
+    });
+
+    _this.listEcards = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/ecards'
     });
 
     _this.listFaqs = _this.createMethod({
@@ -57,14 +65,9 @@ var Campaigns = function (_Resource) {
       path: '/{id}/faqs'
     });
 
-    _this.listTransactions = _this.createMethod({
+    _this.listFundraisingTeams = _this.createMethod({
       method: 'GET',
-      path: '/{id}/transactions'
-    });
-
-    _this.createTransaction = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/transactions'
+      path: '/{id}/fundraising-teams'
     });
 
     _this.listQuestions = _this.createMethod({
@@ -72,9 +75,14 @@ var Campaigns = function (_Resource) {
       path: '/{id}/questions'
     });
 
-    _this.createQuestion = _this.createMethod({
-      method: 'POST',
-      path: '/{id}/questions'
+    _this.listRecurringDonationPlans = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/recurring-donation-plans'
+    });
+
+    _this.listTransactions = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/transactions'
     });
 
     _this.listTicketTypes = _this.createMethod({
@@ -82,9 +90,51 @@ var Campaigns = function (_Resource) {
       path: '/{id}/ticket-types'
     });
 
+    /** Creates */
+    _this.createAppealSet = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/appeal-set'
+    });
+
+    _this.createCredentialSet = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/credential-sets'
+    });
+
+    _this.createEcard = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/ecards'
+    });
+
+    _this.createFaq = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/faqs'
+    });
+
+    _this.createQuestion = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/questions'
+    });
+
     _this.createTicketType = _this.createMethod({
       method: 'POST',
       path: '/{id}/ticket-types'
+    });
+
+    _this.createFundraisingPage = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/fundraising-pages'
+    });
+
+    _this.createTransaction = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/transactions'
+    });
+
+    /** Retrieves */
+    _this.retrieveAppealSet = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/appeal-set'
     });
 
     return _this;

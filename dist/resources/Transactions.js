@@ -22,14 +22,28 @@ var Transactions = function (_Resource) {
   function Transactions(Classy) {
     _classCallCheck(this, Transactions);
 
+    /** Lists */
+
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Transactions).call(this, Classy, {
       includeBasic: ['retrieve', 'update'],
       path: '/transactions'
     }));
 
+    _this.listRegistrations = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/registrations'
+    });
+
+    /** Creates */
     _this.createDedication = _this.createMethod({
       method: 'POST',
       path: '/{id}/dedications'
+    });
+
+    /** Retrieves */
+    _this.retrieveItems = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/items'
     });
 
     return _this;

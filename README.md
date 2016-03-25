@@ -51,12 +51,22 @@ classy.oauth.auth({
 Every resource method returns a promise:
 
 ```
-classy.campaigns.get(19).then(function(response) {
+classy.campaigns.retrieve(19).then(function(response) {
   // Do something with the response
 }).catch(function(error) {
   // Do something with the error
 });
 ```
+
+Each resource can contain several basic methods, and might also include additional custom methods that act upon related resources:
+
+- `create()`
+- `retrieve()`
+- `update()`
+- `del()`
+- `create{RelatedResource}()` e.g., `createCampaign()`
+- `list{RelatedResources}()` e.g. `listCampaigns()`
+- Other e.g., `publish()`, `unpublish()`, & `deactivate()`
 
 ## Contributing
 

@@ -17,7 +17,10 @@ app.then((response) => {
     password: 'classydev!'
   }).then((response) => {
 
-    classy.designations.update(24554, {"name":"NODE-SDK-DESIGNATION-TEST"});
+    classy.dedications.retrieve(105929, {
+      type: 'honor',
+      city: 'NODE-SDK'
+    });
 
   });
 

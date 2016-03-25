@@ -16,8 +16,8 @@ let app = classy.app();
 app.then((response) => {
 
   classy.oauth.auth({
-    username: 'mlingner@classy.org',
-    password: 'classydev!'
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD
   }).then((response) => {
 
     classy.campaigns.createTicketType(54432, {

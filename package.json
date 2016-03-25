@@ -4,7 +4,7 @@
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "jscs .",
-    "mocha": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha"
   },
   "keywords": [

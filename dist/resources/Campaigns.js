@@ -47,6 +47,11 @@ var Campaigns = function (_Resource) {
       path: '/{id}/appeal-set'
     });
 
+    _this.retrieveTheme = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/themes'
+    });
+
     return _this;
   }
 

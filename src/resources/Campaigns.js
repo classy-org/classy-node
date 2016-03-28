@@ -45,6 +45,11 @@ class Campaigns extends Resource {
       path: '/{id}/appeal-set'
     });
 
+    this.retrieveTheme = this.createMethod({
+      method: 'GET',
+      path: '/{id}/themes'
+    });
+
   }
 }
 

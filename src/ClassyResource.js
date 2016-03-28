@@ -62,16 +62,16 @@ export default class ClassyResource {
 
       let resolvedPath = commandPath(urlData);
       let isAuthRequest = utils.isAuthRequest(resolvedPath);
-
-      //
       let requestPath = this._createFullPath(resolvedPath, isAuthRequest);
 
       // Choose token for Authorization header
-      let token = this._chooseToken(
-        this._classy.appToken,
-        this._classy.memberToken,
-        spec.useAppToken
-      );
+      let useAppToken = spec.useAppToken
+        || (!_.isUndefined(data) ? data.token === 'app' : false),
+        token = this._chooseToken(
+          this._classy.appToken,
+          this._classy.memberToken,
+          useAppToken
+        );
 
       // Merge default headers with spec headers
       let requestHeaders = {

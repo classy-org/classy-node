@@ -99,12 +99,11 @@ var ClassyResource = function () {
 
         var resolvedPath = commandPath(urlData);
         var isAuthRequest = _utils.utils.isAuthRequest(resolvedPath);
-
-        //
         var requestPath = _this2._createFullPath(resolvedPath, isAuthRequest);
 
         // Choose token for Authorization header
-        var token = _this2._chooseToken(_this2._classy.appToken, _this2._classy.memberToken, spec.useAppToken);
+        var useAppToken = spec.useAppToken || (!_lodash2.default.isUndefined(data) ? data.token === 'app' : false),
+            token = _this2._chooseToken(_this2._classy.appToken, _this2._classy.memberToken, useAppToken);
 
         // Merge default headers with spec headers
         var requestHeaders = {

@@ -4,7 +4,6 @@ import Classy from '../src/Classy';
 import resources from '../src/resources';
 import _ from 'lodash';
 
-
 describe('Classy', () => {
 
   it('should create instance with key, secret, and defaults', () => {
@@ -128,9 +127,14 @@ describe('Classy', () => {
       requestDebug: false
     });
 
-    let token = classy.setTokens('random');
+    let opts = {
+      access_token: 'test',
+      expires_in: 100
+    };
 
-    expect(classy.memberToken).to.be.empty;
+    let token = classy.setTokens(null, opts);
+
+    expect(classy.memberToken).to.not.be.empty;
     expect(classy.appToken).to.be.empty;
   });
 

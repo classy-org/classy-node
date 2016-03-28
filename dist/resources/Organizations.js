@@ -26,8 +26,8 @@ var Organizations = function (_Resource) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy, {
       basic: ['retrieve'],
-      lists: ['activity', 'campaigns', 'designations', 'supporters', 'recurring-donation-plans', 'transactions', 'designations', 'engagement-settings'],
-      creates: ['designations', 'campaigns'],
+      lists: ['activity', 'analytics', 'campaigns', 'designations', 'engagement-settings', 'designations', 'recurring-donation-plans', 'supporters', 'transactions'],
+      creates: ['campaigns', 'designations'],
       path: '/organizations'
     }));
 

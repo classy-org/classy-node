@@ -6,17 +6,18 @@ class Organizations extends Resource {
       basic: ['retrieve'],
       lists: [
         'activity',
+        'analytics',
         'campaigns',
         'designations',
-        'supporters',
-        'recurring-donation-plans',
-        'transactions',
+        'engagement-settings',
         'designations',
-        'engagement-settings'
+        'recurring-donation-plans',
+        'supporters',
+        'transactions'
       ],
       creates: [
-        'designations',
-        'campaigns'
+        'campaigns',
+        'designations'
       ],
       path: '/organizations'
     });

@@ -116,6 +116,12 @@ module.exports = class Classy {
         break;
 
       default:
+        this.memberToken = {
+          value: tokenResponse.access_token,
+          refreshToken: tokenResponse.refresh_token,
+          expiresIn: tokenResponse.expires_in * 1000,
+          expiresOn: new Date().getTime() + (tokenResponse.expires_in * 1000)
+        }
         break;
     }
   }

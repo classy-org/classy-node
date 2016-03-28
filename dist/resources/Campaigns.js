@@ -52,6 +52,11 @@ var Campaigns = function (_Resource) {
       path: '/{id}/themes'
     });
 
+    _this.retrieveOverview = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/overview'
+    });
+
     return _this;
   }
 

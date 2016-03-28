@@ -50,6 +50,11 @@ class Campaigns extends Resource {
       path: '/{id}/themes'
     });
 
+    this.retrieveOverview = this.createMethod({
+      method: 'GET',
+      path: '/{id}/overview'
+    });
+
   }
 }
 

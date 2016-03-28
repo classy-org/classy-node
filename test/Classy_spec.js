@@ -120,7 +120,7 @@ describe('Classy', () => {
     expect(classy.appToken).to.be.empty;
   });
 
-  it('should have default for setTokens', () => {
+  it('should set memberToken when member_token is passed', () => {
     const classy = new Classy({
       clientId: 'client_id_str',
       clientSecret: 'client_secret_str',
@@ -132,9 +132,22 @@ describe('Classy', () => {
       expires_in: 100
     };
 
-    let token = classy.setTokens(null, opts);
+    let token = classy.setTokens('member_token', opts);
 
     expect(classy.memberToken).to.not.be.empty;
+    expect(classy.appToken).to.be.empty;
+  });
+
+  it('should have default for setTokens', () => {
+    const classy = new Classy({
+      clientId: 'client_id_str',
+      clientSecret: 'client_secret_str',
+      requestDebug: false
+    });
+
+    let token = classy.setTokens();
+
+    expect(classy.memberToken).to.be.empty;
     expect(classy.appToken).to.be.empty;
   });
 

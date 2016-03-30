@@ -22,11 +22,23 @@ var Assets = function (_Resource) {
   function Assets(Classy) {
     _classCallCheck(this, Assets);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Assets).call(this, Classy, {
-      basic: ['retrieve'],
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Assets).call(this, Classy, {
+      basic: ['retrieve', 'update'],
       lists: ['children'],
       path: '/assets'
     }));
+
+    _this.process = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/process'
+    });
+
+    _this.url = _this.createMethod({
+      method: 'POST',
+      path: '/url'
+    });
+
+    return _this;
   }
 
   return Assets;

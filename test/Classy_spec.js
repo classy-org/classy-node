@@ -1,10 +1,16 @@
-import {expect} from 'chai';
+import {expect, assert} from 'chai';
 
 import Classy from '../src/Classy';
 import resources from '../src/resources';
 import _ from 'lodash';
 
 describe('Classy', () => {
+
+  it('should throw without clientId and clientSecret', () => {
+    assert.throw(() => {
+      new Classy();
+    }, Error);
+  });
 
   it('should create instance with key, secret, and defaults', () => {
     let classy = new Classy({

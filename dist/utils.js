@@ -84,14 +84,18 @@ var utils = exports.utils = {
    * @return {boolean}              Indicates whether this is an auth request
    */
   isAuthRequest: function isAuthRequest(resolvedPath) {
+    var isAuth = false;
+
     switch (resolvedPath) {
       case '/oauth2/auth':
-        return true;
+        isAuth = true;
         break;
       default:
-        return false;
+        isAuth = false;
         break;
     }
+
+    return isAuth;
   },
 
   /**
@@ -101,6 +105,8 @@ var utils = exports.utils = {
     if (args.length > 0) {
       if (_lodash2.default.isObject(args[args.length - 1])) {
         return _lodash2.default.last(args);
+      } else {
+        return {};
       }
     } else {
       return {};

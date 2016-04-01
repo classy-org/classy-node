@@ -76,14 +76,18 @@ export const utils = {
    * @return {boolean}              Indicates whether this is an auth request
    */
   isAuthRequest: (resolvedPath) => {
+    let isAuth = false;
+
     switch (resolvedPath) {
       case '/oauth2/auth':
-        return true;
+        isAuth = true;
         break;
       default:
-        return false;
+        isAuth = false;
         break;
     }
+
+    return isAuth;
   },
 
   /**
@@ -93,6 +97,8 @@ export const utils = {
     if (args.length > 0) {
       if (_.isObject(args[args.length - 1])) {
         return _.last(args);
+      } else {
+        return {};
       }
     } else {
       return {};

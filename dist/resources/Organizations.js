@@ -26,7 +26,7 @@ var Organizations = function (_Resource) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Organizations).call(this, Classy, {
       basic: ['retrieve'],
-      lists: ['activity', 'analytics', 'campaigns', 'designations', 'engagement-settings', 'designations', 'recurring-donation-plans', 'supporters', 'transactions'],
+      lists: ['activity', 'analytics', 'campaigns', 'designations', 'engagement-settings', 'messages', 'recurring-donation-plans', 'supporters', 'transactions'],
       creates: ['campaigns', 'designations'],
       path: '/organizations'
     }));
@@ -34,6 +34,33 @@ var Organizations = function (_Resource) {
     _this.updateEngagementSettings = _this.createMethod({
       method: 'PUT',
       path: '/{id}/engagement-settings'
+    });
+
+    /** Retrieves */
+    _this.retrieveMailchimpList = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/mailchimp-list'
+    });
+
+    _this.retrieveMailchimpListCategory = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category'
+    });
+
+    _this.retrievePlanFeatures = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/plan-features'
+    });
+
+    _this.retrieveSecuritySettings = _this.createMethod({
+      method: 'GET',
+      path: '/{id}/security-settings'
+    });
+
+    /** Creates */
+    _this.createMailchimpAccount = _this.createMethod({
+      method: 'POST',
+      path: '/{id}/mailchimp-account'
     });
 
     return _this;

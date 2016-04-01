@@ -26,8 +26,8 @@ var Campaigns = function (_Resource) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Campaigns).call(this, Classy, {
       basic: ['retrieve', 'update'],
-      lists: ['activity', 'credential-sets', 'ecards', 'faqs', 'fundraising-teams', 'questions', 'recurring-donation-plans', 'transactions', 'ticket-types'],
-      creates: ['appeal-sets', 'credential-sets', 'ecards', 'faqs', 'questions', 'ticket-types', 'fundraising-pages', 'transactions'],
+      lists: ['activity', 'admins', 'credential-sets', 'donation-matching-plans', 'ecards', 'faqs', 'fundraising-pages', 'fundraising-teams', 'messages', 'questions', 'recurring-donation-plans', 'transactions', 'ticket-types'],
+      creates: ['appeal-sets', 'credential-sets', 'donation-matching-plans', 'ecards', 'faqs', 'fundraising-pages', 'messages', 'questions', 'ticket-types', 'transactions'],
       path: '/campaigns'
     }));
 

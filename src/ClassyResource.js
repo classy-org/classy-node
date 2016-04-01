@@ -63,7 +63,7 @@ export default class ClassyResource {
             ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')'
           );
 
-          return false;    
+          return false;
         }
       }
 

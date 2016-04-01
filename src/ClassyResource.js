@@ -57,7 +57,14 @@ export default class ClassyResource {
           param = urlParams[i],
           optional = OPTIONAL_REGEX.test(param);
 
-        /** TODO: Add required param error handling */
+        if (!arg) {
+          console.error(
+            'Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg +
+            ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')'
+          );
+
+          return false;    
+        }
       }
 
       let resolvedPath = commandPath(urlData);

@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class Questions extends Resource {
   constructor(Classy) {
     super(Classy, {
-      basic: ['update'],
+      basic: ['update', 'del'],
       path: '/questions'
     });
   }

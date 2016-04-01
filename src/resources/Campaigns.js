@@ -6,10 +6,14 @@ class Campaigns extends Resource {
       basic: ['retrieve', 'update'],
       lists: [
         'activity',
+        'admins',
         'credential-sets',
+        'donation-matching-plans',
         'ecards',
         'faqs',
+        'fundraising-pages',
         'fundraising-teams',
+        'messages',
         'questions',
         'recurring-donation-plans',
         'transactions',
@@ -18,11 +22,13 @@ class Campaigns extends Resource {
       creates: [
         'appeal-sets',
         'credential-sets',
+        'donation-matching-plans',
         'ecards',
         'faqs',
+        'fundraising-pages',
+        'messages',
         'questions',
         'ticket-types',
-        'fundraising-pages',
         'transactions'
       ],
       path: '/campaigns'

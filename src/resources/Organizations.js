@@ -10,7 +10,7 @@ class Organizations extends Resource {
         'campaigns',
         'designations',
         'engagement-settings',
-        'designations',
+        'messages',
         'recurring-donation-plans',
         'supporters',
         'transactions'
@@ -26,6 +26,33 @@ class Organizations extends Resource {
     this.updateEngagementSettings = this.createMethod({
       method: 'PUT',
       path: '/{id}/engagement-settings'
+    });
+
+    /** Retrieves */
+    this.retrieveMailchimpList = this.createMethod({
+      method: 'GET',
+      path: '/{id}/mailchimp-list'
+    });
+
+    this.retrieveMailchimpListCategory = this.createMethod({
+      method: 'GET',
+      path: '/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category'
+    });
+
+    this.retrievePlanFeatures = this.createMethod({
+      method: 'GET',
+      path: '/{id}/plan-features'
+    });
+
+    this.retrieveSecuritySettings = this.createMethod({
+      method: 'GET',
+      path: '/{id}/security-settings'
+    });
+
+    /** Creates */
+    this.createMailchimpAccount = this.createMethod({
+      method: 'POST',
+      path: '/{id}/mailchimp-account'
     });
 
   }

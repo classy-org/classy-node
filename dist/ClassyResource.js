@@ -317,7 +317,7 @@ var ClassyResource = function () {
         }
 
         (0, _request2.default)(requestParams, function (err, response, body) {
-          if (err) {
+          if (err || !/^2/.test('' + response.statusCode)) {
             reject(err);
           } else {
             body = JSON.parse(body);

@@ -263,7 +263,7 @@ export default class ClassyResource {
       }
 
       request(requestParams, (err, response, body) => {
-        if (err) {
+        if (err || !/^2/.test('' + response.statusCode)) {
           reject(err);
         } else {
           body = JSON.parse(body);

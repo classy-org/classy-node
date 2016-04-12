@@ -74,11 +74,11 @@ var ClassyResource = function () {
       var OPTIONAL_REGEX = /^\?.*/g;
       var PARAM_REGEX = /\{(.*?)\}/g;
 
-      var specPath = !_lodash2.default.isUndefined(spec.path) ? spec.path : '',
-          path = this._urlData.path + specPath,
-          commandPath = _utils.utils.makeURLInterpolator(path),
-          requestMethod = (spec.method || 'GET').toUpperCase(),
-          urlParams = _utils.utils.getRegexMatches(path, PARAM_REGEX);
+      var specPath = !_lodash2.default.isUndefined(spec.path) ? spec.path : '';
+      var path = this._urlData.path + specPath;
+      var commandPath = _utils.utils.makeURLInterpolator(path);
+      var urlParams = _utils.utils.getRegexMatches(path, PARAM_REGEX);
+      var requestMethod = (spec.method || 'GET').toUpperCase();
 
       return function () {
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -95,9 +95,7 @@ var ClassyResource = function () {
               optional = OPTIONAL_REGEX.test(param);
 
           if (!arg) {
-            console.error('Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg + ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')');
-
-            return false;
+            throw new Error('Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg + ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')');
           }
         }
 

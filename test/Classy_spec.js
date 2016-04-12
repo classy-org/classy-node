@@ -1,4 +1,6 @@
 import {expect, assert} from 'chai';
+import nock from 'nock';
+import lolex from 'lolex';
 
 import Classy from '../src/Classy';
 import resources from '../src/resources';

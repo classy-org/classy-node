@@ -41,11 +41,11 @@ export default class ClassyResource {
     const OPTIONAL_REGEX = /^\?.*/g;
     const PARAM_REGEX = /\{(.*?)\}/g;
 
-    let specPath = (!_.isUndefined(spec.path) ? spec.path : ''),
-      path = this._urlData.path + specPath,
-      commandPath = utils.makeURLInterpolator(path),
-      requestMethod = (spec.method || 'GET').toUpperCase(),
-      urlParams = utils.getRegexMatches(path, PARAM_REGEX);
+    let specPath = (!_.isUndefined(spec.path) ? spec.path : '');
+    let path = this._urlData.path + specPath;
+    let commandPath = utils.makeURLInterpolator(path);
+    let urlParams = utils.getRegexMatches(path, PARAM_REGEX);
+    let requestMethod = (spec.method || 'GET').toUpperCase();
 
     return (...args) => {
       let _this = this,
@@ -58,12 +58,10 @@ export default class ClassyResource {
           optional = OPTIONAL_REGEX.test(param);
 
         if (!arg) {
-          console.error(
+          throw new Error(
             'Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg +
             ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')'
           );
-
-          return false;
         }
       }
 

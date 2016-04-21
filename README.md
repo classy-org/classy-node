@@ -1,4 +1,4 @@
-# Classy Node [![Build Status](https://travis-ci.org/classy-org/classy-node.png?branch=master)](https://travis-ci.org/classy-org/classy-node)
+# [Classy Node](https://www.npmjs.com/package/classy-node) [![Build Status](https://travis-ci.org/classy-org/classy-node.png?branch=master)](https://travis-ci.org/classy-org/classy-node)
 
 Built for the creativity and flexibility of the world's most innovative minds, create impactful apps and integrations that make social enterprises more efficient and effective. Engineer the world for good with the Classy API.
 
@@ -79,4 +79,6 @@ You can run the example with `babel-node example/index.js`. Make sure you have y
 
 ## More information
 
-Classy Node was heavily inspired by Stripe's awesome [stripe-node](https://github.com/stripe/stripe-node).
+Classy Node was built by the developers at [Classy](https://classy.org) in San Diego, CA.
+
+The code was heavily inspired by Stripe's awesome [stripe-node](https://github.com/stripe/stripe-node).

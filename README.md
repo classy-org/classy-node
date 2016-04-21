@@ -1,4 +1,4 @@
-# [Classy Node](https://www.npmjs.com/package/classy-node) [![Build Status](https://travis-ci.org/classy-org/classy-node.png?branch=master)](https://travis-ci.org/classy-org/classy-node)
+# [Classy Node](https://www.npmjs.com/package/classy-node) [![Build Status](https://travis-ci.org/classy-org/classy-node.png?branch=master)](https://travis-ci.org/classy-org/classy-node) [![Known Vulnerabilities](https://snyk.io/test/npm/classy-node/badge.svg)](https://snyk.io/test/npm/classy-node)
 
 Built for the creativity and flexibility of the world's most innovative minds, create impactful apps and integrations that make social enterprises more efficient and effective. Engineer the world for good with the Classy API.
 

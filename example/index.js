@@ -2,6 +2,7 @@
 
 import Classy from '../src/Classy';
 import dotenv from 'dotenv';
+import colors from 'colors';
 
 dotenv.config();
 
@@ -17,8 +18,8 @@ let app = classy.app();
 app.then((response) => {
 
   console.log(
-    '/oauth2/auth (app) -',
-    response.access_token
+    colors.green('✓'),
+    colors.gray('/oauth2/auth (app) - ' + response.access_token)
   );
 
   classy.oauth.auth({
@@ -27,23 +28,25 @@ app.then((response) => {
   }).then((response) => {
 
     console.log(
-      '/oauth2/auth (member) -',
-      response.access_token
+      colors.green('✓'),
+      colors.gray('/oauth2/auth (member) - ' + response.access_token)
     );
 
     /** Retrieve */
     classy.me.retrieve(59359).then((response) => {
+
       console.log(
-        '⚡ Retrieve: /me -',
-        response.first_name + ' ' + response.last_name
+        colors.green('✓'),
+        colors.gray('Retrieve: /me - ' + response.first_name + ' ' + response.last_name)
       );
     });
 
     classy.transactions.retrieve(2741758).then((response) => {
       console.log(
-        '⚡ Retrieve: /transactions/2741758 -',
-        '$' + response.total_gross_amount
+        colors.green('✓'),
+        colors.gray('Retrieve: /transactions/2741758 - $' + response.total_gross_amount)
       );
+
     });
 
     /** Create */
@@ -54,9 +57,13 @@ app.then((response) => {
       timezone_identifier: 'US/Alaska',
       type: 'crowdfunding'
     }).then((response) => {
+
       console.log(
-        '⚡ Create: /organizations/34/campaigns -',
-        response.name + '#' + response.id
+        colors.green('✓'),
+        colors.gray(
+          'Create: /organizations/34/campaigns - ' + response.name
+          + '#' + response.id
+        )
       );
     });
 
@@ -65,8 +72,10 @@ app.then((response) => {
       name: 'Matt\'s Day Campaign'
     }).then((response) => {
       console.log(
-        '⚡ Update: /campaigns/59676 -',
-        response.name + '#' + response.id
+        colors.green('✓'),
+        colors.gray(
+          'Update: /campaigns/59676 - ' + response.name + '#' + response.id
+        )
       );
     });
 
@@ -75,8 +84,8 @@ app.then((response) => {
       const campaigns = response.data.map((data) => data.name + '#' + data.id);
 
       console.log(
-        '⚡ List: /organizations/26820/campaigns -',
-        campaigns.toString()
+        colors.green('✓'),
+        colors.gray('List: /organizations/26820/campaigns - ' + campaigns)
       );
     });
 
@@ -86,8 +95,8 @@ app.then((response) => {
 
       (error) => {
         console.log(
-          '☠ Retrieve: /organizations/900000000 -',
-          error.error
+          colors.red('✗'),
+          colors.gray('Retrieve: /organizations/900000000 - ' + error.error)
         );
       }
     );

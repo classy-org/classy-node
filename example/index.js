@@ -6,14 +6,13 @@ import colors from 'colors';
 
 dotenv.config();
 
-let classy = new Classy({
+const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   baseUrl: 'https://stagingapi.stayclassy.org',
   requestDebug: false
 });
-
-let app = classy.app();
+const app = classy.app();
 
 app.then((response) => {
 
@@ -69,7 +68,7 @@ app.then((response) => {
 
     /** Update */
     classy.campaigns.update(59676, {
-      name: 'Matt\'s Day Campaign'
+      name: 'Matt\'s Demo Day Campaign'
     }).then((response) => {
       console.log(
         colors.green('✓'),

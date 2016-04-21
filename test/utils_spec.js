@@ -9,8 +9,7 @@ describe('utils', () => {
 
       const PARAM_REGEX = /\{(.*?)\}/g;
       const url = '/campaigns/{id}';
-
-      let result = utils.getRegexMatches(url, PARAM_REGEX);
+      const result = utils.getRegexMatches(url, PARAM_REGEX);
 
       expect(result[0]).to.equal('id');
     });
@@ -22,8 +21,7 @@ describe('utils', () => {
         username: 'test',
         password: 'test'
       };
-
-      let result = utils.generateOauthGrantType(options);
+      const result = utils.generateOauthGrantType(options);
 
       expect(result).to.equal('password');
     });
@@ -32,16 +30,14 @@ describe('utils', () => {
       const options = {
         refreshToken: 'test'
       };
-
-      let result = utils.generateOauthGrantType(options);
+      const result = utils.generateOauthGrantType(options);
 
       expect(result).to.equal('refresh_token');
     });
 
     it('should determine oauth grant type of client_credentials', () => {
       const options = {};
-
-      let result = utils.generateOauthGrantType(options);
+      const result = utils.generateOauthGrantType(options);
 
       expect(result).to.equal('client_credentials');
     });
@@ -50,16 +46,14 @@ describe('utils', () => {
   describe('isAuthRequest', () => {
     it('should identify auth requests', () => {
       const resolvedPath = '/oauth2/auth';
-
-      let result = utils.isAuthRequest(resolvedPath);
+      const result = utils.isAuthRequest(resolvedPath);
 
       expect(result).to.equal(true);
     });
 
     it('should identify non-auth requests', () => {
       const resolvedPath = '/campaigns/123';
-
-      let result = utils.isAuthRequest(resolvedPath);
+      const result = utils.isAuthRequest(resolvedPath);
 
       expect(result).to.equal(false);
     });
@@ -70,21 +64,20 @@ describe('utils', () => {
       const data = {
         test: 'test'
       };
-
-      let result = utils.getDataFromArgs(['123', '456', data]);
+      const result = utils.getDataFromArgs(['123', '456', data]);
 
       expect(result).to.equal(data);
     });
 
     it('should recognize when no data is present', () => {
-      let result = utils.getDataFromArgs(['123', '456']);
+      const result = utils.getDataFromArgs(['123', '456']);
 
       expect(_.isPlainObject(result)).to.be.true;
       expect(_.isEmpty(result)).to.be.true;
     });
 
     it('should recognize when no args are present', () => {
-      let result = utils.getDataFromArgs([]);
+      const result = utils.getDataFromArgs([]);
 
       expect(_.isPlainObject(result)).to.be.true;
       expect(_.isEmpty(result)).to.be.true;

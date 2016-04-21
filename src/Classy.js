@@ -8,6 +8,7 @@ module.exports = class Classy {
     const DEFAULT_STRICT_SSL = true;
     const DEFAULT_REQUEST_DEBUG = true;
 
+    // Handle errors
     if (_.isUndefined(config)
     ||  _.isUndefined(config.clientId)
     ||  _.isUndefined(config.clientSecret)) {
@@ -55,16 +56,17 @@ module.exports = class Classy {
    * Get new application token as soon as the current one expires.
    */
   app() {
-    let _this = this;
+    const _this = this;
 
-    let promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       let timeoutId;
-      let timeout = () => {
+
+      const timeout = () => {
         timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
       };
 
       // Make the actual token call
-      let getToken = () => {
+      const getToken = () => {
         _this.oauth.auth({
           client_id: _this.clientId,
           client_secret: _this.clientSecret

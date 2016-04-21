@@ -41,22 +41,28 @@ export default class ClassyResource {
     const OPTIONAL_REGEX = /^\?.*/g;
     const PARAM_REGEX = /\{(.*?)\}/g;
 
-    let specPath = (!_.isUndefined(spec.path) ? spec.path : '');
-    let path = this._urlData.path + specPath;
-    let commandPath = utils.makeURLInterpolator(path);
-    let urlParams = utils.getRegexMatches(path, PARAM_REGEX);
-    let requestMethod = (spec.method || 'GET').toUpperCase();
+    /** Get parameterized request URL and method */
+    const specPath = (!_.isUndefined(spec.path) ? spec.path : '');
+    const fullPath = this._urlData.path + specPath;
+    const commandPath = utils.makeURLInterpolator(fullPath);
+    const urlParams = utils.getRegexMatches(fullPath, PARAM_REGEX);
+    const requestMethod = (spec.method || 'GET').toUpperCase();
 
+    /** Return resource method */
     return (...args) => {
-      let _this = this,
-        urlData = this._populateUrlParams(urlParams, args),
-        data = utils.getDataFromArgs(args);
 
+      /** Extract data from function arguments */
+      const _this = this;
+      const urlData = this._populateUrlParams(urlParams, args);
+      const data = utils.getDataFromArgs(args);
+
+      /** Match params to function arguments */
       for (let i = 0; i < urlParams.length; i++) {
-        let arg = args[0],
-          param = urlParams[i],
-          optional = OPTIONAL_REGEX.test(param);
+        const arg = args[0];
+        const param = urlParams[i];
+        const optional = OPTIONAL_REGEX.test(param);
 
+        /** Error if not all required params are satisfied */
         if (!arg) {
           throw new Error(
             'Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg +
@@ -65,27 +71,30 @@ export default class ClassyResource {
         }
       }
 
-      let resolvedPath = commandPath(urlData);
-      let isAuthRequest = utils.isAuthRequest(resolvedPath);
-      let requestPath = this._createFullPath(resolvedPath, isAuthRequest);
+      /** Create resolved request path */
+      const resolvedPath = commandPath(urlData);
+      const isAuthRequest = utils.isAuthRequest(resolvedPath);
+      const requestPath = this._createFullPath(resolvedPath, isAuthRequest);
 
       // Choose token for Authorization header
-      let useAppToken = spec.useAppToken
-        || (!_.isUndefined(data) ? data.token === 'app' : false),
-        token = this._chooseToken(
+      const useAppToken = spec.useAppToken
+        || (!_.isUndefined(data) ? data.token === 'app' : false);
+
+      // Set token for Authorization header
+      const token = this._chooseToken(
           this._classy.appToken,
           this._classy.memberToken,
           useAppToken
         );
 
       // Merge default headers with spec headers
-      let requestHeaders = {
+      const DEFAULT_REQUEST_HEADERS = {
         Authorization: 'Bearer ' + token.value,
         Accept: 'application/json',
         'Content-Type': 'application/json'
       };
 
-      _.merge(requestHeaders, spec.headers);
+      const requestHeaders = _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
 
       // Handle auth requests
       let form = false;
@@ -105,7 +114,7 @@ export default class ClassyResource {
    * @param {array} basics A list of basic methods to add
    */
   _addBasicMethods(basics) {
-    let _this = this;
+    const _this = this;
     _.each(basics, (method) => {
       _this[method] = _this.createMethod(basicMethods[method]);
     });
@@ -119,10 +128,10 @@ export default class ClassyResource {
    * @param {array} lists A list of list methods to add
    */
   _addListMethods(lists) {
-    let _this = this;
+    const _this = this;
 
     _.each(lists, (method) => {
-      let methodName = _.upperFirst(_.camelCase(method));
+      const methodName = _.upperFirst(_.camelCase(method));
 
       _this['list' + methodName] = _this.createMethod({
         method: 'GET',
@@ -139,11 +148,11 @@ export default class ClassyResource {
    * @param {array} lists A list of list methods to add
    */
   _addCreateMethods(lists) {
-    let _this = this;
+    const _this = this;
 
     _.each(lists, (method) => {
-      let methodName = _.upperFirst(_.camelCase(method));
-      methodName = methodName.substr(0, methodName.length - 1);
+      const uppercaseMethod = _.upperFirst(_.camelCase(method));
+      const methodName = uppercaseMethod.substr(0, uppercaseMethod.length - 1);
 
       _this['create' + methodName] = _this.createMethod({
         method: 'POST',
@@ -163,14 +172,14 @@ export default class ClassyResource {
    * @return {string}                The full URI for the upcoming request
    */
   _createFullPath(resolvedPath, isAuthRequest) {
-    let fullPath = path.join(
+    const fullPath = path.join(
         isAuthRequest ? '' : this.basePath,
         resolvedPath
       ).replace(/\\/g, '/');
 
-    fullPath = path.normalize(fullPath);
+    const normalizedPath = path.normalize(fullPath);
 
-    return fullPath;
+    return normalizedPath;
   }
 
   /**
@@ -182,7 +191,7 @@ export default class ClassyResource {
    * @return {object}        A key/value mapping between params and args
    */
   _populateUrlParams(params, args) {
-    let urlData = {};
+    const urlData = {};
 
     for (let i in params) {
       if (!_.isUndefined(args[i])) {
@@ -225,8 +234,8 @@ export default class ClassyResource {
    * @return {object}      A form object for the request
    */
   _generateAuthForm(args) {
-    let form = _.mapKeys(args[0], (value, key) => _.snakeCase(key)),
-      grantType = utils.generateOauthGrantType(args[0]);
+    const form = _.mapKeys(args[0], (value, key) => _.snakeCase(key));
+    const grantType = utils.generateOauthGrantType(args[0]);
 
     form.grant_type = grantType;
     form.client_id = this._classy.clientId;
@@ -245,9 +254,9 @@ export default class ClassyResource {
    * @return {promise}         Promise based on API request
    */
   _makeRequest(path, method, headers, form, data) {
-    let _this = this;
-    let promise = new Promise((resolve, reject) => {
-      let requestParams = {
+    const _this = this;
+    const promise = new Promise((resolve, reject) => {
+      const requestParams = {
         baseUrl: this.baseUrl,
         uri: path,
         method: method,
@@ -264,7 +273,7 @@ export default class ClassyResource {
 
       request(requestParams, (err, response, body) => {
         if (err || !/^2/.test('' + response.statusCode)) {
-          reject(err ? err : body);
+          reject(err ? JSON.parse(err) : JSON.parse(body));
         } else {
           body = JSON.parse(body);
 

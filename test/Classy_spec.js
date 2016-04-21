@@ -15,7 +15,7 @@ describe('Classy', () => {
   });
 
   it('should create instance with key, secret, and defaults', () => {
-    let classy = new Classy({
+    const classy = new Classy({
       clientId: 'client_id_str',
       clientSecret: 'client_secret_str'
     });
@@ -50,7 +50,7 @@ describe('Classy', () => {
     });
 
     _.each(resources, (value, key) => {
-      let resourceName = _.camelCase(key);
+      const resourceName = _.camelCase(key);
       expect(classy).to.have.ownProperty(resourceName);
     });
   });
@@ -81,12 +81,12 @@ describe('Classy', () => {
       requestDebug: false
     });
 
-    let grant = 'client_credentials';
-    let opts = {
+    const grant = 'client_credentials';
+    const opts = {
       access_token: 'test',
       expires_in: 100
     };
-    let token = classy.setTokens(grant, opts);
+    const token = classy.setTokens(grant, opts);
 
     expect(classy.appToken).to.not.be.empty;
     expect(classy.memberToken).to.be.empty;
@@ -99,12 +99,12 @@ describe('Classy', () => {
       requestDebug: false
     });
 
-    let grant = 'refresh_token';
-    let opts = {
+    const grant = 'refresh_token';
+    const opts = {
       access_token: 'test',
       expires_in: 100
     };
-    let token = classy.setTokens(grant, opts);
+    const token = classy.setTokens(grant, opts);
 
     expect(classy.memberToken).to.not.be.empty;
     expect(classy.appToken).to.be.empty;
@@ -116,13 +116,12 @@ describe('Classy', () => {
       clientSecret: 'client_secret_str',
       requestDebug: false
     });
-
-    let grant = 'password';
-    let opts = {
+    const grant = 'password';
+    const opts = {
       access_token: 'test',
       expires_in: 100
     };
-    let token = classy.setTokens(grant, opts);
+    const token = classy.setTokens(grant, opts);
 
     expect(classy.memberToken).to.not.be.empty;
     expect(classy.appToken).to.be.empty;
@@ -135,12 +134,12 @@ describe('Classy', () => {
       requestDebug: false
     });
 
-    let opts = {
+    const opts = {
       access_token: 'test',
       expires_in: 100
     };
 
-    let token = classy.setTokens('member_token', opts);
+    const token = classy.setTokens('member_token', opts);
 
     expect(classy.memberToken).to.not.be.empty;
     expect(classy.appToken).to.be.empty;
@@ -153,7 +152,7 @@ describe('Classy', () => {
       requestDebug: false
     });
 
-    let token = classy.setTokens();
+    const token = classy.setTokens();
 
     expect(classy.memberToken).to.be.empty;
     expect(classy.appToken).to.be.empty;

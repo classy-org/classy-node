@@ -58,7 +58,7 @@ classy.campaigns.retrieve(19).then(function(response) {
 });
 ```
 
-Each resource can contain several basic methods, and might also include additional custom methods that act upon related resources:
+Each resource can contain several basic methods, and might also include additional custom methods that act upon related resources or perform specialized operations:
 
 - `create()`
 - `retrieve()`
@@ -66,13 +66,15 @@ Each resource can contain several basic methods, and might also include addition
 - `del()`
 - `create{RelatedResource}()` e.g., `createCampaign()`
 - `list{RelatedResources}()` e.g. `listCampaigns()`
-- Other e.g., `publish()`, `unpublish()`, & `deactivate()`
+- Other/specialized e.g., `publish()`, `unpublish()`, & `deactivate()`
 
 ## Contributing
 
-When submitting a pull request, please make sure that you've written [good commit messages](http://chris.beams.io/posts/git-commit/) that have titles shorter than 50 characters, include a reference to an issue in the body, and clearly describe what your commit achieves. Use the body to explain what you did and why you did it. Thanks!
+When submitting a pull request, please make sure that you've written [good commit messages](http://chris.beams.io/posts/git-commit/) that include references to issues and clearly describe what the commit achieves. Use the commit body to explain what you did and why you did it. Thanks!
 
 You can run our tests with `npm test` and get coverage reports with `npm run coverage`.
+
+You can run the example with `babel-node example/index.js`. Make sure you have your environment variables for `CLIENT_ID` and `CLIENT_SECRET` set up!
 
 
 ## More information

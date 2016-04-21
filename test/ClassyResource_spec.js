@@ -12,7 +12,8 @@ describe('ClassyResource', () => {
   beforeEach(() => {
     classy = new Classy({
       clientId: 'client_id_str',
-      clientSecret: 'client_secret_str'
+      clientSecret: 'client_secret_str',
+      requestDebug: false
     });
   });
 
@@ -43,13 +44,13 @@ describe('ClassyResource', () => {
         path: '/{id}/test'
       });
 
-      const result = {prop: true};
+      const result = { prop: true };
 
-      let scope = nock('https://api.classy.org')
+      const scope = nock('https://api.classy.org')
         .get('/2.0/test/1/test')
         .reply(200, result);
 
-      method('1').then(function(response) {
+      method('1').then(function (response) {
         expect(response.prop).to.be.true;
       });
 

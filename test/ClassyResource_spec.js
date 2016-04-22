@@ -7,7 +7,8 @@ import resources from '../src/resources';
 import _ from 'lodash';
 
 describe('ClassyResource', () => {
-  let classy;
+  let classy,
+    resource;
 
   beforeEach(() => {
     classy = new Classy({
@@ -15,14 +16,15 @@ describe('ClassyResource', () => {
       clientSecret: 'client_secret_str',
       requestDebug: false
     });
+
+    resource = new ClassyResource(classy, {
+      path: '/test'
+    });
   });
 
   describe('createMethod', () => {
 
     it('should fail without required params', () => {
-      const resource = new ClassyResource(classy, {
-        path: '/test'
-      });
 
       const method = resource.createMethod({
         path: '/{id}/test'
@@ -34,10 +36,6 @@ describe('ClassyResource', () => {
     });
 
     it('should hit correct URL when called', () => {
-
-      const resource = new ClassyResource(classy, {
-        path: '/test'
-      });
 
       const method = resource.createMethod({
         method: 'GET',
@@ -56,11 +54,11 @@ describe('ClassyResource', () => {
 
     });
 
+  });
+
+  describe('_chooseToken', () => {
     it('should choose app token when forced', () => {
 
-      const resource = new ClassyResource(classy, {
-        path: '/test'
-      });
       const appToken = { token: 'app' };
       const memberToken = { token: 'member' };
       const tokenOpts = {
@@ -76,9 +74,6 @@ describe('ClassyResource', () => {
 
     it('should choose member token when forced', () => {
 
-      const resource = new ClassyResource(classy, {
-        path: '/test'
-      });
       const appToken = { token: 'app' };
       const memberToken = { token: 'member' };
       const tokenOpts = {
@@ -91,11 +86,21 @@ describe('ClassyResource', () => {
       expect(token).to.equal(tokenOpts.member);
     });
 
+    it('should choose member token if it exists & nothing is forced', () => {
+      const appToken = { token: 'app' };
+      const memberToken = { token: 'member' };
+      const tokenOpts = {
+        member: memberToken,
+        app: appToken,
+      };
+
+      const token = resource._chooseToken(tokenOpts);
+
+      expect(token).to.equal(tokenOpts.member);
+    });
+
     it('should choose `undefined` token when forced', () => {
 
-      const resource = new ClassyResource(classy, {
-        path: '/test'
-      });
       const appToken = { token: 'app' };
       const memberToken = { token: 'member' };
       const tokenOpts = {
@@ -107,6 +112,20 @@ describe('ClassyResource', () => {
 
       expect(token).to.be.undefined;
 
+    });
+  });
+
+  describe('_generateAuthForm', () => {
+
+    it('should generate an auth form from args', () => {
+      const authForm = resource._generateAuthForm([{
+        username: 'test',
+        password: 'test'
+      }]);
+
+      expect(authForm.client_id).to.equal(resource._classy.clientId);
+      expect(authForm.client_secret).to.equal(resource._classy.clientSecret);
+      expect(authForm.grant_type).to.equal('password');
     });
 
   });

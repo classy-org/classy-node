@@ -1,0 +1,6 @@
+/src
+/coverage
+/test
+.jscsrc
+.travis.yml
+.env

@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "jscs ./src",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
-    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha"
+    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
+    "prepublish": "gulp"
   },
   "keywords": [
     "classy",

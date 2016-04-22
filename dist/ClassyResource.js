@@ -74,47 +74,59 @@ var ClassyResource = function () {
       var OPTIONAL_REGEX = /^\?.*/g;
       var PARAM_REGEX = /\{(.*?)\}/g;
 
+      /** Get parameterized request URL and method */
       var specPath = !_lodash2.default.isUndefined(spec.path) ? spec.path : '';
-      var path = this._urlData.path + specPath;
-      var commandPath = _utils.utils.makeURLInterpolator(path);
-      var urlParams = _utils.utils.getRegexMatches(path, PARAM_REGEX);
+      var fullPath = this._urlData.path + specPath;
+      var commandPath = _utils.utils.makeURLInterpolator(fullPath);
+      var urlParams = _utils.utils.getRegexMatches(fullPath, PARAM_REGEX);
       var requestMethod = (spec.method || 'GET').toUpperCase();
 
+      /** Return resource method */
       return function () {
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
 
-        var _this = _this2,
-            urlData = _this2._populateUrlParams(urlParams, args),
-            data = _utils.utils.getDataFromArgs(args);
+        /** Extract data from function arguments */
+        var _this = _this2;
+        var urlData = _this2._populateUrlParams(urlParams, args);
+        var data = _utils.utils.getDataFromArgs(args);
 
+        /** Match params to function arguments */
         for (var i = 0; i < urlParams.length; i++) {
-          var arg = args[0],
-              param = urlParams[i],
-              optional = OPTIONAL_REGEX.test(param);
+          var arg = args[0];
+          var param = urlParams[i];
+          var optional = OPTIONAL_REGEX.test(param);
 
+          /** Error if not all required params are satisfied */
           if (!arg) {
             throw new Error('Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg + ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')');
           }
         }
 
+        /** Create resolved request path */
         var resolvedPath = commandPath(urlData);
         var isAuthRequest = _utils.utils.isAuthRequest(resolvedPath);
         var requestPath = _this2._createFullPath(resolvedPath, isAuthRequest);
 
         // Choose token for Authorization header
-        var useAppToken = spec.useAppToken || (!_lodash2.default.isUndefined(data) ? data.token === 'app' : false),
-            token = _this2._chooseToken(_this2._classy.appToken, _this2._classy.memberToken, useAppToken);
+        var forceToken = spec.token || (!_lodash2.default.isUndefined(data) ? data.token : false);
+
+        // Set token for Authorization header
+        var token = _this2._chooseToken({
+          app: _this2._classy.appToken,
+          member: _this2._classy.memberToken,
+          force: forceToken
+        });
 
         // Merge default headers with spec headers
-        var requestHeaders = {
+        var DEFAULT_REQUEST_HEADERS = {
           Authorization: 'Bearer ' + token.value,
           Accept: 'application/json',
           'Content-Type': 'application/json'
         };
 
-        _lodash2.default.merge(requestHeaders, spec.headers);
+        var requestHeaders = _lodash2.default.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
 
         // Handle auth requests
         var form = false;
@@ -180,8 +192,8 @@ var ClassyResource = function () {
       var _this = this;
 
       _lodash2.default.each(lists, function (method) {
-        var methodName = _lodash2.default.upperFirst(_lodash2.default.camelCase(method));
-        methodName = methodName.substr(0, methodName.length - 1);
+        var uppercaseMethod = _lodash2.default.upperFirst(_lodash2.default.camelCase(method));
+        var methodName = uppercaseMethod.substr(0, uppercaseMethod.length - 1);
 
         _this['create' + methodName] = _this.createMethod({
           method: 'POST',
@@ -206,9 +218,9 @@ var ClassyResource = function () {
     value: function _createFullPath(resolvedPath, isAuthRequest) {
       var fullPath = _path2.default.join(isAuthRequest ? '' : this.basePath, resolvedPath).replace(/\\/g, '/');
 
-      fullPath = _path2.default.normalize(fullPath);
+      var normalizedPath = _path2.default.normalize(fullPath);
 
-      return fullPath;
+      return normalizedPath;
     }
 
     /**
@@ -247,13 +259,15 @@ var ClassyResource = function () {
 
   }, {
     key: '_chooseToken',
-    value: function _chooseToken(appToken, memberToken, useAppToken) {
+    value: function _chooseToken(options) {
       var token = undefined;
 
-      if (!_lodash2.default.isEmpty(memberToken) && !useAppToken) {
-        token = memberToken;
+      if (options.force) {
+        token = options[options.force];
+      } else if (!_lodash2.default.isEmpty(options.member)) {
+        token = options.member;
       } else {
-        token = appToken;
+        token = options.app;
       }
 
       return token;
@@ -274,8 +288,8 @@ var ClassyResource = function () {
     value: function _generateAuthForm(args) {
       var form = _lodash2.default.mapKeys(args[0], function (value, key) {
         return _lodash2.default.snakeCase(key);
-      }),
-          grantType = _utils.utils.generateOauthGrantType(args[0]);
+      });
+      var grantType = _utils.utils.generateOauthGrantType(args[0]);
 
       form.grant_type = grantType;
       form.client_id = this._classy.clientId;
@@ -318,7 +332,7 @@ var ClassyResource = function () {
 
         (0, _request2.default)(requestParams, function (err, response, body) {
           if (err || !/^2/.test('' + response.statusCode)) {
-            reject(err ? err : body);
+            reject(err ? JSON.parse(err) : JSON.parse(body));
           } else {
             body = JSON.parse(body);
 

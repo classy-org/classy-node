@@ -10,7 +10,6 @@ const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   baseUrl: 'https://stagingapi.stayclassy.org',
-  requestDebug: false
 });
 const app = classy.app();
 
@@ -19,6 +18,26 @@ app.then((response) => {
   console.log(
     colors.green('✓'),
     colors.gray('/oauth2/auth (app) - ' + response.access_token)
+  );
+
+  classy.organizations.listCampaigns(26820, {
+    token: 'member'
+  }).then(
+    (response) => {
+      const campaigns = response.data.map((data) => data.name + '#' + data.id);
+
+      console.log(
+        colors.green('✓'),
+        colors.gray('List: /organizations/26820/campaigns - ' + campaigns)
+      );
+    },
+
+    (error) => {
+      console.log(
+        colors.red('✗'),
+        colors.gray('List: /organizations/26820/campaigns - ' + error.error)
+      );
+    }
   );
 
   classy.oauth.auth({
@@ -79,7 +98,9 @@ app.then((response) => {
     });
 
     /** List */
-    classy.organizations.listCampaigns(26820).then((response) => {
+    classy.organizations.listCampaigns(26820, {
+      token: 'app'
+    }).then((response) => {
       const campaigns = response.data.map((data) => data.name + '#' + data.id);
 
       console.log(

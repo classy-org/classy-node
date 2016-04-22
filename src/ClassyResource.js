@@ -77,15 +77,15 @@ export default class ClassyResource {
       const requestPath = this._createFullPath(resolvedPath, isAuthRequest);
 
       // Choose token for Authorization header
-      const useAppToken = spec.useAppToken
-        || (!_.isUndefined(data) ? data.token === 'app' : false);
+      const forceToken = spec.token
+        || (!_.isUndefined(data) ? data.token : false);
 
       // Set token for Authorization header
-      const token = this._chooseToken(
-          this._classy.appToken,
-          this._classy.memberToken,
-          useAppToken
-        );
+      const token = this._chooseToken({
+        app: this._classy.appToken,
+        member: this._classy.memberToken,
+        force: forceToken
+      });
 
       // Merge default headers with spec headers
       const DEFAULT_REQUEST_HEADERS = {
@@ -212,13 +212,15 @@ export default class ClassyResource {
    * @param  {boolean} useAppToken Forces appToken token to win
    * @return {object}             The chosen token
    */
-  _chooseToken(appToken, memberToken, useAppToken) {
+  _chooseToken(options) {
     let token;
 
-    if (!_.isEmpty(memberToken) && !useAppToken) {
-      token = memberToken;
+    if (options.force) {
+      token = options[options.force];
+    } else if (!_.isEmpty(options.member)) {
+      token = options.member;
     } else {
-      token = appToken;
+      token = options.app;
     }
 
     return token;

@@ -56,6 +56,59 @@ describe('ClassyResource', () => {
 
     });
 
+    it('should choose app token when forced', () => {
+
+      const resource = new ClassyResource(classy, {
+        path: '/test'
+      });
+      const appToken = { token: 'app' };
+      const memberToken = { token: 'member' };
+      const tokenOpts = {
+        member: memberToken,
+        app: appToken,
+        force: 'app'
+      };
+      const token = resource._chooseToken(tokenOpts);
+
+      expect(token).to.equal(tokenOpts.app);
+
+    });
+
+    it('should choose member token when forced', () => {
+
+      const resource = new ClassyResource(classy, {
+        path: '/test'
+      });
+      const appToken = { token: 'app' };
+      const memberToken = { token: 'member' };
+      const tokenOpts = {
+        member: memberToken,
+        app: appToken,
+        force: 'member'
+      };
+      const token = resource._chooseToken(tokenOpts);
+
+      expect(token).to.equal(tokenOpts.member);
+    });
+
+    it('should choose `undefined` token when forced', () => {
+
+      const resource = new ClassyResource(classy, {
+        path: '/test'
+      });
+      const appToken = { token: 'app' };
+      const memberToken = { token: 'member' };
+      const tokenOpts = {
+        member: memberToken,
+        app: appToken,
+        force: 'random!'
+      };
+      const token = resource._chooseToken(tokenOpts);
+
+      expect(token).to.be.undefined;
+
+    });
+
   });
 
 });

@@ -23,6 +23,7 @@ module.exports = function () {
     var DEFAULT_STRICT_SSL = true;
     var DEFAULT_REQUEST_DEBUG = true;
 
+    // Handle errors
     if (_lodash2.default.isUndefined(config) || _lodash2.default.isUndefined(config.clientId) || _lodash2.default.isUndefined(config.clientSecret)) {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
     }
@@ -60,6 +61,7 @@ module.exports = function () {
 
       var promise = new Promise(function (resolve, reject) {
         var timeoutId = undefined;
+
         var timeout = function timeout() {
           timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
         };

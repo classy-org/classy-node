@@ -10,6 +10,7 @@ const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   baseUrl: 'https://stagingapi.stayclassy.org',
+  requestDebug: false
 });
 const app = classy.app();
 

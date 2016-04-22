@@ -16,22 +16,22 @@ export default class ClassyResource {
     this._classy = Classy;
     this._urlData = urlData;
 
-    // Request debug setting
+    /** Request debug setting */
     if (this._classy.requestDebug) {
       requestDebug(request);
     }
 
-    // Add basic methods
+    /** Add basic methods */
     if (urlData.basic) {
       this._addBasicMethods(urlData.basic);
     }
 
-    // Add list methods
+    /** Add list methods */
     if (urlData.lists) {
       this._addListMethods(urlData.lists);
     }
 
-    // Add create methods
+    /** Add create methods */
     if (urlData.creates) {
       this._addCreateMethods(urlData.creates);
     }
@@ -76,18 +76,18 @@ export default class ClassyResource {
       const isAuthRequest = utils.isAuthRequest(resolvedPath);
       const requestPath = this._createFullPath(resolvedPath, isAuthRequest);
 
-      // Choose token for Authorization header
+      /** Choose token for Authorization header */
       const forceToken = spec.token
         || (!_.isUndefined(data) ? data.token : false);
 
-      // Set token for Authorization header
+      /** Set token for Authorization header */
       const token = this._chooseToken({
         app: this._classy.appToken,
         member: this._classy.memberToken,
         force: forceToken
       });
 
-      // Merge default headers with spec headers
+      /** Merge default headers with spec headers */
       const DEFAULT_REQUEST_HEADERS = {
         Authorization: 'Bearer ' + token.value,
         Accept: 'application/json',
@@ -96,13 +96,13 @@ export default class ClassyResource {
 
       const requestHeaders = _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
 
-      // Handle auth requests
+      /** Handle auth requests */
       let form = false;
       if (isAuthRequest) {
         form = this._generateAuthForm(args);
       }
 
-      // Make the request and return a promise
+      /** Make the request and return a promise */
       return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
     };
   }
@@ -203,13 +203,11 @@ export default class ClassyResource {
   }
 
   /**
-   * If there's no member token or if the endpoint
-   * specifically asks to use the app token, use the
-   * app token. Otherwise, use the member token.
+   * If the spec or param data forces a token, use that token.
+   * If not, use the member token when it's available and the
+   * app token when it's not.
    *
-   * @param  {object} appToken    Application token
-   * @param  {object} memberToken Member token
-   * @param  {boolean} useAppToken Forces appToken token to win
+   * @param  {object} options    Tokens {app, member, force}
    * @return {object}             The chosen token
    */
   _chooseToken(options) {
@@ -279,7 +277,7 @@ export default class ClassyResource {
         } else {
           body = JSON.parse(body);
 
-          // Set tokens if it's a token request
+          /** Set tokens if it's a token request */
           if (!_.isUndefined(form.grant_type)) {
             _this._classy.setTokens(form.grant_type, body);
           }

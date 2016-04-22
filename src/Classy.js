@@ -8,7 +8,7 @@ module.exports = class Classy {
     const DEFAULT_STRICT_SSL = true;
     const DEFAULT_REQUEST_DEBUG = true;
 
-    // Handle errors
+    /** Handle errors */
     if (_.isUndefined(config)
     ||  _.isUndefined(config.clientId)
     ||  _.isUndefined(config.clientSecret)) {
@@ -18,11 +18,11 @@ module.exports = class Classy {
     this.appToken = {};
     this.memberToken = {};
 
-    // Set required params
+    /** Set required params */
     this.clientId = config.clientId;
     this.clientSecret = config.clientSecret;
 
-    // Override defaults if asked
+    /** Override defaults if asked */
     this.requestDebug = (
       !_.isUndefined(config.requestDebug) ?
       config.requestDebug :
@@ -65,24 +65,24 @@ module.exports = class Classy {
         timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
       };
 
-      // Make the actual token call
+      /** Make the actual token call */
       const getToken = () => {
         _this.oauth.auth({
           client_id: _this.clientId,
           client_secret: _this.clientSecret
         }).then((response) => {
-          // Loop timeout and resolve init promise
+          /** Loop timeout and resolve init promise */
           clearTimeout(timeoutId);
           timeout();
           resolve(response);
         }).catch((error) => {
-          // Clear timeout and reject init promise
+          /** Clear timeout and reject init promise */
           clearTimeout(timeout);
           reject(error);
         });
       };
 
-      // Start the timeout looping
+      /** Start the timeout looping */
       timeout();
     });
 

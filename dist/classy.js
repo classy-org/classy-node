@@ -23,7 +23,7 @@ module.exports = function () {
     var DEFAULT_STRICT_SSL = true;
     var DEFAULT_REQUEST_DEBUG = true;
 
-    // Handle errors
+    /** Handle errors */
     if (_lodash2.default.isUndefined(config) || _lodash2.default.isUndefined(config.clientId) || _lodash2.default.isUndefined(config.clientSecret)) {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
     }
@@ -31,11 +31,11 @@ module.exports = function () {
     this.appToken = {};
     this.memberToken = {};
 
-    // Set required params
+    /** Set required params */
     this.clientId = config.clientId;
     this.clientSecret = config.clientSecret;
 
-    // Override defaults if asked
+    /** Override defaults if asked */
     this.requestDebug = !_lodash2.default.isUndefined(config.requestDebug) ? config.requestDebug : DEFAULT_REQUEST_DEBUG;
 
     this.basePath = !_lodash2.default.isUndefined(config.basePath) ? config.basePath : DEFAULT_PATH;
@@ -66,24 +66,24 @@ module.exports = function () {
           timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
         };
 
-        // Make the actual token call
+        /** Make the actual token call */
         var getToken = function getToken() {
           _this.oauth.auth({
             client_id: _this.clientId,
             client_secret: _this.clientSecret
           }).then(function (response) {
-            // Loop timeout and resolve init promise
+            /** Loop timeout and resolve init promise */
             clearTimeout(timeoutId);
             timeout();
             resolve(response);
           }).catch(function (error) {
-            // Clear timeout and reject init promise
+            /** Clear timeout and reject init promise */
             clearTimeout(timeout);
             reject(error);
           });
         };
 
-        // Start the timeout looping
+        /** Start the timeout looping */
         timeout();
       });
 

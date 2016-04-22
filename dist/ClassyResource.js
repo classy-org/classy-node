@@ -45,22 +45,22 @@ var ClassyResource = function () {
     this._classy = Classy;
     this._urlData = urlData;
 
-    // Request debug setting
+    /** Request debug setting */
     if (this._classy.requestDebug) {
       (0, _requestDebug2.default)(_request2.default);
     }
 
-    // Add basic methods
+    /** Add basic methods */
     if (urlData.basic) {
       this._addBasicMethods(urlData.basic);
     }
 
-    // Add list methods
+    /** Add list methods */
     if (urlData.lists) {
       this._addListMethods(urlData.lists);
     }
 
-    // Add create methods
+    /** Add create methods */
     if (urlData.creates) {
       this._addCreateMethods(urlData.creates);
     }
@@ -109,17 +109,17 @@ var ClassyResource = function () {
         var isAuthRequest = _utils.utils.isAuthRequest(resolvedPath);
         var requestPath = _this2._createFullPath(resolvedPath, isAuthRequest);
 
-        // Choose token for Authorization header
+        /** Choose token for Authorization header */
         var forceToken = spec.token || (!_lodash2.default.isUndefined(data) ? data.token : false);
 
-        // Set token for Authorization header
+        /** Set token for Authorization header */
         var token = _this2._chooseToken({
           app: _this2._classy.appToken,
           member: _this2._classy.memberToken,
           force: forceToken
         });
 
-        // Merge default headers with spec headers
+        /** Merge default headers with spec headers */
         var DEFAULT_REQUEST_HEADERS = {
           Authorization: 'Bearer ' + token.value,
           Accept: 'application/json',
@@ -128,13 +128,13 @@ var ClassyResource = function () {
 
         var requestHeaders = _lodash2.default.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
 
-        // Handle auth requests
+        /** Handle auth requests */
         var form = false;
         if (isAuthRequest) {
           form = _this2._generateAuthForm(args);
         }
 
-        // Make the request and return a promise
+        /** Make the request and return a promise */
         return _this2._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
       };
     }
@@ -247,13 +247,11 @@ var ClassyResource = function () {
     }
 
     /**
-     * If there's no member token or if the endpoint
-     * specifically asks to use the app token, use the
-     * app token. Otherwise, use the member token.
+     * If the spec or param data forces a token, use that token.
+     * If not, use the member token when it's available and the
+     * app token when it's not.
      *
-     * @param  {object} appToken    Application token
-     * @param  {object} memberToken Member token
-     * @param  {boolean} useAppToken Forces appToken token to win
+     * @param  {object} options    Tokens {app, member, force}
      * @return {object}             The chosen token
      */
 
@@ -336,7 +334,7 @@ var ClassyResource = function () {
           } else {
             body = JSON.parse(body);
 
-            // Set tokens if it's a token request
+            /** Set tokens if it's a token request */
             if (!_lodash2.default.isUndefined(form.grant_type)) {
               _this._classy.setTokens(form.grant_type, body);
             }

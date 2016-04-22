@@ -78,7 +78,7 @@ export default class ClassyResource {
 
       /** Choose token for Authorization header */
       const forceToken = spec.token
-        || (!_.isUndefined(data) ? data.token : false);
+        || (!_.isEmpty(data) ? data.token : false);
 
       /** Set token for Authorization header */
       const token = this._chooseToken({

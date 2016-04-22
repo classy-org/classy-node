@@ -13,8 +13,7 @@ describe('ClassyResource', () => {
   beforeEach(() => {
     classy = new Classy({
       clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+      clientSecret: 'client_secret_str'
     });
 
     resource = new ClassyResource(classy, {
@@ -41,19 +40,89 @@ describe('ClassyResource', () => {
         method: 'GET',
         path: '/{id}/test'
       });
-
       const result = { prop: true };
-
       const scope = nock('https://api.classy.org')
         .get('/2.0/test/1/test')
         .reply(200, result);
 
-      method('1').then(function (response) {
+      method('1').then((response) => {
         expect(response.prop).to.be.true;
       });
 
     });
 
+    it('should hit correct URL when called without params', () => {
+
+      const method = resource.createMethod({
+        method: 'GET',
+        path: '/test'
+      });
+      const result = { prop: true };
+      const scope = nock('https://api.classy.org')
+        .get('/2.0/test')
+        .reply(200, result);
+
+      method().then((response) => {
+        expect(response.prop).to.be.true;
+      });
+
+    });
+
+    it('should hit auth URLs', () => {
+
+      const authResource = new ClassyResource(classy, {
+        path: '/oauth2'
+      });
+      const method = authResource.createMethod({
+        method: 'POST',
+        path: '/auth'
+      });
+      const result = { prop: true };
+      const scope = nock('https://api.classy.org', {
+        reqheaders: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).post('/oauth2/auth').reply(200, result);
+
+      method({
+        refresh_token: 'refresh_test'
+      }).then((response) => {
+        expect(response.prop).to.be.true;
+      });
+
+    });
+
+    it('should handle non-200 responses as errors', () => {
+
+      const method = resource.createMethod({
+        method: 'GET',
+        path: '/test'
+      });
+      const result = { prop: true };
+      const scope = nock('https://api.classy.org')
+        .get('/2.0/test/test')
+        .reply(404);
+
+      method().then((response) => {}, (error) => {
+        expect(error.prop).to.be.true;
+      });
+
+    });
+
+  });
+
+  describe('_createFullPath', () => {
+    it('should not add version param to auth requests', () => {
+      const fullPath = resource._createFullPath('/test/1', true);
+
+      expect(fullPath).to.equal('/test/1');
+    });
+
+    it('should add version param to non-auth requests', () => {
+      const fullPath = resource._createFullPath('/test/1', false);
+
+      expect(fullPath).to.equal('2.0/test/1');
+    });
   });
 
   describe('_chooseToken', () => {
@@ -113,6 +182,7 @@ describe('ClassyResource', () => {
       expect(token).to.be.undefined;
 
     });
+
   });
 
   describe('_generateAuthForm', () => {

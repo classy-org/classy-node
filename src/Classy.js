@@ -89,41 +89,52 @@ module.exports = class Classy {
     return promise;
   }
 
-  setTokens(grantType, tokenResponse) {
+  setTokens(grantType, token) {
+
     switch (grantType) {
       case 'client_credentials':
         this.appToken = {
-          value: tokenResponse.access_token,
-          expiresIn: tokenResponse.expires_in * 1000,
-          expiresOn: new Date().getTime() + (tokenResponse.expires_in * 1000)
+          value: token.access_token,
+          expiresIn: token.expires_in * 1000,
+          expiresOn: new Date().getTime() + (token.expires_in * 1000)
         };
         break;
 
       case 'refresh_token':
         this.memberToken = {
-          value: tokenResponse.access_token,
-          refreshToken: tokenResponse.refresh_token,
-          expiresIn: tokenResponse.expires_in * 1000,
-          expiresOn: new Date().getTime() + (tokenResponse.expires_in * 1000)
+          value: token.access_token,
+          refreshToken: token.refresh_token,
+          expiresIn: token.expires_in * 1000,
+          expiresOn: new Date().getTime() + (token.expires_in * 1000)
         };
         break;
 
       case 'password':
-        this.memberToken = {
-          value: tokenResponse.access_token,
-          refreshToken: tokenResponse.refresh_token,
-          expiresIn: tokenResponse.expires_in * 1000,
-          expiresOn: new Date().getTime() + (tokenResponse.expires_in * 1000)
-        };
+        if (_.isUndefined(token)) {
+          this.memberToken = {};
+        } else {
+          this.memberToken = {
+            value: token.access_token,
+            refreshToken: token.refresh_token,
+            expiresIn: token.expires_in * 1000,
+            expiresOn: new Date().getTime() + (token.expires_in * 1000)
+          };
+        }
+
         break;
 
       case 'member_token':
-        this.memberToken = {
-          value: tokenResponse.access_token,
-          refreshToken: tokenResponse.refresh_token,
-          expiresIn: tokenResponse.expires_in * 1000,
-          expiresOn: new Date().getTime() + (tokenResponse.expires_in * 1000)
-        };
+        if (_.isUndefined(token)) {
+          this.memberToken = {};
+        } else {
+          this.memberToken = {
+            value: token.access_token,
+            refreshToken: token.refresh_token,
+            expiresIn: token.expires_in * 1000,
+            expiresOn: new Date().getTime() + (token.expires_in * 1000)
+          };
+        }
+
         break;
 
       default:

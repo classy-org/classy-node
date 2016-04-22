@@ -158,4 +158,30 @@ describe('Classy', () => {
     expect(classy.appToken).to.be.empty;
   });
 
+  it('should have default for setTokens member_token', () => {
+    const classy = new Classy({
+      clientId: 'client_id_str',
+      clientSecret: 'client_secret_str',
+      requestDebug: false
+    });
+
+    const token = classy.setTokens('member_token');
+
+    expect(classy.memberToken).to.be.empty;
+    expect(classy.appToken).to.be.empty;
+  });
+
+  it('should have default for setTokens password', () => {
+    const classy = new Classy({
+      clientId: 'client_id_str',
+      clientSecret: 'client_secret_str',
+      requestDebug: false
+    });
+
+    const token = classy.setTokens('password');
+
+    expect(classy.memberToken).to.be.empty;
+    expect(classy.appToken).to.be.empty;
+  });
+
 });

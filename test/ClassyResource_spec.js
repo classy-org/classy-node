@@ -13,7 +13,8 @@ describe('ClassyResource', () => {
   beforeEach(() => {
     classy = new Classy({
       clientId: 'client_id_str',
-      clientSecret: 'client_secret_str'
+      clientSecret: 'client_secret_str',
+      requestDebug: false
     });
 
     resource = new ClassyResource(classy, {
@@ -105,6 +106,23 @@ describe('ClassyResource', () => {
 
       method().then((response) => {}, (error) => {
         expect(error.prop).to.be.true;
+      });
+
+    });
+
+    it('should handle response errors', () => {
+
+      const method = resource.createMethod({
+        method: 'GET',
+        path: '/test'
+      });
+      const result = { prop: true };
+      const scope = nock('https://api.classy.org')
+        .get('/2.0/test/test')
+        .replyWithError({ test: 'oh no!' });
+
+      method().then((response) => {}, (error) => {
+        expect(error.test).to.equal('oh no!');
       });
 
     });

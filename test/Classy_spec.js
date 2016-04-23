@@ -74,114 +74,164 @@ describe('Classy', () => {
     expect(classy.requestDebug).to.be.false;
   });
 
-  it('should set appToken', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+  describe('app', () => {
+
+    it('should kick off the app token cycle', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+
+      const result = {};
+      const scope = nock('https://api.classy.org', {
+        reqheaders: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).post('/oauth2/auth').reply(200, {
+        token_type: 'bearer',
+        access_token: 'c66aa4fb5bf14cfa8b4bf9eef0b825d5',
+        expires_in: 0
+      });
+
+      classy.app().then(function (response) {
+        expect(response).to.equal(result);
+      });
     });
 
-    const grant = 'client_credentials';
-    const opts = {
-      access_token: 'test',
-      expires_in: 100
-    };
-    const token = classy.setTokens(grant, opts);
+    it('should error in the app token cycle', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+      const result = {};
+      const scope = nock('https://api.classy.org', {
+        reqheaders: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).post('/oauth2/auth').reply(404, result);
 
-    expect(classy.appToken).to.not.be.empty;
-    expect(classy.memberToken).to.be.empty;
+      classy.app().then(
+        (response) => {},
+
+        (error) => {
+          expect(error).to.equal(result);
+        }
+      );
+    });
   });
 
-  it('should set appToken', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+  describe('setTokens', () => {
+    it('should set app token with client_credentials method', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+
+      const grant = 'client_credentials';
+      const opts = {
+        access_token: 'test',
+        expires_in: 100
+      };
+      const token = classy.setTokens(grant, opts);
+
+      expect(classy.appToken).to.not.be.empty;
+      expect(classy.memberToken).to.be.empty;
     });
 
-    const grant = 'refresh_token';
-    const opts = {
-      access_token: 'test',
-      expires_in: 100
-    };
-    const token = classy.setTokens(grant, opts);
+    it('should set member token with refresh_token method', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
 
-    expect(classy.memberToken).to.not.be.empty;
-    expect(classy.appToken).to.be.empty;
-  });
+      const grant = 'refresh_token';
+      const opts = {
+        access_token: 'test',
+        expires_in: 100
+      };
+      const token = classy.setTokens(grant, opts);
 
-  it('should set appToken', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
-    });
-    const grant = 'password';
-    const opts = {
-      access_token: 'test',
-      expires_in: 100
-    };
-    const token = classy.setTokens(grant, opts);
-
-    expect(classy.memberToken).to.not.be.empty;
-    expect(classy.appToken).to.be.empty;
-  });
-
-  it('should set memberToken when member_token is passed', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+      expect(classy.memberToken).to.not.be.empty;
+      expect(classy.appToken).to.be.empty;
     });
 
-    const opts = {
-      access_token: 'test',
-      expires_in: 100
-    };
+    it('should set member token with password method', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+      const grant = 'password';
+      const opts = {
+        access_token: 'test',
+        expires_in: 100
+      };
+      const token = classy.setTokens(grant, opts);
 
-    const token = classy.setTokens('member_token', opts);
-
-    expect(classy.memberToken).to.not.be.empty;
-    expect(classy.appToken).to.be.empty;
-  });
-
-  it('should have default for setTokens', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+      expect(classy.memberToken).to.not.be.empty;
+      expect(classy.appToken).to.be.empty;
     });
 
-    const token = classy.setTokens();
+    it('should set member token when member_token is passed', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
 
-    expect(classy.memberToken).to.be.empty;
-    expect(classy.appToken).to.be.empty;
-  });
+      const opts = {
+        access_token: 'test',
+        expires_in: 100
+      };
 
-  it('should have default for setTokens member_token', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+      const token = classy.setTokens('member_token', opts);
+
+      expect(classy.memberToken).to.not.be.empty;
+      expect(classy.appToken).to.be.empty;
     });
 
-    const token = classy.setTokens('member_token');
+    it('should have default for setTokens', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
 
-    expect(classy.memberToken).to.be.empty;
-    expect(classy.appToken).to.be.empty;
-  });
+      const token = classy.setTokens();
 
-  it('should have default for setTokens password', () => {
-    const classy = new Classy({
-      clientId: 'client_id_str',
-      clientSecret: 'client_secret_str',
-      requestDebug: false
+      expect(classy.memberToken).to.be.empty;
+      expect(classy.appToken).to.be.empty;
     });
 
-    const token = classy.setTokens('password');
+    it('should have default for setTokens member_token', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
 
-    expect(classy.memberToken).to.be.empty;
-    expect(classy.appToken).to.be.empty;
+      const token = classy.setTokens('member_token');
+
+      expect(classy.memberToken).to.be.empty;
+      expect(classy.appToken).to.be.empty;
+    });
+
+    it('should have default for setTokens password', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+
+      const token = classy.setTokens('password');
+
+      expect(classy.memberToken).to.be.empty;
+      expect(classy.appToken).to.be.empty;
+    });
   });
 
 });

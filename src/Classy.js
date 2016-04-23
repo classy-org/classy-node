@@ -57,12 +57,11 @@ module.exports = class Classy {
    */
   app() {
     const _this = this;
-
     const promise = new Promise((resolve, reject) => {
-      let timeoutId;
+      _this.timeoutId = undefined;
 
       const timeout = () => {
-        timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
+        _this.timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
       };
 
       /** Make the actual token call */
@@ -72,12 +71,12 @@ module.exports = class Classy {
           client_secret: _this.clientSecret
         }).then((response) => {
           /** Loop timeout and resolve init promise */
-          clearTimeout(timeoutId);
+          clearTimeout(_this.timeoutId);
           timeout();
           resolve(response);
-        }).catch((error) => {
+        }, (error) => {
           /** Clear timeout and reject init promise */
-          clearTimeout(timeout);
+          clearTimeout(_this.timeoutId);
           reject(error);
         });
       };

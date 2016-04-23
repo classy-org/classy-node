@@ -9,15 +9,10 @@ export const utils = {
    *   fn({ param1: 123, param2: 456 }); // => 'some/url/123/456'
    */
   makeURLInterpolator: (function () {
-    const rc = {
-      '\n': '\\n', '\"': '\\\"',
-      '\u2028': '\\u2028', '\u2029': '\\u2029',
-    };
     return (str) => new Function(
       'o',
       'return "' + (
         str
-        .replace(/["\n\r\u2028\u2029]/g, ($0) => rc[$0])
         .replace(/\{([\s\S]+?)\}/g, '" + encodeURIComponent(o["$1"]) + "')
       ) + '";'
     );

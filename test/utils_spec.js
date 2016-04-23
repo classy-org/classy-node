@@ -4,6 +4,18 @@ import _ from 'lodash';
 
 describe('utils', () => {
 
+  describe('makeURLInterpolator', () => {
+    it('should interpolate a parameterized URL', () => {
+
+      const interpolator = utils.makeURLInterpolator('something/{c}/\ntest');
+      const interpolated = interpolator({
+        c: 1
+      });
+
+      expect(interpolated).to.equal('something/1/\ntest');
+    });
+  });
+
   describe('getRegexMatches', () => {
     it('should match param regex', () => {
 

@@ -4,7 +4,7 @@
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "jscs ./src",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive && babel-node ./node_modules/.bin/isparta cover _mocha",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
     "prepublish": "gulp"
   },
@@ -47,6 +47,7 @@
     "babel-preset-es2015": "^6.5.0",
     "chai": "^3.5.0",
     "colors": "^1.1.2",
+    "coveralls": "^2.11.9",
     "del": "^2.2.0",
     "dotenv": "^2.0.0",
     "gulp": "^3.9.1",

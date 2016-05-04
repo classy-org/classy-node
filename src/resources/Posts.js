@@ -8,7 +8,6 @@ class Posts extends Resource {
 			lists: ['comments', 'likes'],
 			path: '/posts'
     });
-
   }
 }
 

@@ -6,7 +6,6 @@ class Likes extends Resource {
 			basic: ['delete'],
 			path: '/likes'
     });
-
   }
 }
 

@@ -7,7 +7,6 @@ class Comments extends Resource {
 			lists: ['likes'],
 			path: '/comments'
     });
-
   }
 }
 

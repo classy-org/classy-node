@@ -3,8 +3,8 @@ import Resource from '../ClassyResource';
 class Likes extends Resource {
   constructor(Classy) {
     super(Classy, {
-    	basic: ['delete'],
-      path: '/likes'
+			basic: ['delete'],
+			path: '/likes'
     });
 
   }

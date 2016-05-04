@@ -1,4 +1,4 @@
-import {utils} from './utils';
+import { utils } from './utils';
 import path from 'path';
 import request from 'request';
 import requestDebug from 'request-debug';

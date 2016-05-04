@@ -31,7 +31,7 @@ class Organizations extends Resource {
     this.updatePlanFeatures = this.createmethod({
       method: 'PUT',
       path: '{id}/plan-features'
-    })
+    });
 
     /** Retrieves */
     this.retrieveMailchimpList = this.createMethod({

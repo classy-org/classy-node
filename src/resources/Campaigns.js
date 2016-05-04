@@ -14,6 +14,7 @@ class Campaigns extends Resource {
         'fundraising-pages',
         'fundraising-teams',
         'messages',
+        'posts',
         'questions',
         'recurring-donation-plans',
         'transactions',

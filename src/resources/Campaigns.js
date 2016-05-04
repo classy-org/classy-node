@@ -28,6 +28,7 @@ class Campaigns extends Resource {
         'faqs',
         'fundraising-pages',
         'messages',
+        'posts',
         'questions',
         'ticket-types',
         'transactions'

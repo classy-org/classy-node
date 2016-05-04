@@ -5,13 +5,12 @@ class FundraisingPages extends Resource {
     super(Classy, {
       basic: ['retrieve', 'update', 'del'],
       lists: [
-      	'activity',
-      	'posts'
+        'activity',
+        'posts'
       ],
       creates: ['posts'],
       path: '/fundraising-pages'
     });
-
   }
 }
 

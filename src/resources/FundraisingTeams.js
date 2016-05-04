@@ -5,9 +5,9 @@ class FundraisingTeams extends Resource {
     super(Classy, {
       basic: ['retrieve', 'del'],
       lists: [
-      	'activity', 
-      	'fundraising-pages',
-      	'posts'
+        'activity',
+        'fundraising-pages',
+        'posts'
       ],
       creates: ['posts'],
       path: '/fundraising-teams'

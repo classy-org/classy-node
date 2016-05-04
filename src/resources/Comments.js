@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class Comments extends Resource {
   constructor(Classy) {
     super(Classy, {
-			basic: ['retrieve', 'delete', 'update'],
+			basic: ['retrieve', 'del', 'update'],
 			lists: ['likes'],
 			path: '/comments'
     });

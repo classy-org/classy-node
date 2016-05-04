@@ -5,7 +5,7 @@ class Comments extends Resource {
     super(Classy, {
       basic: ['retrieve', 'del', 'update'],
       lists: ['likes'],
-      creates: ['likes']
+      creates: ['likes'],
       path: '/comments'
     });
   }

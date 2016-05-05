@@ -1,3 +1,4 @@
+import Resource from './ClassyResource';
 import resources from './resources';
 import _ from 'lodash';
 
@@ -17,6 +18,7 @@ module.exports = class Classy {
 
     this.appToken = {};
     this.memberToken = {};
+    this.ClassyResource = Resource;
 
     /** Set required params */
     this.clientId = config.clientId;

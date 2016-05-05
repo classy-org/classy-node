@@ -47,6 +47,11 @@ class Campaigns extends Resource {
       path: '/{id}/unpublish'
     });
 
+    this.deactivate = this.createMethod({
+      method: 'POST',
+      path: '/{id}/deactivate'
+    });
+
     /** Retrieves */
     this.retrieveAppealSet = this.createMethod({
       method: 'GET',
@@ -62,6 +67,11 @@ class Campaigns extends Resource {
       method: 'GET',
       path: '/{id}/overview'
     });
+
+    this.retrieveCustomUrl = this.createMethod({
+      method: 'GET',
+      path: '/{id}/customUrl'
+    })
 
   }
 }

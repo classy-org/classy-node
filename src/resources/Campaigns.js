@@ -71,7 +71,7 @@ class Campaigns extends Resource {
     this.retrieveCustomUrl = this.createMethod({
       method: 'GET',
       path: '/{id}/customUrl'
-    })
+    });
 
   }
 }

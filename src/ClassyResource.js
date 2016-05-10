@@ -238,8 +238,8 @@ export default class ClassyResource {
     const grantType = utils.generateOauthGrantType(args[0]);
 
     form.grant_type = grantType;
-    form.client_id = this._classy.clientId;
-    form.client_secret = this._classy.clientSecret;
+    form.client_id = form.client_id || this._classy.clientId;
+    form.client_secret = form.client_secret || this._classy.clientSecret;
 
     return form;
   }

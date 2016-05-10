@@ -61,6 +61,8 @@ export const utils = {
       grantType = 'password';
     } else if (options.refreshToken) {
       grantType = 'refresh_token';
+    } else if (options.facebook_code) {
+      grantType = 'facebook_authorization_code';
     } else {
       grantType = 'client_credentials';
     }

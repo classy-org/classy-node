@@ -219,7 +219,6 @@ describe('ClassyResource', () => {
       }]);
 
       expect(authForm.refresh_token).to.equal('test');
-      expect(authForm.grant_type).to.equal('refresh_token');
     });
 
     it('should generate a facebook form from refresh args', () => {

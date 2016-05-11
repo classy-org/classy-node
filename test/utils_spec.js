@@ -53,6 +53,15 @@ describe('utils', () => {
 
       expect(result).to.equal('client_credentials');
     });
+
+    it('should determine oauth grant type of facebook_authorization_code', () => {
+      const options = {
+        facebookCode: 'test'
+      };
+      const result = utils.generateOauthGrantType(options);
+
+      expect(result).to.equal('facebook_authorization_code');
+    });
   });
 
   describe('isAuthRequest', () => {

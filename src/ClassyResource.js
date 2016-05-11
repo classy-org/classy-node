@@ -234,7 +234,10 @@ export default class ClassyResource {
    * @return {object}      A form object for the request
    */
   _generateAuthForm(args) {
-    const form = _.mapKeys(args[0], (value, key) => key);
+    const form = _.mapKeys(
+      args[0],
+      (value, key) => _.snakeCase(key).replace(/(\d)_/g, '$1')
+    );
     const grantType = utils.generateOauthGrantType(args[0]);
 
     form.grant_type = grantType;

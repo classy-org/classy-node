@@ -198,22 +198,36 @@ describe('ClassyResource', () => {
       const token = resource._chooseToken(tokenOpts);
 
       expect(token).to.be.undefined;
-
     });
 
   });
 
   describe('_generateAuthForm', () => {
 
-    it('should generate an auth form from args', () => {
+    it('should generate an auth form from username args', () => {
       const authForm = resource._generateAuthForm([{
         username: 'test',
         password: 'test'
       }]);
 
-      expect(authForm.client_id).to.equal(resource._classy.clientId);
-      expect(authForm.client_secret).to.equal(resource._classy.clientSecret);
       expect(authForm.grant_type).to.equal('password');
+    });
+
+    it('should generate an auth form from refresh args', () => {
+      const authForm = resource._generateAuthForm([{
+        refreshToken: 'test'
+      }]);
+
+      expect(authForm.refresh_token).to.equal('test');
+      expect(authForm.grant_type).to.equal('refresh_token');
+    });
+
+    it('should generate a facebook form from refresh args', () => {
+      const authForm = resource._generateAuthForm([{
+        '3rdClientId': 'test'
+      }]);
+
+      expect(authForm['3rd_client_id']).to.equal('test');
     });
 
   });

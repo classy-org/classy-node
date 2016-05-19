@@ -69,6 +69,26 @@ describe('ClassyResource', () => {
 
     });
 
+    it('should not include ?token=* in request params', () => {
+
+      const method = resource.createMethod({
+        method: 'GET',
+        path: '/test'
+      });
+      const result = { prop: true };
+      const scope = nock('https://api.classy.org')
+        .get('/2.0/test?test=test')
+        .reply(200, result);
+
+      method({
+        token: 'app',
+        test: 'test'
+      }).then((response) => {
+        expect(response.prop).to.be.true;
+      });
+
+    });
+
     it('should hit auth URLs', () => {
 
       const authResource = new ClassyResource(classy, {

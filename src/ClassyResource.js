@@ -54,7 +54,7 @@ export default class ClassyResource {
       /** Extract data from function arguments */
       const _this = this;
       const urlData = this._populateUrlParams(urlParams, args);
-      const data = utils.getDataFromArgs(args);
+      let data = utils.getDataFromArgs(args);
 
       /** Match params to function arguments */
       for (let i = 0; i < urlParams.length; i++) {
@@ -79,6 +79,11 @@ export default class ClassyResource {
       /** Choose token for Authorization header */
       const forceToken = spec.token
         || (!_.isEmpty(data) ? data.token : false);
+
+      /** Remove token flag since we don't want to pass it to the API */
+      if (!_.isEmpty(data) && requestMethod === 'GET') {
+        delete data.token;
+      }
 
       /** Set token for Authorization header */
       const token = this._chooseToken({

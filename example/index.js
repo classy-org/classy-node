@@ -60,7 +60,9 @@ app.then((response) => {
       );
     });
 
-    classy.transactions.retrieve(2741758).then((response) => {
+    classy.transactions.retrieve(2741758, {
+      token: 'app'
+    }).then((response) => {
       console.log(
         colors.green('✓'),
         colors.gray('Retrieve: /transactions/2741758 - $' + response.total_gross_amount)

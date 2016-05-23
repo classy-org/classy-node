@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class FundraisingTeams extends Resource {
   constructor(Classy) {
     super(Classy, {
-      basic: ['retrieve', 'del'],
+      basic: ['retrieve', 'del', 'update'],
       lists: [
         'activity',
         'fundraising-pages',

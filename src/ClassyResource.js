@@ -283,14 +283,20 @@ export default class ClassyResource {
         if (err || !/^2/.test('' + response.statusCode)) {
           reject(err ? JSON.parse(err) : response);
         } else {
-          body = JSON.parse(body);
+          if (body instanceof Error) {
+            reject({
+              'Error': body.message
+            });
+          } else {
+            body = JSON.parse(body);
 
-          /** Set tokens if it's a token request */
-          if (!_.isUndefined(form.grant_type)) {
-            _this._classy.setTokens(form.grant_type, body);
+            /** Set tokens if it's a token request */
+            if (!_.isUndefined(form.grant_type)) {
+              _this._classy.setTokens(form.grant_type, body);
+            }
+
+            resolve(body);
           }
-
-          resolve(body);
         }
       });
 

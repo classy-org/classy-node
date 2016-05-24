@@ -281,22 +281,22 @@ export default class ClassyResource {
 
       request(requestParams, (err, response, body) => {
         if (err || !/^2/.test('' + response.statusCode)) {
-          reject(err ? JSON.parse(err) : response);
-        } else {
-          if (body instanceof Error) {
+          if (err instanceof Error) {
             reject({
-              'Error': body.message
+              error: err.message
             });
           } else {
-            body = JSON.parse(body);
-
-            /** Set tokens if it's a token request */
-            if (!_.isUndefined(form.grant_type)) {
-              _this._classy.setTokens(form.grant_type, body);
-            }
-
-            resolve(body);
+            reject(err ? JSON.parse(err) : response);
           }
+        } else {
+          body = JSON.parse(body);
+
+          /** Set tokens if it's a token request */
+          if (!_.isUndefined(form.grant_type)) {
+            _this._classy.setTokens(form.grant_type, body);
+          }
+
+          resolve(body);
         }
       });
 

@@ -8,7 +8,7 @@ class FundraisingPages extends Resource {
         'activity',
         'posts'
       ],
-      creates: ['posts'],
+      creates: ['posts', 'transfers'],
       path: '/fundraising-pages'
     });
   }

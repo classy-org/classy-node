@@ -9,7 +9,7 @@ class FundraisingTeams extends Resource {
         'fundraising-pages',
         'posts'
       ],
-      creates: ['posts'],
+      creates: ['posts', 'fundraising-pages'],
       path: '/fundraising-teams'
     });
 

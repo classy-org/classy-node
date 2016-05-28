@@ -3,7 +3,7 @@ import Resource from '../ClassyResource';
 class Campaigns extends Resource {
   constructor(Classy) {
     super(Classy, {
-      basic: ['retrieve', 'update'],
+      basic: ['create', 'retrieve', 'update'],
       lists: [
         'activity',
         'admins',

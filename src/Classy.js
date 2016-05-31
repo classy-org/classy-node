@@ -11,7 +11,7 @@ module.exports = class Classy {
 
     /** Handle errors */
     if (_.isUndefined(config)
-    ||  (!_lodash2.default.isUndefined(config.headers)
+    ||  (!_.isUndefined(config.headers)
         && (_.isUndefined(config.clientId) ||  _.isUndefined(config.clientSecret)))) {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
     }

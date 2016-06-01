@@ -6,7 +6,8 @@ class FundraisingPages extends Resource {
       basic: ['retrieve', 'update', 'del'],
       lists: [
         'activity',
-        'posts'
+        'posts',
+        'feed-items'
       ],
       creates: ['posts', 'transfers'],
       path: '/fundraising-pages'

@@ -7,7 +7,8 @@ class FundraisingTeams extends Resource {
       lists: [
         'activity',
         'fundraising-pages',
-        'posts'
+        'posts',
+        'feed-items'
       ],
       creates: ['posts', 'fundraising-pages'],
       path: '/fundraising-teams'

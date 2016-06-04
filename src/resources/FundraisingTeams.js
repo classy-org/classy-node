@@ -10,7 +10,7 @@ class FundraisingTeams extends Resource {
         'posts',
         'feed-items'
       ],
-      creates: ['posts', 'fundraising-pages'],
+      creates: ['posts', 'feed-items', 'fundraising-pages'],
       path: '/fundraising-teams'
     });
 

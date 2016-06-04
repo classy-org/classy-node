@@ -9,7 +9,7 @@ class FundraisingPages extends Resource {
         'posts',
         'feed-items'
       ],
-      creates: ['posts', 'transfers'],
+      creates: ['posts', 'feed-items', 'transfers'],
       path: '/fundraising-pages'
     });
   }

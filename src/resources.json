@@ -19,7 +19,7 @@
                 },
                 "url": {
                     "method": "POST",
-                    "path": "url"
+                    "path": "/url"
                 }
             }
         }

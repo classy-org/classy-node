@@ -1,0 +1,292 @@
+{
+    "Activity": {
+        "creates": ["comments"],
+        "path": "/activity"
+    },
+    "AppealSet": {
+        "basic": ["retrieve", "update"],
+        "path": "/appeal-set"
+    },
+    "Assets": {
+        "basic": ["retrieve", "update"],
+        "lists": ["children"],
+        "path": "/assets",
+        "custom": {
+            "methods": {
+                "process": {
+                    "method": "POST",
+                    "path": "/{id}/process"
+                },
+                "url": {
+                    "method": "POST",
+                    "path": "url"
+                }
+            }
+        }
+    },
+    "Blocks": {
+        "basic": ["create", "retrieve", "update"],
+        "path": "/blocks"
+    },
+    "CampaignCredentialSets": {
+        "basic": ["retrieve", "update", "del"],
+        "path": "/campaign-credential-sets"
+    },
+    "Campaigns": {
+        "basic": ["retrieve", "update"],
+        "lists": [
+            "activity",
+            "admins",
+            "credential-sets",
+            "donation-matching-plans",
+            "ecards",
+            "faqs",
+            "fundraising-pages",
+            "fundraising-teams",
+            "messages",
+            "posts",
+            "questions",
+            "recurring-donation-plans",
+            "transactions",
+            "ticket-types"
+        ],
+        "creates": [
+            "appeal-sets",
+            "credential-sets",
+            "donation-matching-plans",
+            "ecards",
+            "faqs",
+            "fundraising-pages",
+            "messages",
+            "posts",
+            "questions",
+            "ticket-types",
+            "transactions"
+        ],
+        "path": "/campaigns",
+        "custom": {
+            "methods": {
+                "publish": {
+                    "method": "POST",
+                    "path": "/{id}/publish"
+                },
+                "unpublish": {
+                    "method": "POST",
+                    "path": "/{id}/unpublish"
+                },
+                "deactivate": {
+                    "method": "POST",
+                    "path": "/{id}/deactivate"
+                },
+                "retrieveAppealSet": {
+                    "method": "GET",
+                    "path": "/{id}/appeal-set"
+                },
+                "retrieveTheme": {
+                    "method": "GET",
+                    "path": "/{id}/themes"
+                },
+                "retrieveOverview": {
+                    "method": "GET",
+                    "path": "/{id}/overview"
+                },
+                "retrieveCustomUrl": {
+                    "method": "GET",
+                    "path": "/{id}/customUrl"
+                }
+            }
+        }
+    },
+    "Comments": {
+        "basic": ["retrieve", "del", "update"],
+        "lists": ["likes"],
+        "creates": ["likes"],
+        "path": "/comments"
+    },
+    "Dedications": {
+        "basic": ["retrieve", "update"],
+        "path": "/dedications"
+    },
+    "Designations": {
+        "basic": ["update"],
+        "path": "/designations"
+    },
+    "DonationMatchers": {
+        "path": "/donation-matchers",
+        "custom": {
+            "methods": {
+                "retrieve": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
+    "Ecards": {
+        "basic": [ "retrieve", "update", "del" ],
+        "path": "/eCards"
+    },
+    "Faqs": {
+        "basic": [ "retrieve", "del", "update" ],
+        "path": "/faqs"
+    },
+    "FeedItems": {
+        "basic": ["retrieve", "update", "del"],
+        "lists": [
+            "comments",
+            "likes"
+        ],
+        "creates": ["comments", "likes"],
+        "path": "/feed-items"  
+    },
+    "FundraisingPages": {
+        "basic": [ "retrieve", "update", "del" ],
+        "lists": [ "activity", "posts", "feed-items" ],
+        "creates": [ "posts", "transfers" ],
+        "path": "/fundraising-pages"
+    },
+    "FundraisingTeamPolicies": {
+        "basic": [ "retrieve", "update" ],
+        "path": "/fundraising-team-policies"
+    },
+    "FundraisingTeams": {
+        "basic": [ "retrieve", "del", "update" ],
+        "lists": [ "activity", "fundraising-pages", "posts", "feed-items" ],
+        "creates": [ "posts", "fundraising-pages" ],
+        "path": "/fundraising-teams"
+    },
+    "Likes": {
+        "basic": [ "del" ],
+        "path": "/likes"
+    },
+    "Me": {
+        "path": "/me",
+        "custom": {
+            "methods": {
+                "retreive": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
+    "Member": {
+        "basic": [ "retrieve" ],
+        "lists": [ "organizations" ],
+        "path": "/members"
+    },
+    "Oauth": {
+        "path": "/oauth2",
+        "custom": {
+            "methods": {
+                "method": "POST",
+                "path": "/auth",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            }
+        }
+    },
+    "Organizations": {
+        "basic": [ "retrieve" ],
+        "lists": [
+            "activity",
+            "analytics",
+            "campaigns",
+            "designations",
+            "engagement-settings",
+            "messages",
+            "recurring-donation-plans",
+            "supporters",
+            "transactions"
+        ],
+        "creates": [ "campaigns", "designations" ],
+        "path": "/organizations",
+        "custom": {
+            "methods": {
+                "updateEngagementSettings": {
+                    "method": "PUT",
+                    "path": "/{id}/engagement-settings"
+                },
+                "retrieveMailchimpList": {
+                    "method": "GET",
+                    "path": "/{id}/mailchimp-list"
+                },
+                "retrieveMailchimpListCategory": {
+                    "method": "GET",
+                    "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category"
+                },
+                "retrievePlanFeatures": {
+                    "method": "GET",
+                    "path": "/{id}/plan-features"
+                },
+                "retrieveSecuritySettings": {
+                    "method": "GET",
+                    "path": "/{id}/security-settings"
+                },
+                "createMailchimpAccount": {
+                    "method": "POST",
+                    "path": "/{id}/mailchimp-account"
+                }
+            }
+        }
+    },
+    "Ping": {
+        "path": "/ping",
+        "custom": {
+            "methods": {
+                "commence": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
+    "PolicyCheck": {
+        "path": "/policy-check",
+        "custom": {
+            "methods": {
+                "campaignAdmin": {
+                    "method": "GET",
+                    "path": "/campaign/{id}/admin"
+                }
+            }
+        }
+    },
+    "Posts": {
+        "basic": [ "retrieve", "del", "update" ],
+        "creates": [ "comments", "likes" ],
+        "lists": [ "comments", "likes" ],
+        "path": "/posts"
+    },
+    "Questions": {
+        "basic": [ "update", "del" ],
+        "path": "/questions"
+    },
+    "Recipients": {
+        "basic": [ "retrieve", "del" ],
+        "path": "/recipients"
+    },
+    "RecurringDonationPlans": {
+        "basic": [ "retrieve", "update" ],
+        "path": "/recurring-donation-plans"
+    },
+    "Registrations": {
+        "basic": [ "retrieve", "update" ],
+        "path": "/registrations"
+    },
+    "Supporters": {
+        "basic": [ "retrieve" ],
+        "path": "/supporters"
+    },
+    "TicketTypes": {
+        "basic": [ "retrieve", "update" ],
+        "path": "/ticket-types"
+    },
+    "Transactions": {
+        "basic": [ "retrieve", "update" ],
+        "lists": [ "registrations", "items", "acknowledgements" ],
+        "creates": [ "dedications" ],
+        "path": "/transactions"
+    }
+}

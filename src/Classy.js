@@ -1,6 +1,6 @@
 import Resource from './ClassyResource';
-import resources from './resources';
 import _ from 'lodash';
+const resources = require('./resources.json');
 
 module.exports = class Classy {
   constructor(config) {
@@ -144,11 +144,11 @@ module.exports = class Classy {
   }
 
   _prepResources() {
-    for (let name in resources) {
-      const resourceName = _.camelCase(name),
-        resourceInstance = new resources[name](this);
+    _.each(resources, (urlData, name) => {
+      const resourceName = _.camelCase(name);
+      const resourceInstance = new Resource(this, urlData);
 
       this[resourceName] = resourceInstance;
-    }
+    });
   }
 };

@@ -130,6 +130,15 @@
         "basic": [ "retrieve", "del", "update" ],
         "path": "/faqs"
     },
+    "FeedItems": {
+        "basic": ["retrieve", "update", "del"],
+        "lists": [
+            "comments",
+            "likes"
+        ],
+        "creates": ["comments", "likes"],
+        "path": "/feed-items"  
+    },
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
         "lists": [ "activity", "posts" ],
@@ -269,10 +278,6 @@
     "Supporters": {
         "basic": [ "retrieve" ],
         "path": "/supporters"
-    },
-    "Themes": {
-        "basic": [ "create", "retrieve", "update" ],
-        "path": "/themes"
     },
     "TicketTypes": {
         "basic": [ "retrieve", "update" ],

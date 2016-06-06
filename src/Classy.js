@@ -11,8 +11,8 @@ module.exports = class Classy {
 
     /** Handle errors */
     if (_.isUndefined(config)
-    ||  _.isUndefined(config.clientId)
-    ||  _.isUndefined(config.clientSecret)) {
+    ||  (!_.isUndefined(config.headers)
+        && (_.isUndefined(config.clientId) ||  _.isUndefined(config.clientSecret)))) {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
     }
 
@@ -23,6 +23,9 @@ module.exports = class Classy {
     /** Set required params */
     this.clientId = config.clientId;
     this.clientSecret = config.clientSecret;
+
+    /** Override and replace headers if config.headers is set */
+    this.headers = config.headers;
 
     /** Override defaults if asked */
     this.requestDebug = (

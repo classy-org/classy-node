@@ -103,7 +103,8 @@ export default class ClassyResource {
         'Content-Type': 'application/json'
       };
 
-      const requestHeaders = _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
+      const requestHeaders = this._classy.headers
+        || _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
 
       /** Handle auth requests */
       let form = false;

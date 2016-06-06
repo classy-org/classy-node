@@ -68,7 +68,6 @@ module.exports = class Classy {
 
       /** Make the actual token call */
       const getToken = () => {
-        console.log(_this);
         _this.oauth.auth({
           client_id: _this.clientId,
           client_secret: _this.clientSecret

@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import append from 'gulp-add-src';
 import babel from 'gulp-babel';
 import mocha from 'gulp-mocha';
 import del from 'del';
@@ -20,6 +21,7 @@ gulp.task('clean', () => {
 gulp.task('babel', () => {
   gulp.src(config.paths.js.src)
     .pipe(babel())
+    .pipe(append('src/resources.json'))
     .pipe(gulp.dest(config.paths.js.dist));
 });
 

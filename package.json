@@ -51,6 +51,7 @@
     "del": "^2.2.0",
     "dotenv": "^2.0.0",
     "gulp": "^3.9.1",
+    "gulp-add-src": "^0.2.0",
     "gulp-babel": "^6.1.2",
     "gulp-jshint": "^2.0.0",
     "gulp-mocha": "^2.2.0",

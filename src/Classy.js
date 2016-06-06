@@ -146,10 +146,6 @@ module.exports = class Classy {
   _prepResources() {
     _.each(resources, (urlData, name) => {
       const resourceName = _.camelCase(name);
-      
-      console.log(`Creating Resource ${resourceName}`);
-      console.log(urlData);
-      console.log('\n');
       const resourceInstance = new Resource(this, urlData);
 
       this[resourceName] = resourceInstance;

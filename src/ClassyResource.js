@@ -35,7 +35,7 @@ export default class ClassyResource {
     if (urlData.creates) {
       this._addCreateMethods(urlData.creates);
     }
-    
+
     if (urlData.custom && urlData.custom.methods) {
       this._addCustomMethods(urlData.custom.methods);
     }
@@ -169,10 +169,10 @@ export default class ClassyResource {
       });
     });
   }
-  
+
   _addCustomMethods(methods) {
     const _this = this;
-    
+
     _.each(methods, (params, methodName) => {
       _this[methodName] = _this.createMethod(params);
     });

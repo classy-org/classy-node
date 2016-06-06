@@ -137,7 +137,7 @@
             "likes"
         ],
         "creates": ["comments", "likes"],
-        "path": "/feed-items"  
+        "path": "/feed-items"
     },
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
@@ -179,10 +179,12 @@
         "path": "/oauth2",
         "custom": {
             "methods": {
-                "method": "POST",
-                "path": "/auth",
-                "headers": {
-                    "Content-Type": "application/x-www-form-urlencoded"
+                "auth": {
+                  "method": "POST",
+                  "path": "/auth",
+                  "headers": {
+                      "Content-Type": "application/x-www-form-urlencoded"
+                  }                  
                 }
             }
         }

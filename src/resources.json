@@ -41,14 +41,15 @@
             "donation-matching-plans",
             "ecards",
             "faqs",
+            "feed-items",
             "fundraising-pages",
             "fundraising-teams",
             "messages",
             "posts",
             "questions",
             "recurring-donation-plans",
-            "transactions",
-            "ticket-types"
+            "ticket-types",
+            "transactions"
         ],
         "creates": [
             "appeal-sets",
@@ -56,6 +57,7 @@
             "donation-matching-plans",
             "ecards",
             "faqs",
+            "feed-items",
             "fundraising-pages",
             "messages",
             "posts",

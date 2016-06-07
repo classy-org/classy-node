@@ -144,7 +144,7 @@
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
         "lists": [ "activity", "posts", "feed-items" ],
-        "creates": [ "posts", "transfers" ],
+        "creates": [ "posts", "transfers", "feed-items" ],
         "path": "/fundraising-pages"
     },
     "FundraisingTeamPolicies": {
@@ -154,7 +154,7 @@
     "FundraisingTeams": {
         "basic": [ "retrieve", "del", "update" ],
         "lists": [ "activity", "fundraising-pages", "posts", "feed-items" ],
-        "creates": [ "posts", "fundraising-pages" ],
+        "creates": [ "posts", "fundraising-pages", "feed-items" ],
         "path": "/fundraising-teams"
     },
     "Likes": {

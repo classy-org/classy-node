@@ -279,6 +279,10 @@
         "basic": [ "retrieve", "update" ],
         "path": "/registrations"
     },
+    "SoftCreditTransfers": {
+        "basic": [ "retrieve", "create" ],
+        "path": "/soft-credit-transfers"
+    },
     "Supporters": {
         "basic": [ "retrieve" ],
         "path": "/supporters"

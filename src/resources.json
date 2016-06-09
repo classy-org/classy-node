@@ -174,7 +174,7 @@
     },
     "Member": {
         "basic": [ "retrieve" ],
-        "lists": [ "organizations" ],
+        "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
         "path": "/members"
     },
     "Oauth": {

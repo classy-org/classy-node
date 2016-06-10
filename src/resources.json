@@ -294,7 +294,7 @@
     "Transactions": {
         "basic": [ "retrieve", "update" ],
         "lists": [ "registrations", "items", "acknowledgements" ],
-        "creates": [ "dedications" ],
+        "creates": [ "dedications", "acknowledgements" ],
         "path": "/transactions"
     }
 }

@@ -32,7 +32,6 @@
   "main": "dist/Classy.js",
   "license": "MIT",
   "dependencies": {
-    "jscs": "^2.11.0",
     "lodash": "^4.0.0",
     "qs": "^6.1.0",
     "request": "^2.69.0",
@@ -56,6 +55,7 @@
     "gulp-jshint": "^2.0.0",
     "gulp-mocha": "^2.2.0",
     "isparta": "^4.0.0",
+    "jscs": "^2.11.0",
     "jshint": "^2.9.1",
     "lolex": "^1.4.0",
     "mocha": "^2.4.5",

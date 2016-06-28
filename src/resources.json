@@ -296,5 +296,9 @@
         "lists": [ "registrations", "items", "acknowledgements" ],
         "creates": [ "dedications", "acknowledgements" ],
         "path": "/transactions"
+    },
+    "TransactionItems": {
+      "basic": ["update"],
+      "path": "/transaction-items"
     }
 }

@@ -6,7 +6,12 @@
     "lint": "jscs ./src",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive && babel-node ./node_modules/.bin/isparta cover _mocha",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
-    "prepublish": "gulp"
+    "snyk-test": "./node_modules/snyk/cli/index.js test",
+    "snyk-unpublished": "./node_modules/snyk/cli/index.js test-unpublished",
+    "posttest": "npm run snyk-test; npm run snyk-unpublished",
+    "snyk-protect": "./node_modules/snyk/cli/index.js protect",
+    "prepublish": "gulp; npm run snyk-protect",
+    "snyk-wizard": "node ./node_modules/snyk/cli/index.js wizard"
   },
   "keywords": [
     "classy",
@@ -60,6 +65,7 @@
     "lolex": "^1.4.0",
     "mocha": "^2.4.5",
     "nock": "^7.7.3",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "snyk": "^1.15.0"
   }
 }

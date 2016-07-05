@@ -4,14 +4,14 @@
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "jscs ./src",
-    "test": "snyk test && mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive && babel-node ./node_modules/.bin/isparta cover _mocha",
+    "test": "./node_modules/.bin/snyk test && mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive && babel-node ./node_modules/.bin/isparta cover _mocha",
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
-    "snyk-test": "./node_modules/snyk/cli/index.js test",
-    "snyk-unpublished": "./node_modules/snyk/cli/index.js test-unpublished",
+    "snyk-test": "./node_modules/.bin/snyk test",
+    "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",
     "posttest": "npm run snyk-test; npm run snyk-unpublished",
-    "snyk-protect": "./node_modules/snyk/cli/index.js protect",
+    "snyk-protect": "./node_modules/.bin/snyk protect",
     "prepublish": "gulp; npm run snyk-protect",
-    "snyk-wizard": "node ./node_modules/snyk/cli/index.js wizard"
+    "snyk-wizard": "node ./node_modules/.bin/snyk wizard"
   },
   "keywords": [
     "classy",

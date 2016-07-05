@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 patch:
   'npm:minimatch:20160620':
     - 'jscs > vow-fs > glob > minimatch':
@@ -12,3 +13,13 @@ patch:
         patched: '2016-07-05T20:37:59.221Z'
 version: v1
 ignore: {}
+=======
+ignore: {}
+patch:
+  'npm:minimatch:20160620':
+    - jscs > vow-fs > glob > minimatch:
+        patched: '2016-06-28T18:56:21.961Z'
+    - jscs > babel-jscs > babel-core > minimatch:
+        patched: '2016-06-28T18:56:21.961Z'
+version: v1.5.0
+>>>>>>> 6e934289b1ec8522e21df9c344c1fc654ed18243

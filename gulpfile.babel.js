@@ -14,9 +14,7 @@ var config = {
   }
 };
 
-gulp.task('clean', () => {
-  del(config.paths.js.dist);
-});
+gulp.task('clean', () => del(config.paths.js.dist));
 
 gulp.task('babel', () => {
   gulp.src(config.paths.js.src)

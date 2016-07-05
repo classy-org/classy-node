@@ -145,6 +145,14 @@
         "basic": [ "retrieve", "update", "del" ],
         "lists": [ "activity", "posts", "feed-items" ],
         "creates": [ "posts", "transfers", "feed-items" ],
+        "custom": {
+            "methods": {
+                "retrieveOverview": {
+                    "method": "GET",
+                    "path": "/{id}/overview"
+                }
+            }
+        },
         "path": "/fundraising-pages"
     },
     "FundraisingTeamPolicies": {
@@ -155,6 +163,15 @@
         "basic": [ "retrieve", "del", "update" ],
         "lists": [ "activity", "fundraising-pages", "posts", "feed-items" ],
         "creates": [ "posts", "fundraising-pages", "feed-items" ],
+        "creates": [ "posts", "transfers", "feed-items" ],
+        "custom": {
+            "methods": {
+                "retrieveOverview": {
+                    "method": "GET",
+                    "path": "/{id}/overview"
+                }
+            }
+        },
         "path": "/fundraising-teams"
     },
     "Likes": {
@@ -296,5 +313,9 @@
         "lists": [ "registrations", "items", "acknowledgements" ],
         "creates": [ "dedications", "acknowledgements" ],
         "path": "/transactions"
+    },
+    "TransactionItems": {
+      "basic": ["update"],
+      "path": "/transaction-items"
     }
 }

@@ -233,6 +233,7 @@
     "Messages": {
         "basic": [ "retrieve", "update", "del" ],
         "lists": [ "recipeints", "supporters" ],
+        "creates": [ "blocks", "attachments", "recipients" ],
         "custom": {
             "methods": {
                 "getStats": {
@@ -272,8 +273,7 @@
                     "path": "/{id}/recipients/remove"
                 }
             }
-        },
-        "creates": [ "blocks", "attachments", "recipients" ],
+        }
     },
     "MessageTemplates": {
         "path": "/message-templates",

@@ -211,7 +211,7 @@
         "basic": [ "retrieve" ],
         "custom": {
             "methods": {
-                "attachments": {
+                "list": {
                     "method": "GET",
                     "path": ""
                 }
@@ -223,7 +223,7 @@
         "basic": [ "retrieve" ],
         "custom": {
             "methods": {
-                "blocks": {
+                "list": {
                     "method": "GET",
                     "path": ""
                 }
@@ -280,7 +280,7 @@
         "basic": [ "retrieve" ],
         "custom": {
             "methods": {
-                "templates": {
+                "list": {
                     "method": "GET",
                     "path": ""
                 }

@@ -231,6 +231,7 @@
         }
     },
     "Messages": {
+        "path": "/messages",
         "basic": [ "retrieve", "update", "del" ],
         "lists": [ "recipeints", "supporters" ],
         "creates": [ "blocks", "attachments", "recipients" ],

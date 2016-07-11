@@ -194,6 +194,99 @@
         "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
         "path": "/members"
     },
+    "MergeTags": {
+        "path": "/merge-tags",
+        "basic": [ "retrieve" ],
+         "custom": {
+            "methods": {
+                "list": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
+    "MessageAttachments": {
+        "path": "/message-attachments",
+        "basic": [ "retrieve" ],
+        "custom": {
+            "methods": {
+                "list": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
+    "MessageBlocks": {
+        "path": "/message-blocks",
+        "basic": [ "retrieve" ],
+        "custom": {
+            "methods": {
+                "list": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
+    "Messages": {
+        "basic": [ "retrieve", "update", "del" ],
+        "lists": [ "recipeints", "supporters" ],
+        "creates": [ "blocks", "attachments", "recipients" ],
+        "custom": {
+            "methods": {
+                "getStats": {
+                    "method": "GET",
+                    "path": "/{id}/stats"
+                },
+                "sendMessage": {
+                    "method": "POST",
+                    "path": "/{id}/send"
+                },
+                "sendTest": {
+                    "method": "POST",
+                    "path": "/{id}/send"
+                },
+                "updateBlocks": {
+                    "method": "PUT",
+                    "path": "/{id}/blocks/{blockId}"
+                },
+                "removeBlocks": {
+                    "method": "DELETE",
+                    "path": "/{id}/blocks/{blockId}"
+                },
+                "updateAttachments": {
+                    "method": "PUT",
+                    "path": "/{id}/attachments/{attachmentId}"
+                },
+                "removeAttachments": {
+                    "method": "DELETE",
+                    "path": "/{id}/attachments/{attachmentId}"
+                },
+                "modifyRecipients": {
+                    "method": "PUT",
+                    "path": "/{id}/recipients"
+                },
+                "removeRecipients": {
+                    "method": "POST",
+                    "path": "/{id}/recipients/remove"
+                }
+            }
+        }
+    },
+    "MessageTemplates": {
+        "path": "/message-templates",
+        "basic": [ "retrieve" ],
+        "custom": {
+            "methods": {
+                "list": {
+                    "method": "GET",
+                    "path": ""
+                }
+            }
+        }
+    },
     "Oauth": {
         "path": "/oauth2",
         "custom": {

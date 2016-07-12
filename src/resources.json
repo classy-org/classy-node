@@ -162,8 +162,7 @@
     "FundraisingTeams": {
         "basic": [ "retrieve", "del", "update" ],
         "lists": [ "activity", "fundraising-pages", "posts", "feed-items" ],
-        "creates": [ "posts", "fundraising-pages", "feed-items" ],
-        "creates": [ "posts", "transfers", "feed-items" ],
+        "creates": [ "posts", "transfers", "feed-items", "fundraising-pages" ],
         "custom": {
             "methods": {
                 "retrieveOverview": {

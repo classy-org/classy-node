@@ -341,6 +341,10 @@
                 "createMailchimpAccount": {
                     "method": "POST",
                     "path": "/{id}/mailchimp-account"
+                },
+                "createUnclaimedAccount": {
+                    "method": "POST",
+                    "path": "/{id}/members"
                 }
             }
         }

@@ -113,6 +113,15 @@
         "basic": ["update"],
         "path": "/designations"
     },
+    "DomainMasking": {
+        "path": "/domain-masking",
+        "custom": {
+            "methods": {
+                "retrieve": "GET",
+                "path": ""
+            }
+        }
+    },
     "DonationMatchers": {
         "path": "/donation-matchers",
         "custom": {

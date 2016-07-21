@@ -170,7 +170,7 @@
     },
     "FundraisingTeams": {
         "basic": [ "retrieve", "del", "update" ],
-        "lists": [ "activity", "fundraising-pages", "posts", "feed-items" ],
+        "lists": [ "activity", "fundraising-pages", "posts", "feed-items", "subteams" ],
         "creates": [ "posts", "transfers", "feed-items", "fundraising-pages" ],
         "custom": {
             "methods": {

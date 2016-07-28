@@ -152,7 +152,7 @@
     },
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
-        "lists": [ "activity", "posts", "feed-items" ],
+        "lists": [ "activity", "posts", "feed-items", "answers" ],
         "creates": [ "posts", "transfers", "feed-items" ],
         "custom": {
             "methods": {
@@ -170,7 +170,7 @@
     },
     "FundraisingTeams": {
         "basic": [ "retrieve", "del", "update" ],
-        "lists": [ "activity", "fundraising-pages", "posts", "feed-items", "subteams" ],
+        "lists": [ "activity", "fundraising-pages", "posts", "feed-items", "subteams", "answers" ],
         "creates": [ "posts", "transfers", "feed-items", "fundraising-pages" ],
         "custom": {
             "methods": {

@@ -153,7 +153,7 @@
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
         "lists": [ "activity", "posts", "feed-items", "answers" ],
-        "creates": [ "posts", "transfers", "feed-items" ],
+        "creates": [ "posts", "transfers", "feed-items", "answers" ],
         "custom": {
             "methods": {
                 "retrieveOverview": {

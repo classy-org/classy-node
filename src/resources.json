@@ -417,11 +417,11 @@
     "Transactions": {
         "basic": [ "retrieve", "update" ],
         "lists": [ "registrations", "items", "acknowledgements" ],
-        "creates": [ "dedications", "acknowledgements" ],
+        "creates": [ "dedications", "acknowledgements", "hard-credit-transfers" ],
         "path": "/transactions"
     },
     "TransactionItems": {
-      "basic": ["update"],
+      "basic": [ "update" ],
       "path": "/transaction-items"
     }
 }

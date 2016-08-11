@@ -135,7 +135,7 @@
     },
     "Ecards": {
         "basic": [ "retrieve", "update", "del" ],
-        "path": "/eCards"
+        "path": "/ecards"
     },
     "Faqs": {
         "basic": [ "retrieve", "del", "update" ],

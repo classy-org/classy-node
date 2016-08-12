@@ -133,6 +133,10 @@
             }
         }
     },
+    "DonationMatchingPlans": {
+        "basic": ["update"],
+        "path": "/donation-matching-plans"
+    },
     "Ecards": {
         "basic": [ "retrieve", "update", "del" ],
         "path": "/ecards"

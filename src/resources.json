@@ -53,7 +53,7 @@
             "transactions"
         ],
         "creates": [
-            "appeal-sets",
+            "appeal-set",
             "credential-sets",
             "donation-matching-plans",
             "ecards",

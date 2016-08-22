@@ -416,6 +416,10 @@
         "basic": [ "retrieve" ],
         "path": "/supporters"
     },
+    "Themes": {
+        "basic": [ "create", "update" ],
+        "path": "/themes"
+    },
     "TicketTypes": {
         "basic": [ "retrieve", "update" ],
         "path": "/ticket-types"

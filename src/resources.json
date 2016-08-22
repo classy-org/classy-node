@@ -417,7 +417,7 @@
         "path": "/supporters"
     },
     "Themes": {
-        "basic": [ "create" ],
+        "basic": [ "create", "update" ],
         "path": "/themes"
     },
     "TicketTypes": {

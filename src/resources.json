@@ -330,7 +330,7 @@
             "supporters",
             "transactions"
         ],
-        "creates": [ "campaigns", "designations" ],
+        "creates": [ "campaigns", "designations", "supporters" ],
         "path": "/organizations",
         "custom": {
             "methods": {

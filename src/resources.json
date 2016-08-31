@@ -248,14 +248,10 @@
     "Messages": {
         "path": "/messages",
         "basic": [ "retrieve", "update", "del" ],
-        "lists": [ "recipients", "supporters" ],
+        "lists": [ "recipients", "supporters", "stats" ],
         "creates": [ "blocks", "attachments", "recipients" ],
         "custom": {
             "methods": {
-                "getStats": {
-                    "method": "GET",
-                    "path": "/{id}/stats"
-                },
                 "sendMessage": {
                     "method": "POST",
                     "path": "/{id}/send"

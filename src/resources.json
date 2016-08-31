@@ -248,7 +248,7 @@
     "Messages": {
         "path": "/messages",
         "basic": [ "retrieve", "update", "del" ],
-        "lists": [ "recipients", "supporters", "stats" ],
+        "lists": [ "recipients", "supporters" ],
         "creates": [ "blocks", "attachments", "recipients" ],
         "custom": {
             "methods": {

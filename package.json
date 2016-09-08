@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "jscs ./src",
     "test": "./node_modules/.bin/snyk test && mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive && babel-node ./node_modules/.bin/isparta cover _mocha",
-    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
+    "coverage": "./node_modules/.bin/babel-node ./node_modules/isparta/bin/isparta cover _mocha",
     "snyk-test": "./node_modules/.bin/snyk test",
     "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",
     "posttest": "npm run snyk-test; npm run snyk-unpublished",
@@ -42,7 +42,6 @@
     "request-debug": "^0.2.0"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
     "babel-istanbul": "^0.7.0",
@@ -63,6 +62,7 @@
     "lolex": "^1.4.0",
     "mocha": "^2.4.5",
     "nock": "^7.7.3",
+    "node-inspector": "^0.12.8",
     "run-sequence": "^1.1.5",
     "snyk": "^1.15.0"
   }

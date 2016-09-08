@@ -16,8 +16,7 @@ module.exports = class Classy {
       throw new Error('Classy needs to be called with a `clientId` and `clientSecret`');
     }
 
-    this.appToken = {};
-    this.memberToken = {};
+    this.appToken = null;
     this.ClassyResource = Resource;
 
     /** Set required params */
@@ -56,96 +55,58 @@ module.exports = class Classy {
   }
 
   /**
-   * Initialize the Classy instance with an application token.
-   * Resolve promise once the first application token is generated.
-   * Get new application token as soon as the current one expires.
+   * Kick things off by getting an app token, setting it to this.appToken,
+   * and starting a timeout for it to refresh.
    */
   app() {
     const _this = this;
     const promise = new Promise((resolve, reject) => {
-      _this.timeoutId = undefined;
+      this.timeoutId = undefined;
 
       const timeout = () => {
-        _this.timeoutId = setTimeout(getToken, _this.appToken.expiresIn);
+        _this.timeoutId = setTimeout(tokenTicker, _.get(_this, 'appToken.expires_in', 0) * 900);
       };
 
-      /** Make the actual token call */
-      const getToken = () => {
-        _this.oauth.auth({
-          client_id: _this.clientId,
-          client_secret: _this.clientSecret
-        }).then((response) => {
-          /** Loop timeout and resolve init promise */
+      const tokenTicker = () => {
+        this.getAppToken().then((response) => {
           clearTimeout(_this.timeoutId);
-          timeout();
+
+          this.setAppToken(response);
           resolve(response);
+
+          timeout();
         }, (error) => {
-          /** Clear timeout and reject init promise */
           clearTimeout(_this.timeoutId);
+          console.error('App token failure');
           reject(error);
         });
       };
 
-      /** Start the timeout looping */
       timeout();
     });
 
     return promise;
   }
 
-  setTokens(grantType, token) {
-
-    switch (grantType) {
-      case 'client_credentials':
-        this.appToken = {
-          value: token.access_token,
-          expiresIn: token.expires_in * 1000,
-          expiresOn: new Date().getTime() + (token.expires_in * 1000)
-        };
-        break;
-
-      case 'refresh_token':
-        this.memberToken = {
-          value: token.access_token,
-          refreshToken: token.refresh_token,
-          expiresIn: token.expires_in * 1000,
-          expiresOn: new Date().getTime() + (token.expires_in * 1000)
-        };
-        break;
-
-      case 'password':
-        if (_.isUndefined(token)) {
-          this.memberToken = {};
-        } else {
-          this.memberToken = {
-            value: token.access_token,
-            refreshToken: token.refresh_token,
-            expiresIn: token.expires_in * 1000,
-            expiresOn: new Date().getTime() + (token.expires_in * 1000)
-          };
-        }
-
-        break;
-
-      case 'member_token':
-        if (_.isUndefined(token)) {
-          this.memberToken = {};
-        } else {
-          this.memberToken = {
-            value: token.access_token,
-            refreshToken: token.refresh_token,
-            expiresIn: token.expires_in * 1000,
-            expiresOn: new Date().getTime() + (token.expires_in * 1000)
-          };
-        }
-
-        break;
-
-      default:
-        break;
-    }
+  /** Basic app token request */
+  getAppToken() {
+    return this.oauth.auth({
+      client_id: this.clientId,
+      client_secret: this.clientSecret
+    });
   }
 
+  /** Set app token and then nullify on exiration */
+  setAppToken(value) {
+    this.appToken = value;
+
+    // Remove stored app token reference after expiration
+    setTimeout(() => {
+      this.appToken = null;
+    }, this.appToken.expires_in * 1000);
+  }
+
+  /** Add resource methods based on resources.json */
   _prepResources() {
     _.each(resources, (urlData, name) => {
       const resourceName = _.camelCase(name);

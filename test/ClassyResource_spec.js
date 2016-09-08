@@ -1,4 +1,4 @@
-import {expect, assert} from 'chai';
+import { expect, assert } from 'chai';
 import nock from 'nock';
 
 import Classy from '../src/Classy';
@@ -165,59 +165,43 @@ describe('ClassyResource', () => {
 
   describe('_chooseToken', () => {
     it('should choose app token when forced', () => {
+      const form = {};
+      const data = { token: 'app' };
+      const token = resource._chooseToken(form, data);
 
-      const appToken = { token: 'app' };
-      const memberToken = { token: 'member' };
-      const tokenOpts = {
-        member: memberToken,
-        app: appToken,
-        force: 'app'
-      };
-      const token = resource._chooseToken(tokenOpts);
-
-      expect(token).to.equal(tokenOpts.app);
-
+      token.then((response) => {
+        expect(response).to.equal('app');
+      });
     });
 
     it('should choose member token when forced', () => {
+      const form = {};
+      const data = { token: 'member' };
+      const token = resource._chooseToken(form, data);
 
-      const appToken = { token: 'app' };
-      const memberToken = { token: 'member' };
-      const tokenOpts = {
-        member: memberToken,
-        app: appToken,
-        force: 'member'
-      };
-      const token = resource._chooseToken(tokenOpts);
-
-      expect(token).to.equal(tokenOpts.member);
+      token.then((response) => {
+        expect(response).to.equal('member');
+      });
     });
 
-    it('should choose member token if it exists & nothing is forced', () => {
-      const appToken = { token: 'app' };
-      const memberToken = { token: 'member' };
-      const tokenOpts = {
-        member: memberToken,
-        app: appToken,
-      };
+    it('should error if no token is defined', () => {
+      const form = {};
+      const data = {};
+      const token = resource._chooseToken(form, data);
 
-      const token = resource._chooseToken(tokenOpts);
-
-      expect(token).to.equal(tokenOpts.member);
+      token.then((response) => {}, (error) => {
+        expect(error).to.equal('No token defined. Expected memberToken object or `token: \'app\'`');
+      });
     });
 
-    it('should choose `undefined` token when forced', () => {
+    it('should resolve to false for client_credentials requets', () => {
+      const form = { grant_type: 'client_credentials' };
+      const data = {};
+      const token = resource._chooseToken(form, data);
 
-      const appToken = { token: 'app' };
-      const memberToken = { token: 'member' };
-      const tokenOpts = {
-        member: memberToken,
-        app: appToken,
-        force: 'random!'
-      };
-      const token = resource._chooseToken(tokenOpts);
-
-      expect(token).to.be.undefined;
+      token.then((response) => {
+        expect(response).toBeFalsy();
+      });
     });
 
   });

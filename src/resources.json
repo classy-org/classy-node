@@ -54,7 +54,6 @@
             "transactions"
         ],
         "creates": [
-            "appeal-sets",
             "credential-sets",
             "donation-matching-plans",
             "ecards",
@@ -82,6 +81,10 @@
                 "deactivate": {
                     "method": "POST",
                     "path": "/{id}/deactivate"
+                },
+                "createAppealSet": {
+                    "method": "POST",
+                    "path": "/{id}/appeal-set"
                 },
                 "retrieveAppealSet": {
                     "method": "GET",

@@ -162,7 +162,7 @@ export default class ClassyResource {
     const promise = new Promise((resolve, reject) => {
       if (!this._classy.appToken) {
         this._classy.getAppToken().then((response) => {
-          this._classy.setAppToken(respnose);
+          this._classy.setAppToken(response);
           resolve(response);
         }, (error) => {
           reject(error);

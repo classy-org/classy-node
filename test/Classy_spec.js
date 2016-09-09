@@ -1,4 +1,4 @@
-import {expect, assert} from 'chai';
+import { expect, assert } from 'chai';
 import nock from 'nock';
 import lolex from 'lolex';
 
@@ -11,6 +11,24 @@ describe('Classy', () => {
   it('should throw without clientId and clientSecret', () => {
     assert.throw(() => {
       new Classy();
+    }, Error);
+  });
+
+  it('should throw without clientId', () => {
+    assert.throw(() => {
+      new Classy({
+        headers: {},
+        clientSecret: 'test'
+      });
+    }, Error);
+  });
+
+  it('should throw without clientSecret', () => {
+    assert.throw(() => {
+      new Classy({
+        headers: {},
+        clientId: 'test'
+      });
     }, Error);
   });
 
@@ -120,117 +138,64 @@ describe('Classy', () => {
         }
       );
     });
+
+    it('should kick off the app token cycle', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+      const result = {
+        token_type: 'bearer',
+        access_token: 'c66aa4fb5bf14cfa8b4bf9eef0b825d5',
+        expires_in: 10
+      };
+
+      const scope = nock('https://api.classy.org', {
+        reqheaders: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).post('/oauth2/auth').reply(200, result);
+
+      classy.app().then(function (response) {
+        expect(response).to.equal(result);
+      });
+    });
   });
 
-  describe('setTokens', () => {
-    it('should set app token with client_credentials method', () => {
+  describe('setApptoken', () => {
+
+    it('should set app token when asked', () => {
       const classy = new Classy({
         clientId: 'client_id_str',
         clientSecret: 'client_secret_str',
         requestDebug: false
       });
-
-      const grant = 'client_credentials';
-      const opts = {
-        access_token: 'test',
-        expires_in: 100
+      const token = {
+        expires_in: 10
       };
-      const token = classy.setTokens(grant, opts);
+      classy.setAppToken(token);
 
-      expect(classy.appToken).to.not.be.empty;
-      expect(classy.memberToken).to.be.empty;
+      expect(classy.appToken).to.equal(token);
+
     });
 
-    it('should set member token with refresh_token method', () => {
+    it('should expire app token after a bit', () => {
+      const clock = lolex.install();
       const classy = new Classy({
         clientId: 'client_id_str',
         clientSecret: 'client_secret_str',
         requestDebug: false
       });
-
-      const grant = 'refresh_token';
-      const opts = {
-        access_token: 'test',
-        expires_in: 100
+      const token = {
+        expires_in: 10
       };
-      const token = classy.setTokens(grant, opts);
+      classy.setAppToken(token);
+      clock.tick(10001);
 
-      expect(classy.memberToken).to.not.be.empty;
-      expect(classy.appToken).to.be.empty;
-    });
+      expect(classy.appToken).to.equal(null);
 
-    it('should set member token with password method', () => {
-      const classy = new Classy({
-        clientId: 'client_id_str',
-        clientSecret: 'client_secret_str',
-        requestDebug: false
-      });
-      const grant = 'password';
-      const opts = {
-        access_token: 'test',
-        expires_in: 100
-      };
-      const token = classy.setTokens(grant, opts);
-
-      expect(classy.memberToken).to.not.be.empty;
-      expect(classy.appToken).to.be.empty;
-    });
-
-    it('should set member token when member_token is passed', () => {
-      const classy = new Classy({
-        clientId: 'client_id_str',
-        clientSecret: 'client_secret_str',
-        requestDebug: false
-      });
-
-      const opts = {
-        access_token: 'test',
-        expires_in: 100
-      };
-
-      const token = classy.setTokens('member_token', opts);
-
-      expect(classy.memberToken).to.not.be.empty;
-      expect(classy.appToken).to.be.empty;
-    });
-
-    it('should have default for setTokens', () => {
-      const classy = new Classy({
-        clientId: 'client_id_str',
-        clientSecret: 'client_secret_str',
-        requestDebug: false
-      });
-
-      const token = classy.setTokens();
-
-      expect(classy.memberToken).to.be.empty;
-      expect(classy.appToken).to.be.empty;
-    });
-
-    it('should have default for setTokens member_token', () => {
-      const classy = new Classy({
-        clientId: 'client_id_str',
-        clientSecret: 'client_secret_str',
-        requestDebug: false
-      });
-
-      const token = classy.setTokens('member_token');
-
-      expect(classy.memberToken).to.be.empty;
-      expect(classy.appToken).to.be.empty;
-    });
-
-    it('should have default for setTokens password', () => {
-      const classy = new Classy({
-        clientId: 'client_id_str',
-        clientSecret: 'client_secret_str',
-        requestDebug: false
-      });
-
-      const token = classy.setTokens('password');
-
-      expect(classy.memberToken).to.be.empty;
-      expect(classy.appToken).to.be.empty;
+      clock.uninstall();
     });
   });
 

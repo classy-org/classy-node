@@ -36,13 +36,13 @@ export default class ClassyResource {
       this._addCreateMethods(urlData.creates);
     }
 
+    /** Add custom methods */
     if (urlData.custom && urlData.custom.methods) {
       this._addCustomMethods(urlData.custom.methods);
     }
   }
 
   createMethod(spec) {
-    const OPTIONAL_REGEX = /^\?.*/g;
     const PARAM_REGEX = /\{(.*?)\}/g;
 
     /** Get parameterized request URL and method */
@@ -50,7 +50,7 @@ export default class ClassyResource {
     const fullPath = this._urlData.path + specPath;
     const commandPath = utils.makeURLInterpolator(fullPath);
     const urlParams = utils.getRegexMatches(fullPath, PARAM_REGEX);
-    const requestMethod = (spec.method || 'GET').toUpperCase();
+    const requestMethod = _.get(spec, 'method', 'GET').toUpperCase();
 
     /** Return resource method */
     return (...args) => {
@@ -58,15 +58,13 @@ export default class ClassyResource {
       /** Extract data from function arguments */
       const _this = this;
       const urlData = this._populateUrlParams(urlParams, args);
-      let data = utils.getDataFromArgs(args);
+      const data = utils.getDataFromArgs(args);
 
-      /** Match params to function arguments */
+      /** Error if not all required params are satisfied */
       for (let i = 0; i < urlParams.length; i++) {
         const arg = args[0];
         const param = urlParams[i];
-        const optional = OPTIONAL_REGEX.test(param);
 
-        /** Error if not all required params are satisfied */
         if (!arg) {
           throw new Error(
             'Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg +
@@ -75,46 +73,106 @@ export default class ClassyResource {
         }
       }
 
-      /** Create resolved request path */
+      /** Create full request path with resolved params */
       const resolvedPath = commandPath(urlData);
       const isAuthRequest = utils.isAuthRequest(resolvedPath);
       const requestPath = this._createFullPath(resolvedPath, isAuthRequest);
 
-      /** Choose token for Authorization header */
-      const forceToken = spec.token
-        || (!_.isEmpty(data) ? data.token : false);
-
-      /** Remove token flag since we don't want to pass it to the API */
-      if (!_.isEmpty(data) && requestMethod === 'GET') {
-        delete data.token;
-      }
-
-      /** Set token for Authorization header */
-      const token = this._chooseToken({
-        app: this._classy.appToken,
-        member: this._classy.memberToken,
-        force: forceToken
-      });
-
-      /** Merge default headers with spec headers */
-      const DEFAULT_REQUEST_HEADERS = {
-        Authorization: 'Bearer ' + token.value,
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      };
-
-      const requestHeaders = this._classy.headers
-        || _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
-
-      /** Handle auth requests */
+      /** Populate form data for authorization requests */
       let form = false;
       if (isAuthRequest) {
         form = this._generateAuthForm(args);
       }
 
-      /** Make the request and return a promise */
-      return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
+      /**
+       * Token stuff & requests need to be synchronous with refresh
+       */
+      return this._chooseToken(form, data).then((response) => {
+        const DEFAULT_REQUEST_HEADERS = {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        };
+        let requestHeaders = this._classy.headers || _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
+
+        if (!response) {
+          return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
+        }
+
+        if (response === 'app') {
+          return this._refreshAppToken().then((response) => {
+            const appToken = _.get(this._classy.appToken, 'access_token', null);
+            delete data.token;
+
+            requestHeaders.Authorization = 'Bearer ' + appToken;
+
+            return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
+          }, (error) => {
+            console.error('App token refresh failed: ', error);
+          });
+        }
+
+        if (response === 'member') {
+          const memberToken = _.get(data, 'token.access_token', false);
+          delete data.token;
+
+          requestHeaders.Authorization = 'Bearer ' + memberToken;
+
+          return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
+        }
+
+      }, (error) => {
+        throw new Error('No token defined. Expected memberToken object or `token: \'app\'`');
+      });
+
     };
+  }
+
+  /**
+   *
+   */
+  _chooseToken(form, data) {
+    const dataToken = _.get(data, 'token', false);
+    const clientCredentialsRequest = _.get(form, 'grant_type', false) === 'client_credentials';
+
+    const promise = new Promise((resolve, reject) => {
+      /** Unless it's a `client_credentials` request, pick a token */
+      if (clientCredentialsRequest) {
+        resolve(false);
+      } else {
+        if (!dataToken) {
+          reject('No token defined. Expected memberToken object or `token: \'app\'`');
+        } else if (dataToken === 'app') {
+          resolve('app');
+        } else {
+          resolve('member');
+        }
+
+      }
+    });
+
+    return promise;
+  }
+
+  /**
+   * If this._classy.appToken exists, just resolve,
+   * if not, refresh and then resolve.
+   * @return {[type]} [description]
+   */
+  _refreshAppToken() {
+    const promise = new Promise((resolve, reject) => {
+      if (!this._classy.appToken) {
+        this._classy.getAppToken().then((response) => {
+          this._classy.setAppToken(response);
+          resolve(response);
+        }, (error) => {
+          reject(error);
+        });
+      } else {
+        resolve(this._classy.appToken);
+      }
+    });
+
+    return promise;
   }
 
   /**
@@ -221,28 +279,6 @@ export default class ClassyResource {
   }
 
   /**
-   * If the spec or param data forces a token, use that token.
-   * If not, use the member token when it's available and the
-   * app token when it's not.
-   *
-   * @param  {object} options    Tokens {app, member, force}
-   * @return {object}             The chosen token
-   */
-  _chooseToken(options) {
-    let token;
-
-    if (options.force) {
-      token = options[options.force];
-    } else if (!_.isEmpty(options.member)) {
-      token = options.member;
-    } else {
-      token = options.app;
-    }
-
-    return token;
-  }
-
-  /**
    * Handles authentication requests by adding
    * the appropriate x-www-form-urlencoded data
    * to the request. Camel cased keys will be
@@ -303,12 +339,6 @@ export default class ClassyResource {
           }
         } else {
           body = JSON.parse(body);
-
-          /** Set tokens if it's a token request */
-          if (!_.isUndefined(form.grant_type)) {
-            _this._classy.setTokens(form.grant_type, body);
-          }
-
           resolve(body);
         }
       });

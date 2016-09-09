@@ -10,40 +10,35 @@ const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
 
-  // baseUrl: 'https://dev-gateway.classy-test.org',
-  baseUrl: 'https://stagingapi.stayclassy.org',
+  baseUrl: 'https://dev-gateway.classy-test.org',
 
+  // baseUrl: 'https://stagingapi.stayclassy.org',
   requestDebug: true
 });
+
 const app = classy.app();
 
+// get app token, managed by classy-node
 app.then((response) => {
+  // app token used
+  classy.organizations.retrieve(34);
 
-  console.log(
-    colors.green('✓'),
-    colors.gray('/oauth2/auth (app) - ' + response.access_token)
-  );
-
+  // member auth request, response stored by app, not classy-node
   classy.oauth.auth({
     username: process.env.USERNAME,
-    password: process.env.PASSWORD
+    password: process.env.PASSWORD,
+    token: 'app'
   }).then((response) => {
 
-    console.log(
-      colors.green('✓'),
-      colors.gray('/oauth2/auth (member) - ' + response.access_token)
-    );
-
-    classy.transactions.createHardCreditTransfer(2733009, {
-      to: {
-        type: 'campaign',
-        id: 56327
-      },
-      note: 'lmao'
-    }).then((response) => {
-
+    // app token used
+    classy.organizations.retrieve(34, {
+      token: 'app'
     });
 
+    // member token used
+    classy.organizations.retrieve(34, {
+      token: response
+    });
   });
 
 });

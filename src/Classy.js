@@ -98,12 +98,16 @@ module.exports = class Classy {
 
   /** Set app token and then nullify on exiration */
   setAppToken(value) {
-    this.appToken = value;
+    if (_.get(value, 'expires_in', false)) {
+      this.appToken = value;
 
-    // Remove stored app token reference after expiration
-    setTimeout(() => {
-      this.appToken = null;
-    }, this.appToken.expires_in * 1000);
+      // Remove stored app token reference after expiration
+      setTimeout(() => {
+        this.appToken = null;
+      }, this.appToken.expires_in * 1000);
+    } else {
+      throw new Error('Not a valid app token, cannot be set:', value);
+    }
   }
 
   /** Add resource methods based on resources.json */

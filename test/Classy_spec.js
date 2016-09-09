@@ -14,6 +14,24 @@ describe('Classy', () => {
     }, Error);
   });
 
+  it('should throw without clientId', () => {
+    assert.throw(() => {
+      new Classy({
+        headers: {},
+        clientSecret: 'test'
+      });
+    }, Error);
+  });
+
+  it('should throw without clientSecret', () => {
+    assert.throw(() => {
+      new Classy({
+        headers: {},
+        clientId: 'test'
+      });
+    }, Error);
+  });
+
   it('should create instance with key, secret, and defaults', () => {
     const classy = new Classy({
       clientId: 'client_id_str',
@@ -120,9 +138,33 @@ describe('Classy', () => {
         }
       );
     });
+
+    it('should kick off the app token cycle', () => {
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+      const result = {
+        token_type: 'bearer',
+        access_token: 'c66aa4fb5bf14cfa8b4bf9eef0b825d5',
+        expires_in: 10
+      };
+
+      const scope = nock('https://api.classy.org', {
+        reqheaders: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).post('/oauth2/auth').reply(200, result);
+
+      classy.app().then(function (response) {
+        expect(response).to.equal(result);
+      });
+    });
   });
 
   describe('setApptoken', () => {
+
     it('should set app token when asked', () => {
       const classy = new Classy({
         clientId: 'client_id_str',
@@ -136,6 +178,24 @@ describe('Classy', () => {
 
       expect(classy.appToken).to.equal(token);
 
+    });
+
+    it('should expire app token after a bit', () => {
+      const clock = lolex.install();
+      const classy = new Classy({
+        clientId: 'client_id_str',
+        clientSecret: 'client_secret_str',
+        requestDebug: false
+      });
+      const token = {
+        expires_in: 10
+      };
+      classy.setAppToken(token);
+      clock.tick(10001);
+
+      expect(classy.appToken).to.equal(null);
+
+      clock.uninstall();
     });
   });
 

@@ -265,7 +265,7 @@
                 },
                 "sendTest": {
                     "method": "POST",
-                    "path": "/{id}/send"
+                    "path": "/{id}/test"
                 },
                 "updateBlocks": {
                     "method": "PUT",

@@ -211,7 +211,7 @@
     },
     "MergeTags": {
         "path": "/merge-tags",
-        "basic": [ "retrieve" ],
+        "basic": [ "create", "retrieve", "update" ],
          "custom": {
             "methods": {
                 "list": {

@@ -196,6 +196,10 @@
         "basic": [ "del" ],
         "path": "/likes"
     },
+    "MailchimpAccounts": {
+      "path": "/mailchimp-accounts",
+      "basic": [ "update" ]
+    },
     "Me": {
         "path": "/me",
         "custom": {

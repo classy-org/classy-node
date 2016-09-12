@@ -86,6 +86,10 @@
                     "method": "POST",
                     "path": "/{id}/appeal-set"
                 },
+                "createMailchimpSubscribeAction": {
+                  "method": "POST",
+                  "path": "/{id}/actions/mailchimp-subscribe"
+                },
                 "retrieveAppealSet": {
                     "method": "GET",
                     "path": "/{id}/appeal-set"

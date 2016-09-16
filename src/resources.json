@@ -105,6 +105,10 @@
                 "retrieveCustomUrl": {
                     "method": "GET",
                     "path": "/{id}/customUrl"
+                },
+                "listAllFeedItems": {
+                  "method": "GET",
+                  "path": "/{id}/feed-items/all"
                 }
             }
         }

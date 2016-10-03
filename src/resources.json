@@ -409,10 +409,6 @@
         "basic": [ "update", "del" ],
         "path": "/questions"
     },
-    "Recipients": {
-        "basic": [ "retrieve", "del" ],
-        "path": "/recipients"
-    },
     "RecurringDonationPlans": {
         "basic": [ "retrieve", "update" ],
         "path": "/recurring-donation-plans"

@@ -330,13 +330,16 @@ export default class ClassyResource {
 
       request(requestParams, (err, response, body) => {
         if (err || !/^2/.test('' + response.statusCode)) {
-          if (err instanceof Error) {
-            reject({
-              error: err.message
-            });
+          let error;
+          if (err && err instanceof Error) {
+            error = err;
+          } else if (err && !(err instanceof Error)) {
+            error = new Error(err);
           } else {
-            reject(err ? JSON.parse(err) : response);
+            error = new Error(JSON.stringify(response));
           }
+
+          reject(error);
         } else {
           body = JSON.parse(body);
           resolve(body);

@@ -337,6 +337,7 @@ export default class ClassyResource {
             error = new Error(err);
           } else {
             error = new Error(JSON.stringify(response));
+            error.statusCode = response.statusCode;
           }
 
           reject(error);

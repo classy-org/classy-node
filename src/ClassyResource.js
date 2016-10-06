@@ -18,7 +18,13 @@ export default class ClassyResource {
 
     /** Request debug setting */
     if (this._classy.requestDebug) {
-      requestDebug(request);
+      requestDebug(request, function (type, data, r) {
+        if (r.headers['x-no-log']) {
+          return;
+        } else {
+          console.log(data);
+        }
+      });
     }
 
     /** Add basic methods */
@@ -312,6 +318,12 @@ export default class ClassyResource {
    */
   _makeRequest(path, method, headers, form, data) {
     const _this = this;
+
+    if (data.noLog) {
+      headers['x-no-log'] = true;
+      delete data.noLog;
+    }
+
     const promise = new Promise((resolve, reject) => {
       const requestParams = {
         baseUrl: this.baseUrl,

@@ -224,18 +224,6 @@
         "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
         "path": "/members"
     },
-    "MergeTags": {
-        "path": "/merge-tags",
-        "basic": [ "create", "retrieve", "update" ],
-         "custom": {
-            "methods": {
-                "list": {
-                    "method": "GET",
-                    "path": ""
-                }
-            }
-        }
-    },
     "MessageAttachments": {
         "path": "/message-attachments",
         "basic": [ "retrieve" ],

@@ -398,8 +398,9 @@
         "path": "/questions"
     },
     "RecurringDonationPlans": {
+        "path": "/recurring-donation-plans",
         "basic": [ "retrieve", "update" ],
-        "path": "/recurring-donation-plans"
+        "lists": [ "transactions" ]
     },
     "Registrations": {
         "basic": [ "retrieve", "update" ],

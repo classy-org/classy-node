@@ -320,7 +320,6 @@
         "basic": [ "retrieve" ],
         "lists": [
             "activity",
-            "analytics",
             "campaigns",
             "designations",
             "engagement-settings",

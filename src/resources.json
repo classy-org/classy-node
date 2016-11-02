@@ -412,7 +412,7 @@
         "path": "/soft-credit-transfers"
     },
     "Supporters": {
-        "basic": [ "retrieve" ],
+        "basic": [ "retrieve", "update" ],
         "path": "/supporters"
     },
     "TicketTypes": {

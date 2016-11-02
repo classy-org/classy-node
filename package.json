@@ -64,6 +64,8 @@
     "nock": "^7.7.3",
     "node-inspector": "^0.12.8",
     "run-sequence": "^1.1.5",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
     "snyk": "^1.15.0"
   }
 }

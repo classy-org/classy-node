@@ -8,6 +8,7 @@ module.exports = class Classy {
     const DEFAULT_PATH = '2.0';
     const DEFAULT_STRICT_SSL = true;
     const DEFAULT_REQUEST_DEBUG = true;
+    const DEFAULT_REQUEST_DEBUG_ACTION = (type, data) => console.log(data);
 
     /** Handle errors */
     if (_.isUndefined(config)
@@ -31,6 +32,12 @@ module.exports = class Classy {
       !_.isUndefined(config.requestDebug) ?
       config.requestDebug :
       DEFAULT_REQUEST_DEBUG
+    );
+
+    this.requestDebugAction = (
+      !_.isUndefined(config.onRequestDebug) ?
+      config.onRequestDebug :
+      DEFAULT_REQUEST_DEBUG_ACTION
     );
 
     this.basePath = (

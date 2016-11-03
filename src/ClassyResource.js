@@ -95,10 +95,14 @@ export default class ClassyResource {
        */
       return this._chooseToken(form, data).then((response) => {
         const DEFAULT_REQUEST_HEADERS = {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: 'application/json'
         };
+
         let requestHeaders = this._classy.headers || _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
+
+        if (requestMethod !== "GET" && !isAuthRequest) {
+          requestHeaders['Content-Type'] = 'application/json';
+        }
 
         if (!response) {
           return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);

@@ -100,7 +100,7 @@ export default class ClassyResource {
 
         let requestHeaders = this._classy.headers || _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
 
-        if (requestMethod !== "GET" && !isAuthRequest) {
+        if (requestMethod !== 'GET' && !isAuthRequest) {
           requestHeaders['Content-Type'] = 'application/json';
         }
 

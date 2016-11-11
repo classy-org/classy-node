@@ -206,7 +206,7 @@
     },
     "MailchimpAccounts": {
       "path": "/mailchimp-accounts",
-      "basic": [ "update" ]
+      "basic": [ "update", "del" ]
     },
     "Me": {
         "path": "/me",

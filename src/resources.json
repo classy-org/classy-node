@@ -349,7 +349,7 @@
                 },
                 "retrieveMailchimpListInterest": {
                     "method": "GET",
-                    "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category/mailchimp-interest"
+                    "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category/{mailchimpCategoryId}/mailchimp-interest"
                 },
                 "retrievePlanFeatures": {
                     "method": "GET",

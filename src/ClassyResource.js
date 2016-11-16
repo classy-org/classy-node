@@ -18,11 +18,11 @@ export default class ClassyResource {
 
     /** Request debug setting */
     if (this._classy.requestDebug) {
-      requestDebug(request, function (type, data, r) {
+      requestDebug(request, (type, data, r) => {
         if (r.headers['x-no-log']) {
           return;
         } else {
-          console.log(data);
+          this._classy.requestDebugAction(type, data, r);
         }
       });
     }

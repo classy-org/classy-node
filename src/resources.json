@@ -410,8 +410,8 @@
     },
     "Stories": {
         "basic": [ "retrieve", "del", "update" ],
-        "creates": [ "comments", "likes" ],
-        "lists": [ "comments", "likes" ],
+        "creates": [ "likes" ],
+        "lists": [ "likes" ],
         "path": "/stories"
     },
     "Questions": {

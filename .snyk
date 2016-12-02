@@ -1,14 +1,14 @@
 patch:
   'npm:minimatch:20160620':
-    - 'jscs > vow-fs > glob > minimatch':
+    - jscs > vow-fs > glob > minimatch:
         patched: '2016-07-05T20:37:59.221Z'
-      'jscs > babel-jscs > babel-core > minimatch':
+    - snyk > recursive-readdir > minimatch:
+        patched: '2016-07-05T20:37:59.221Z'
+    - jscs > babel-jscs > babel-core > minimatch:
+        patched: '2016-07-05T20:37:59.221Z'
+    - jscs > babel-jscs > babel-core > minimatch:
         patched: '2016-07-05T20:46:58.891Z'
-    - 'snyk > recursive-readdir > minimatch':
-        patched: '2016-07-05T20:37:59.221Z'
-      'jscs > vow-fs > glob > minimatch':
+    - jscs > vow-fs > glob > minimatch:
         patched: '2016-07-05T20:46:58.891Z'
-    - 'jscs > babel-jscs > babel-core > minimatch':
-        patched: '2016-07-05T20:37:59.221Z'
-version: v1
+version: v1.5.2
 ignore: {}

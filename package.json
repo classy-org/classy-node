@@ -38,7 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.0.0",
-    "request": "^2.69.0",
+    "request": "^2.74.0",
     "request-debug": "^0.2.0"
   },
   "devDependencies": {

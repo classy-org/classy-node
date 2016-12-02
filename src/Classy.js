@@ -1,4 +1,4 @@
-import Resource from './ClassyResource';
+import Resource from './ClassyResource/main';
 import _ from 'lodash';
 const resources = require('./resources.json');
 

@@ -1,6 +1,5 @@
 import Resource from '../ClassyResource/main';
 import _ from 'lodash';
-const resources = require('../resources.json');
 
 class Classy {
   constructor(config) {

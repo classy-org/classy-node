@@ -355,7 +355,7 @@ export default class ClassyResource {
           } else if (err && !(err instanceof Error)) {
             error = new Error(err);
           } else {
-            error = new Error(JSON.stringify(response));
+            error = JSON.parse(body);
             error.statusCode = response.statusCode;
           }
 

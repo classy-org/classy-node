@@ -4,7 +4,7 @@ import lolex from 'lolex';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import Classy from '../src/Classy';
+import Classy from '../src/Classy/main';
 import resources from '../src/resources';
 import _ from 'lodash';
 

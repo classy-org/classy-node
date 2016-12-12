@@ -210,7 +210,7 @@
     },
     "MailchimpAccounts": {
       "path": "/mailchimp-accounts",
-      "basic": [ "update" ]
+      "basic": [ "update", "del" ]
     },
     "Me": {
         "path": "/me",
@@ -350,6 +350,10 @@
                     "method": "GET",
                     "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category"
                 },
+                "createMailchimpSubscribeAction": {
+                    "method": "POST",
+                    "path": "/{id}/mailchimp-subscribe"
+                },
                 "retrieveMailchimpListInterest": {
                     "method": "GET",
                     "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category/{mailchimpCategoryId}/mailchimp-interest"
@@ -432,7 +436,15 @@
     },
     "Supporters": {
         "basic": [ "retrieve", "update" ],
-        "path": "/supporters"
+        "path": "/supporters",
+        "custom": {
+            "methods": {
+                "createMailchimpSubscribeAction": {
+                    "method": "POST",
+                    "path": "/{id}/mailchimp-subscribe"
+                }
+            }
+        }
     },
     "TicketTypes": {
         "basic": [ "retrieve", "update" ],

@@ -350,6 +350,10 @@
                     "method": "GET",
                     "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category"
                 },
+                "createMailchimpSubscribeAction": {
+                    "method": "POST",
+                    "path": "/{id}/mailchimp-subscribe"
+                },
                 "retrieveMailchimpListInterest": {
                     "method": "GET",
                     "path": "/{id}/mailchimp-list/{mailchimpListId}/mailchimp-category/{mailchimpCategoryId}/mailchimp-interest"
@@ -431,8 +435,16 @@
         "path": "/soft-credit-transfers"
     },
     "Supporters": {
-        "basic": [ "retrieve", "update" ],
-        "path": "/supporters"
+        "basic": [ "retrieve" ],
+        "path": "/supporters",
+        "custom": {
+            "methods": {
+                "createMailchimpSubscribeAction": {
+                    "method": "POST",
+                    "path": "/{id}/mailchimp-subscribe"
+                }
+            }
+        }
     },
     "TicketTypes": {
         "basic": [ "retrieve", "update" ],

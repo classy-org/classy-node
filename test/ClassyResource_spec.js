@@ -1,10 +1,16 @@
-import { expect, assert } from 'chai';
+import chai from 'chai';
 import nock from 'nock';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
-import Classy from '../src/Classy';
-import ClassyResource from '../src/ClassyResource';
+import Classy from '../src/Classy/main';
+import ClassyResource from '../src/ClassyResource/main';
 import resources from '../src/resources';
 import _ from 'lodash';
+
+chai.use(sinonChai);
+const expect = chai.expect;
+const assert = chai.assert;
 
 describe('ClassyResource', () => {
   let classy,
@@ -14,7 +20,8 @@ describe('ClassyResource', () => {
     classy = new Classy({
       clientId: 'client_id_str',
       clientSecret: 'client_secret_str',
-      requestDebug: false
+      requestDebug: true,
+      onRequestDebug: sinon.stub()
     });
 
     resource = new ClassyResource(classy, {
@@ -143,6 +150,23 @@ describe('ClassyResource', () => {
 
       method().then((response) => {}, (error) => {
         expect(error.test).to.equal('oh no!');
+      });
+
+    });
+
+    it('should use the provided debugging function', () => {
+
+      const method = resource.createMethod({
+        method: 'GET',
+        path: '/test'
+      });
+      const result = { prop: true };
+      const scope = nock('https://api.classy.org')
+        .get('/2.0/test')
+        .reply(200, result);
+
+      method().then(response => {
+        expect(classy.requestDebugAction).to.have.been.called;
       });
 
     });

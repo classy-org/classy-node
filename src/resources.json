@@ -47,6 +47,8 @@
             "messages",
             "message-stats",
             "posts",
+            "updates",
+            "stories",
             "questions",
             "registrations",
             "recurring-donation-plans",
@@ -63,6 +65,8 @@
             "fundraising-pages",
             "messages",
             "posts",
+            "updates",
+            "stories",
             "questions",
             "ticket-types",
             "transactions"
@@ -170,8 +174,8 @@
     },
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
-        "lists": [ "activity", "posts", "feed-items", "answers" ],
-        "creates": [ "posts", "transfers", "feed-items", "answers" ],
+        "lists": [ "activity", "posts", "updates", "stories", "feed-items", "answers" ],
+        "creates": [ "posts", "updates", "stories", "transfers", "feed-items", "answers" ],
         "custom": {
             "methods": {
                 "retrieveOverview": {
@@ -188,8 +192,8 @@
     },
     "FundraisingTeams": {
         "basic": [ "retrieve", "del", "update" ],
-        "lists": [ "activity", "fundraising-pages", "posts", "feed-items", "subteams", "answers" ],
-        "creates": [ "posts", "transfers", "feed-items", "fundraising-pages", "answers" ],
+        "lists": [ "activity", "fundraising-pages", "posts", "updates", "stories", "feed-items", "subteams", "answers" ],
+        "creates": [ "posts", "updates", "stories", "transfers", "feed-items", "fundraising-pages", "answers" ],
         "custom": {
             "methods": {
                 "retrieveOverview": {
@@ -320,7 +324,6 @@
         "basic": [ "retrieve" ],
         "lists": [
             "activity",
-            "analytics",
             "campaigns",
             "designations",
             "engagement-settings",
@@ -398,6 +401,18 @@
         "lists": [ "comments", "likes" ],
         "path": "/posts"
     },
+    "Updates": {
+        "basic": [ "retrieve", "del", "update" ],
+        "creates": [ "comments", "likes" ],
+        "lists": [ "comments", "likes" ],
+        "path": "/updates"
+    },
+    "Stories": {
+        "basic": [ "retrieve", "del", "update" ],
+        "creates": [ "likes" ],
+        "lists": [ "likes" ],
+        "path": "/stories"
+    },
     "Questions": {
         "basic": [ "update", "del" ],
         "path": "/questions"
@@ -416,7 +431,7 @@
         "path": "/soft-credit-transfers"
     },
     "Supporters": {
-        "basic": [ "retrieve" ],
+        "basic": [ "retrieve", "update" ],
         "path": "/supporters"
     },
     "TicketTypes": {

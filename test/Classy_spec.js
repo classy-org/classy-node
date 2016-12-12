@@ -1,10 +1,17 @@
-import { expect, assert } from 'chai';
+import chai from 'chai';
 import nock from 'nock';
 import lolex from 'lolex';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
-import Classy from '../src/Classy';
+import Classy from '../src/Classy/main';
 import resources from '../src/resources';
 import _ from 'lodash';
+
+chai.use(sinonChai);
+
+const expect = chai.expect;
+const assert = chai.assert;
 
 describe('Classy', () => {
 
@@ -90,6 +97,17 @@ describe('Classy', () => {
     });
 
     expect(classy.requestDebug).to.be.false;
+  });
+
+  it('should default requestDebugAction to console.log', () => {
+    let stub = sinon.stub(console, 'log');
+    const classy = new Classy({
+      clientId: 'client_id_str',
+      clientSecret: 'client_secret_str'
+    });
+    classy.requestDebugAction(null, 'data');
+    expect(stub).to.have.been.calledWith('data');
+    console.log.restore();
   });
 
   describe('app', () => {

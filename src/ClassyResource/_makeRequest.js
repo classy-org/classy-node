@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import request from 'request';
 
 /**
@@ -11,10 +12,16 @@ import request from 'request';
  */
 export default function _makeRequest(path, method, headers, form, data) {
   const _this = this;
+  let forceQs = null;
 
   if (data.noLog) {
     headers['x-no-log'] = true;
     delete data.noLog;
+  }
+
+  if (_.isObject(data.qs)) {
+    forceQs = data.qs;
+    delete data.qs;
   }
 
   const promise = new Promise((resolve, reject) => {
@@ -31,6 +38,10 @@ export default function _makeRequest(path, method, headers, form, data) {
       requestParams.qs = data;
     } else {
       requestParams.body = JSON.stringify(data);
+    }
+
+    if (forceQs) {
+      requestParams.qs = _.merge(requestParams.qs || {}, forceQs);
     }
 
     request(requestParams, (err, response, body) => {

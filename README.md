@@ -33,32 +33,39 @@ classy.app().then(function() {
 });
 ```
 
-In order to make calls on behalf of a member, first set the member context by passing either a `refreshToken` or a `username` & `password` into the `oauth` resource's `auth` endpoint:
+In order to make calls on behalf of a member, you'll need a member token. After obtaining a member token, pass the member token into each request:
 
 ```
-// With a username & password
+// Obtain a member token with a username and password
 classy.oauth.auth({
   username: 'USERNAME_GOES_HERE',
   password: 'PASSWORD_GOES_HERE'
+}).then((response) => {
+
+  // Use member token for requests
+  classy.organizations.createCampaign(1, {
+    token: response.access_token
+  });
 });
 
-// With a refresh token
+// You can also obtain a member token with a refresh token
 classy.oauth.auth({
   refreshToken: 'REFRESH_TOKEN_GOES_HERE'
 });
 ```
 
 Every resource method returns a promise:
-
 ```
-classy.campaigns.retrieve(19).then(function(response) {
+classy.campaigns.retrieve(19, {
+  token: 'app'
+}).then(function(response) {
   // Do something with the response
 }).catch(function(error) {
   // Do something with the error
 });
 ```
 
-Each resource can contain several basic methods. Each resource might also include additional custom methods that act upon related resources or perform specialized operations:
+Each resource can contain several basic methods (retrieve, update, delete). Each resource might also include additional custom methods that act upon related resources or perform specialized operations:
 
 - `create()`
 - `retrieve()`

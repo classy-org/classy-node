@@ -419,6 +419,7 @@
     },
     "Questions": {
         "basic": [ "update", "del" ],
+        "lists": ["answers"],
         "path": "/questions"
     },
     "RecurringDonationPlans": {

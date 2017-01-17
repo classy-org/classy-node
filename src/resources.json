@@ -419,6 +419,7 @@
     },
     "Questions": {
         "basic": [ "update", "del" ],
+        "lists": [ "answers" ],
         "path": "/questions"
     },
     "RecurringDonationPlans": {
@@ -452,7 +453,7 @@
     },
     "Transactions": {
         "basic": [ "retrieve", "update" ],
-        "lists": [ "registrations", "items", "acknowledgements" ],
+        "lists": [ "registrations", "items", "acknowledgements", "answers" ],
         "creates": [ "dedications", "acknowledgements", "hard-credit-transfers" ],
         "path": "/transactions"
     },

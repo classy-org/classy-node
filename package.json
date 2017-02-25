@@ -8,9 +8,8 @@
     "coverage": "./node_modules/.bin/babel-node ./node_modules/isparta/bin/isparta cover _mocha",
     "snyk-test": "./node_modules/.bin/snyk test",
     "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",
-    "posttest": "npm run snyk-test; npm run snyk-unpublished",
     "snyk-protect": "./node_modules/.bin/snyk protect",
-    "prepublish": "./node_modules/.bin/gulp; npm run snyk-protect",
+    "prepublish": "./node_modules/.bin/gulp",
     "snyk-wizard": "node ./node_modules/.bin/snyk wizard"
   },
   "keywords": [

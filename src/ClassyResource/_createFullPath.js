@@ -8,8 +8,9 @@ import path from 'path';
  *
  * @param  {string}   resolvedPath     The populated URI
  * @param  {Boolean}  isAuthRequest    Determines whether to append basePath
- * @param  {string?}  basePathOverride Base path to use instead of the current resource's or global default
- * 
+ * @param  {string?}  basePathOverride Base path to use instead of the current resource's or
+ *                                     global default
+ *
  * @return {string}                The full URI for the upcoming request
  */
 export default function _createFullPath(resolvedPath, isAuthRequest, basePathOverride) {

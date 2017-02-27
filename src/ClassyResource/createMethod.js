@@ -8,7 +8,7 @@ import { utils } from '../utils';
  *                                 path: Path that will be appended to the curent resource's path
  *                                 headers: Custom HTTP headers
  *                                 basePath: Override the current resource's bathPath
- *                                 
+ *
  * @return {Function}              The resource method
  */
 export default function createMethod(spec) {

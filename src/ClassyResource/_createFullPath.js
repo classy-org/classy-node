@@ -6,13 +6,16 @@ import path from 'path';
  * instance was initialized. Returns something like
  * /2.0/campaigns/23456 or /oauth2/auth.
  *
- * @param  {string}  resolvedPath  The populated URI
- * @param  {Boolean} isAuthRequest Determines whether to append basePath
+ * @param  {string}   resolvedPath     The populated URI
+ * @param  {Boolean}  isAuthRequest    Determines whether to append basePath
+ * @param  {string?}  basePathOverride Base path to use instead of the current resource's or
+ *                                     global default
+ *
  * @return {string}                The full URI for the upcoming request
  */
-export default function _createFullPath(resolvedPath, isAuthRequest) {
+export default function _createFullPath(resolvedPath, isAuthRequest, basePathOverride) {
   const fullPath = path.join(
-      isAuthRequest ? '' : this.basePath,
+      isAuthRequest ? '' : basePathOverride || this.basePath,
       resolvedPath
     ).replace(/\\/g, '/');
 

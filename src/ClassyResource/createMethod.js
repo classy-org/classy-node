@@ -3,8 +3,13 @@ import { utils } from '../utils';
 
 /**
  * [createMethod description]
- * @param  {[type]} spec [description]
- * @return {[type]}      [description]
+ * @param {Object} spec            Options for method, the current options are:
+ *                                 method: HTTP Request verb
+ *                                 path: Path that will be appended to the curent resource's path
+ *                                 headers: Custom HTTP headers
+ *                                 basePath: Override the current resource's bathPath
+ *
+ * @return {Function}              The resource method
  */
 export default function createMethod(spec) {
   const PARAM_REGEX = /\{(.*?)\}/g;
@@ -40,7 +45,7 @@ export default function createMethod(spec) {
     /** Create full request path with resolved params */
     const resolvedPath = commandPath(urlData);
     const isAuthRequest = utils.isAuthRequest(resolvedPath);
-    const requestPath = this._createFullPath(resolvedPath, isAuthRequest);
+    const requestPath = this._createFullPath(resolvedPath, isAuthRequest, spec.basePath);
 
     /** Populate form data for authorization requests */
     let form = false;

@@ -5,7 +5,7 @@ import { utils } from '../utils';
 export default class ClassyResource {
   constructor(Classy, urlData) {
     /** Public properties */
-    this.basePath = Classy.basePath;
+    this.basePath = urlData.basePath || Classy.basePath;
     this.baseUrl = Classy.baseUrl;
     this.path = utils.makeURLInterpolator(this.path || '');
 

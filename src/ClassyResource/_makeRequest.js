@@ -52,13 +52,13 @@ export default function _makeRequest(path, method, headers, form, data) {
         } else if (err && !(err instanceof Error)) {
           error = new Error(err);
         } else {
-          error = JSON.parse(body);
+          error = body ? JSON.parse(body) : {};
           error.statusCode = response.statusCode;
         }
 
         reject(error);
       } else {
-        body = JSON.parse(body);
+        body = body ? JSON.parse(body) : {};
         resolve(body);
       }
     });

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+const resources = require('../resources.json');
 
 /**
  * Adds list methods to the resource based on
@@ -12,10 +13,12 @@ export default function _addListMethods(lists) {
 
   _.each(lists, (method) => {
     const methodName = _.upperFirst(_.camelCase(method));
+    const resourceDefintion = resources[methodName];
 
     _this['list' + methodName] = _this.createMethod({
       method: 'GET',
-      path: '/{id}/' + method
+      path: '/{id}/' + method,
+      basePath: _.get(resourceDefintion, 'basePath')
     });
   });
 }

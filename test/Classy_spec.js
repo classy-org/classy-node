@@ -71,7 +71,7 @@ describe('Classy', () => {
 
     _.each(resources, (value, key) => {
       const resourceName = _.camelCase(key);
-      const expectedBaseUrl = key == 'Campaigns' ? 'newapi' : key == 'Messages' ? 'anotherservice' : 'eng';
+      const expectedBaseUrl = key == 'Campaigns' ? 'newapi' : key == 'Messages' ? 'anotherservice' : value.basePath || 'eng';
 
       expect(classy[resourceName].basePath).to.equal(expectedBaseUrl);
     });

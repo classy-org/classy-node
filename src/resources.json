@@ -430,6 +430,7 @@
     "Registrations": {
         "basic": [ "retrieve", "update" ],
         "lists": [ "answers" ],
+        "creates": [ "answers" ],
         "path": "/registrations"
     },
     "SoftCreditTransfers": {

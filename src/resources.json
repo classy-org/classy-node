@@ -461,5 +461,13 @@
     "TransactionItems": {
       "basic": [ "update" ],
       "path": "/transaction-items"
+    },
+    "Workflows": {
+      "basePath": "tr",
+      "path": "/workflows"
+    },
+    "WorkflowVersions": {
+      "basePath": "tr",
+      "path": "/workflow-versions"
     }
 }

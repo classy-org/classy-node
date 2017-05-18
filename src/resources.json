@@ -411,6 +411,10 @@
         "lists": [ "comments", "likes" ],
         "path": "/updates"
     },
+    "Search": {
+        "basePath": "search",
+        "path": ""
+    },
     "Stories": {
         "basic": [ "retrieve", "del", "update" ],
         "creates": [ "likes" ],

@@ -199,6 +199,10 @@
                 "retrieveOverview": {
                     "method": "GET",
                     "path": "/{id}/overview"
+                },
+                "listAllFeedItems": {
+                  "method": "GET",
+                  "path": "/{id}/feed-items/all"
                 }
             }
         },

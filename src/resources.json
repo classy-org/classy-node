@@ -47,6 +47,7 @@
             "messages",
             "message-stats",
             "posts",
+            "promo-codes",
             "updates",
             "stories",
             "questions",
@@ -65,6 +66,7 @@
             "fundraising-pages",
             "messages",
             "posts",
+            "promo-codes",
             "updates",
             "stories",
             "questions",
@@ -413,6 +415,15 @@
         "lists": [ "comments", "likes" ],
         "path": "/posts"
     },
+    "PromoCodes": {
+      "basic": ["retrieve", "update"],
+      "lists": ["ticket-types", "promo-code-configurations"],
+      "path": "/promo-codes"
+    },
+    "PromoCodeConfigurations": {
+      "basic": [ "retrieve", "del", "create" ],
+      "path": "/promo-code-configurations"
+    },
     "Updates": {
         "basic": [ "retrieve", "del", "update" ],
         "creates": [ "comments", "likes" ],
@@ -463,6 +474,7 @@
     },
     "TicketTypes": {
         "basic": [ "retrieve", "update" ],
+        "lists": ["promo-codes", "promo-code-configurations"],
         "path": "/ticket-types"
     },
     "Transactions": {

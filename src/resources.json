@@ -232,7 +232,7 @@
         }
     },
     "Member": {
-        "basic": [ "retrieve" ],
+        "basic": [ "retrieve", "update" ],
         "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
         "path": "/members"
     },

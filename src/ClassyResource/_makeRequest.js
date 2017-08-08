@@ -54,7 +54,7 @@ export default function _makeRequest(path, method, headers, form, data) {
         } else {
           const errorString = body ? JSON.stringify(body) : 'Non-200 response';
           error = new Error(errorString);
-          error.statusCode = response.statusCode;          
+          error.statusCode = response.statusCode;
         }
 
         reject(error);

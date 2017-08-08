@@ -58,8 +58,8 @@ export default function _makeRequest(path, method, headers, form, data) {
 
         reject(error);
       } else {
-        body = body ? JSON.parse(body) : {};
-        resolve(body);
+        body = body ? JSON.stringify(body) : 'Non-200 response';
+        resolve(new Error(body));
       }
     });
 

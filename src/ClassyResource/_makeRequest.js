@@ -49,11 +49,9 @@ export default function _makeRequest(path, method, headers, form, data) {
         let error;
         if (err && err instanceof Error) {
           error = err;
-          error.statusCode = response.statusCode;
         } else if (err && !(err instanceof Error)) {
           const errorString = JSON.stringify(err);
           error = new Error(errorString);
-          error.statusCode = response.statusCode;
         } else {
           const errorString = body ? JSON.stringify(body) : 'Non-200 response';
           error = new Error(errorString);

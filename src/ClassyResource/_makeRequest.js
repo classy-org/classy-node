@@ -52,14 +52,15 @@ export default function _makeRequest(path, method, headers, form, data) {
         } else if (err && !(err instanceof Error)) {
           error = new Error(err);
         } else {
-          error = body ? JSON.parse(body) : {};
-          error.statusCode = response.statusCode;
+          const errorString = body ? JSON.stringify(body) : 'Non-200 response';
+          error = new Error(errorString);
+          error.statusCode = response.statusCode;          
         }
 
         reject(error);
       } else {
-        body = body ? JSON.stringify(body) : 'Non-200 response';
-        resolve(new Error(body));
+        body = body ? JSON.parse(body) : {};
+        resolve(body);
       }
     });
 

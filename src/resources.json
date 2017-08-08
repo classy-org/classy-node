@@ -165,6 +165,17 @@
         "basic": [ "retrieve", "update", "del" ],
         "path": "/ecards"
     },
+    "Events": {
+      "path": "/events",
+      "custom": {
+        "methods": {
+          "resendReceipt": {
+            "method": "POST",
+            "path": "/resend-receipt/{id}"
+          }
+        }
+      }
+    },
     "Faqs": {
         "basic": [ "retrieve", "del", "update" ],
         "path": "/faqs"

@@ -353,9 +353,10 @@
             "messages",
             "recurring-donation-plans",
             "supporters",
-            "transactions"
+            "transactions",
+            "credential-sets"
         ],
-        "creates": [ "campaigns", "designations", "supporters" ],
+        "creates": [ "campaigns", "designations", "supporters", "credential-sets" ],
         "path": "/organizations",
         "custom": {
             "methods": {
@@ -397,6 +398,10 @@
                 }
             }
         }
+    },
+    "OrganizationCredentialSets": {
+        "path": "/organization-credential-sets",
+        "basic": ["retrieve", "update", "del"]
     },
     "Ping": {
         "path": "/ping",

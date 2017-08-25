@@ -33,27 +33,6 @@ classy.app().then(function() {
 });
 ```
 
-In order to make calls on behalf of a member, you'll need a member token. After obtaining a member token, pass the member token into each request:
-
-```
-// Obtain a member token with a username and password
-classy.oauth.auth({
-  username: 'USERNAME_GOES_HERE',
-  password: 'PASSWORD_GOES_HERE'
-}).then((response) => {
-
-  // Use member token for requests
-  classy.organizations.createCampaign(1, {
-    token: response.access_token
-  });
-});
-
-// You can also obtain a member token with a refresh token
-classy.oauth.auth({
-  refreshToken: 'REFRESH_TOKEN_GOES_HERE'
-});
-```
-
 Every resource method returns a promise:
 ```
 classy.campaigns.retrieve(19, {

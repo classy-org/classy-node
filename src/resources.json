@@ -346,17 +346,18 @@
         "lists": [
             "activity",
             "campaigns",
+            "credential-sets",
             "designations",
             "engagement-settings",
             "fundraising-pages",
             "fundraising-teams",
             "messages",
+            "notifications",
             "recurring-donation-plans",
             "supporters",
-            "transactions",
-            "credential-sets"
+            "transactions"
         ],
-        "creates": [ "campaigns", "designations", "supporters", "credential-sets" ],
+        "creates": [ "campaigns", "credential-sets", "designations", "notifications", "supporters" ],
         "path": "/organizations",
         "custom": {
             "methods": {
@@ -401,6 +402,10 @@
     },
     "OrganizationCredentialSets": {
         "path": "/organization-credential-sets",
+        "basic": ["retrieve", "update", "del"]
+    },
+    "OrganizationNotifications": {
+        "path": "/organization-notifications",
         "basic": ["retrieve", "update", "del"]
     },
     "Ping": {
@@ -457,7 +462,7 @@
         "path": "/stories"
     },
     "Questions": {
-        "basic": [ "retrieve", "update", "del" ],
+        "basic": [ "update", "del" ],
         "lists": [ "answers" ],
         "path": "/questions"
     },

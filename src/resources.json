@@ -462,7 +462,7 @@
         "path": "/stories"
     },
     "Questions": {
-        "basic": [ "update", "del" ],
+        "basic": [ "retrieve", "update", "del" ],
         "lists": [ "answers" ],
         "path": "/questions"
     },

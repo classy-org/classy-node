@@ -355,7 +355,8 @@
             "notifications",
             "recurring-donation-plans",
             "supporters",
-            "transactions"
+            "transactions",
+            "integrations"
         ],
         "creates": [ "campaigns", "credential-sets", "designations", "notifications", "supporters" ],
         "path": "/organizations",

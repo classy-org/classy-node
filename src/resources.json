@@ -249,6 +249,11 @@
         "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
         "path": "/members"
     },
+    "Members": {
+        "basic": [ "retrieve" ],
+        "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
+        "path": "/members"
+    },
     "MessageAttachments": {
         "path": "/message-attachments",
         "basic": [ "retrieve" ],

@@ -19,8 +19,8 @@ const app = classy.app();
 app.then((response) => {
   // app token used
   classy.organizations.retrieve(1, {
-      token: 'app'
-    });
+    token: 'app'
+  });
 
   // member auth request, response stored by app, not classy-node
   classy.oauth.auth({

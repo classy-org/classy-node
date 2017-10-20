@@ -53,6 +53,7 @@
             "questions",
             "registrations",
             "recurring-donation-plans",
+            "soft-credits"
             "ticket-types",
             "transactions"
         ],
@@ -191,7 +192,7 @@
     },
     "FundraisingPages": {
         "basic": [ "retrieve", "update", "del" ],
-        "lists": [ "activity", "posts", "updates", "stories", "feed-items", "answers" ],
+        "lists": [ "activity", "posts", "updates", "stories", "feed-items", "answers", "soft-credits"],
         "creates": [ "posts", "updates", "stories", "transfers", "feed-items", "answers" ],
         "custom": {
             "methods": {
@@ -209,7 +210,7 @@
     },
     "FundraisingTeams": {
         "basic": [ "retrieve", "del", "update" ],
-        "lists": [ "activity", "fundraising-pages", "posts", "updates", "stories", "feed-items", "subteams", "answers" ],
+        "lists": [ "activity", "fundraising-pages", "posts", "updates", "stories", "feed-items", "subteams", "answers", "soft-credits" ],
         "creates": [ "posts", "updates", "stories", "transfers", "feed-items", "fundraising-pages", "answers" ],
         "custom": {
             "methods": {

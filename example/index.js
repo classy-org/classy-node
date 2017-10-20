@@ -19,14 +19,18 @@ const app = classy.app();
 app.then((response) => {
   // app token used
   classy.organizations.retrieve(1, {
-      token: 'app'
-    });
+    token: 'app'
+  });
 
   // member auth request, response stored by app, not classy-node
   classy.oauth.auth({
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD,
+    code: 'VALID_AUTHORIZATION_CODE',
     token: 'app'
-  }).then((response) => {});
+  }).then((response) => {
+    // member token used
+    classy.me.retrieve({
+      token: response
+    });
+  });
 
 });

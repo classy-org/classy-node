@@ -364,7 +364,7 @@
             "transactions",
             "integrations"
         ],
-        "creates": [ "campaigns", "credential-sets", "designations", "notifications", "supporters" ],
+        "creates": [ "campaigns", "credential-sets", "designations", "notifications", "messages", "supporters" ],
         "path": "/organizations",
         "custom": {
             "methods": {

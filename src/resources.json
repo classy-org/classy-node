@@ -159,7 +159,7 @@
         }
     },
     "DonationMatchingPlans": {
-        "basic": ["update"],
+        "basic": ["retrieve", "update"],
         "path": "/donation-matching-plans"
     },
     "Ecards": {

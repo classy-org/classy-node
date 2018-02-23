@@ -3,6 +3,10 @@
         "creates": ["comments"],
         "path": "/activity"
     },
+    "Answers": {
+        "basic": [ "del" ],
+        "path": "/answers"
+    },
     "AppealSet": {
         "basic": ["retrieve", "update"],
         "path": "/appeal-set"

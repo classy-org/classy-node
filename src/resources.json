@@ -59,7 +59,8 @@
             "recurring-donation-plans",
             "soft-credits",
             "ticket-types",
-            "transactions"
+            "transactions",
+            "designations"
         ],
         "creates": [
             "credential-sets",
@@ -76,8 +77,7 @@
             "stories",
             "questions",
             "ticket-types",
-            "transactions",
-            "designations"
+            "transactions"
         ],
         "path": "/campaigns",
         "custom": {

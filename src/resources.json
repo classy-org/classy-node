@@ -76,7 +76,8 @@
             "stories",
             "questions",
             "ticket-types",
-            "transactions"
+            "transactions",
+            "designations"
         ],
         "path": "/campaigns",
         "custom": {
@@ -124,6 +125,18 @@
                 "listAllFeedItems": {
                   "method": "GET",
                   "path": "/{id}/feed-items/all"
+                },
+                "addDesignation": {
+                  "method": "POST",
+                  "path": "/{id}/designations/{designationId}"
+                },
+                "updateDesignation": {
+                  "method": "PUT",
+                  "path": "/{id}/designations/{designationId}"
+                },
+                "deleteDesignation": {
+                  "method": "DELETE",
+                  "path": "/{id}/designations/{designationId}"
                 }
             }
         }

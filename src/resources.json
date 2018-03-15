@@ -152,7 +152,7 @@
         "path": "/dedications"
     },
     "Designations": {
-        "basic": ["update"],
+        "basic": ["retrieve", "update"],
         "path": "/designations"
     },
     "DomainMasking": {

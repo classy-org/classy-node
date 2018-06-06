@@ -264,7 +264,13 @@
     },
     "Member": {
         "basic": [ "retrieve" ],
-        "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
+        "lists": [
+            "organizations",
+            "fundraising-teams",
+            "fundraising-pages",
+            "campaign-credential-sets",
+            "organization-credential-sets"
+        ],
         "path": "/members"
     },
     "Members": {

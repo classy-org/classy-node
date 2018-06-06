@@ -264,6 +264,11 @@
     },
     "Member": {
         "basic": [ "retrieve" ],
+        "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
+        "path": "/members"
+    },
+    "Members": {
+        "basic": [ "retrieve" ],
         "lists": [
             "organizations",
             "fundraising-teams",
@@ -271,11 +276,6 @@
             "campaign-credential-sets",
             "organization-credential-sets"
         ],
-        "path": "/members"
-    },
-    "Members": {
-        "basic": [ "retrieve" ],
-        "lists": [ "organizations", "fundraising-teams", "fundraising-pages" ],
         "path": "/members"
     },
     "MessageAttachments": {

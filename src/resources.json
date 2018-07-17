@@ -371,7 +371,7 @@
         }
     },
     "Organizations": {
-        "basic": [ "retrieve" ],
+        "basic": [ "retrieve", "create" ],
         "lists": [
             "activity",
             "campaigns",

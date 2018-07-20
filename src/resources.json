@@ -395,6 +395,10 @@
                     "method": "PUT",
                     "path": "/{id}/engagement-settings"
                 },
+                "retrieveMailchimpAccount": {
+                    "method": "GET",
+                    "path": "/{id}/mailchimp-account"
+                },
                 "retrieveMailchimpList": {
                     "method": "GET",
                     "path": "/{id}/mailchimp-list"

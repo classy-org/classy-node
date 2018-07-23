@@ -391,6 +391,10 @@
         "path": "/organizations",
         "custom": {
             "methods": {
+                "updateBranding": {
+                    "method": "PUT",
+                    "path": "/{id}/branding"
+                },
                 "updateEngagementSettings": {
                     "method": "PUT",
                     "path": "/{id}/engagement-settings"

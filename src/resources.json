@@ -434,6 +434,22 @@
                 "createUnclaimedAccount": {
                     "method": "POST",
                     "path": "/{id}/members"
+                },
+                "upsertConstantContactAccount":{
+                    "method": "PUT",
+                    "path": "/{id}/constantcontact-account"
+                },
+                "retrieveConstantContactAccount":{
+                    "method": "GET",
+                    "path": "/{id}/constantcontact-account"
+                },
+                "deleteConstantContactAccount":{
+                    "method": "DELETE",
+                    "path": "/{id}/constantcontact-account"
+                },
+                "retreiveConstantContactLists":{
+                    "method": "GET",
+                    "path": "/{id}/constantcontact-lists"
                 }
             }
         }

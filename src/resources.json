@@ -446,6 +446,10 @@
                 "deleteConstantContactAccount":{
                     "method": "DELETE",
                     "path": "/{id}/constantcontact-account"
+                },
+                "retreiveConstantContactLists":{
+                    "method": "GET",
+                    "path": "/{id}/constantcontact-lists"
                 }
             }
         }

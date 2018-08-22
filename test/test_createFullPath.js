@@ -29,9 +29,16 @@ describe('_createFullPath', () => {
   const runTest = (resolvedPath, isAuthRequest, basePath, expectedOutput) => {
     const testName = `_createFullPath(${resolvedPath}, ${isAuthRequest}, ${basePath})`
       + ` => ${expectedOutput}`;
-    it(testName, async () => {
-      const output = _createFullPath(resolvedPath, isAuthRequest, basePath);
-      expect(output).to.equal(expectedOutput);
+    it(testName, done => {
+      let error = null;
+      try {
+        const output = _createFullPath(resolvedPath, isAuthRequest, basePath);
+        expect(output).to.equal(expectedOutput);
+      } catch (e) {
+        error = e;
+      } finally {
+        done(error);
+      }
     });
   };
 

@@ -1,5 +1,3 @@
-import path from 'path';
-
 /**
  * Create a full path based on the populated
  * URI and the basePath defined when the Classy
@@ -14,12 +12,6 @@ import path from 'path';
  * @return {string}                The full URI for the upcoming request
  */
 export default function _createFullPath(resolvedPath, isAuthRequest, basePathOverride) {
-  const fullPath = path.join(
-      isAuthRequest ? '' : basePathOverride || this.basePath,
-      resolvedPath
-    ).replace(/\\/g, '/');
-
-  const normalizedPath = path.normalize(fullPath);
-
-  return normalizedPath;
+  return ((isAuthRequest ? '' : ((basePathOverride || this.basePath) + '/')) + resolvedPath)
+    .replace(/\/+/g, '/');
 }

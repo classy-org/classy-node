@@ -274,7 +274,8 @@
             "fundraising-teams",
             "fundraising-pages",
             "campaign-credential-sets",
-            "organization-credential-sets"
+            "organization-credential-sets",
+            "recurring-donation-plans"
         ],
         "path": "/members"
     },

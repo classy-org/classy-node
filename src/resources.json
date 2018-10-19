@@ -126,11 +126,11 @@
                   "method": "GET",
                   "path": "/{id}/feed-items/all"
                 },
-                "listAllAvailablePromoCodes" : {
+                "listAvailablePromoCodes" : {
                     "method": "GET",
                     "path": "/{id}/promo-codes/available"
                 },
-                "listAllUnavailablePromoCodes" : {
+                "listUnavailablePromoCodes" : {
                     "method": "GET",
                     "path": "/{id}/promo-codes/unavailable"
                 },

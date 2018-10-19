@@ -126,6 +126,14 @@
                   "method": "GET",
                   "path": "/{id}/feed-items/all"
                 },
+                "listAllAvailablePromoCodes" : {
+                    "method": "GET",
+                    "path": "/{id}/promo-codes/available"
+                },
+                "listAllUnavailablePromoCodes" : {
+                    "method": "GET",
+                    "path": "/{id}/promo-codes/unavailable"
+                },
                 "addDesignation": {
                   "method": "POST",
                   "path": "/{id}/designations/{designationId}"

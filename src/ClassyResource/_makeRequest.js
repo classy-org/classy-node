@@ -27,7 +27,7 @@ export default function _makeRequest(path, method, headers, form, data) {
   const promise = new Promise((resolve, reject) => {
     // the encoding param defaults to undefined, which means the response will be stringified
     // we want to preserve the binary encoding for pdfs, so return null in this case
-    const encoding = _.includes(headers['content-type'], 'pdf')
+    const encoding = _.includes(headers['Content-Type'], 'pdf')
       ? null
       : undefined;
 
@@ -68,7 +68,7 @@ export default function _makeRequest(path, method, headers, form, data) {
         reject(error);
       } else {
         // if we're not returning a pdf file, parse body
-        if (!_.includes(response.headers['content-type'], 'pdf')) {
+        if (!_.includes(response.headers['Content-Type'], 'pdf')) {
           body = body ? JSON.parse(body) : {};
         }
         resolve(body);

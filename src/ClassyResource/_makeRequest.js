@@ -25,14 +25,23 @@ export default function _makeRequest(path, method, headers, form, data) {
   }
 
   const promise = new Promise((resolve, reject) => {
+    // the encoding param defaults to undefined, which means the response will be stringified
+    // we want to preserve the binary encoding for pdfs, so return null in this case
+    const encoding = _.includes(headers['content-type'], 'pdf')
+      ? null
+      : undefined;
+
     const requestParams = {
       baseUrl: this.baseUrl,
       uri: path,
       method: method,
       headers: headers,
       rejectUnauthorized: false,
-      form: form
+      form: form,
+      encoding: encoding
     };
+
+    console.log('requestParams', requestParams); // eslint-disable-line
 
     if (method === 'GET') {
       requestParams.qs = data;
@@ -60,11 +69,13 @@ export default function _makeRequest(path, method, headers, form, data) {
 
         reject(error);
       } else {
-        body = body ? JSON.parse(body) : {};
+        // if we're not returning a pdf file, parse body
+        if (!_.includes(response.headers['content-type'], 'pdf')) {
+          body = body ? JSON.parse(body) : {};
+        }
         resolve(body);
       }
     });
-
   });
 
   return promise;

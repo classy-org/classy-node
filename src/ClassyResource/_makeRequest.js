@@ -41,8 +41,6 @@ export default function _makeRequest(path, method, headers, form, data) {
       encoding: encoding
     };
 
-    console.log('requestParams', requestParams); // eslint-disable-line
-
     if (method === 'GET') {
       requestParams.qs = data;
     } else {

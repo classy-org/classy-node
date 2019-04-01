@@ -71,6 +71,7 @@ export default function _makeRequest(path, method, headers, form, data) {
         if (!_.includes(response.headers['Content-Type'], 'pdf')) {
           body = body ? JSON.parse(body) : {};
         }
+        
         resolve(body);
       }
     });

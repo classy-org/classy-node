@@ -27,7 +27,7 @@ export default function _makeRequest(path, method, headers, form, data) {
   const promise = new Promise((resolve, reject) => {
     // the encoding param defaults to undefined, which means the response will be stringified
     // we want to preserve the binary encoding for pdfs, so return null in this case
-    const encoding = _.includes(headers['Accept'], 'pdf')
+    const encoding = _.includes(headers.Accept, 'pdf')
       ? null
       : undefined;
 

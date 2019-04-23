@@ -68,7 +68,7 @@ export default function _makeRequest(path, method, headers, form, data) {
         reject(error);
       } else {
         // if we're not returning a pdf file, parse body
-        if (!_.includes(response.headers['Content-Type'], 'pdf')) {
+        if (!_.includes(response.headers['content-type'], 'pdf')) {
           body = body ? JSON.parse(body) : {};
         }
 

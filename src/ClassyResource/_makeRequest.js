@@ -1,5 +1,5 @@
-import _ from "lodash";
-import request from "request";
+import _ from 'lodash';
+import request from 'request';
 
 /**
  * Makes a request to Classy's API.
@@ -15,7 +15,7 @@ export default function _makeRequest(path, method, headers, form, data) {
   let forceQs = null;
 
   if (data.noLog) {
-    headers["x-no-log"] = true;
+    headers['x-no-log'] = true;
     delete data.noLog;
   }
 
@@ -27,7 +27,9 @@ export default function _makeRequest(path, method, headers, form, data) {
   const promise = new Promise((resolve, reject) => {
     // the encoding param defaults to undefined, which means the response will be stringified
     // we want to preserve the binary encoding for pdfs, so return null in this case
-    const encoding = _.includes(headers.Accept, "pdf") ? null : undefined;
+    const encoding = _.includes(headers.Accept, 'pdf')
+      ? null
+      : undefined;
 
     const requestParams = {
       baseUrl: this.baseUrl,
@@ -39,7 +41,7 @@ export default function _makeRequest(path, method, headers, form, data) {
       encoding: encoding
     };
 
-    if (method === "GET") {
+    if (method === 'GET') {
       requestParams.qs = data;
     } else {
       requestParams.body = JSON.stringify(data);
@@ -50,7 +52,7 @@ export default function _makeRequest(path, method, headers, form, data) {
     }
 
     request(requestParams, (err, response, body) => {
-      if (err || !/^2/.test("" + response.statusCode)) {
+      if (err || !/^2/.test('' + response.statusCode)) {
         let error;
         if (err && err instanceof Error) {
           error = err;
@@ -58,7 +60,7 @@ export default function _makeRequest(path, method, headers, form, data) {
           const errorString = JSON.stringify(err);
           error = new Error(errorString);
         } else {
-          const errorString = body ? JSON.stringify(body) : "Non-200 response";
+          const errorString = body ? JSON.stringify(body) : 'Non-200 response';
           error = new Error(errorString);
           error.statusCode = response.statusCode;
         }
@@ -66,7 +68,7 @@ export default function _makeRequest(path, method, headers, form, data) {
         reject(error);
       } else {
         // if we're not returning a pdf file, parse body
-        if (!_.includes(response.headers["content-type"], "pdf")) {
+        if (!_.includes(response.headers['content-type'], 'pdf')) {
           body = body ? JSON.parse(body) : {};
         }
 

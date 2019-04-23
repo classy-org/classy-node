@@ -1,6 +1,6 @@
 {
   "name": "classy-node",
-  "version": "2.6.6",
+  "version": "2.6.7",
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "./node_modules/.bin/jscs ./src",

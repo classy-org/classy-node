@@ -190,6 +190,10 @@
           "resendReceipt": {
             "method": "POST",
             "path": "/resend-receipt/{id}"
+          },
+          "resendDesignation": {
+            "method": "POST",
+            "path": "/resend-designation/{id}"
           }
         }
       }

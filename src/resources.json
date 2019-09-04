@@ -198,6 +198,10 @@
           "resendReceipt": {
             "method": "POST",
             "path": "/resend-receipt/{id}"
+          },
+          "resendDedication": {
+            "method": "POST",
+            "path": "/resend-dedication/{id}"
           }
         }
       }

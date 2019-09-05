@@ -12,23 +12,19 @@ var config = {
   }
 };
 
-gulp.task('clean', done => {
-  del(config.paths.js.dist);
-  done();
+gulp.task('clean', () => {
+  return del(config.paths.js.dist);
 });
 
-gulp.task('babel', (done) => {
-
-  gulp.src(config.paths.js.src)
+gulp.task('babel', () => {
+  return gulp.src(config.paths.js.src)
     .pipe(babel())
     .pipe(append('src/resources.json'))
     .pipe(gulp.dest(config.paths.js.dist));
-
-  done();
 });
 
 gulp.task('watch', () => {
   gulp.watch(config.paths.js.src, ['babel']);
 });
 
-gulp.task('default', gulp.series('clean', 'babel'), (done) => done());
+gulp.task('default', gulp.series('clean', 'babel'));

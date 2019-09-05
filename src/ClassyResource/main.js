@@ -34,6 +34,11 @@ export default class ClassyResource {
       this._addListMethods(urlData.lists);
     }
 
+    /** Add retrieve methods */
+    if (urlData.retrieves) {
+      this._addRetrieveMethods(urlData.retrieves);
+    }
+
     /** Add create methods */
     if (urlData.creates) {
       this._addCreateMethods(urlData.creates);
@@ -51,6 +56,7 @@ import _addBasicMethods from './_addBasicMethods';
 import _addCreateMethods from './_addCreateMethods';
 import _addCustomMethods from './_addCustomMethods';
 import _addListMethods from './_addListMethods';
+import _addRetrieveMethods from './_addRetrieveMethods';
 import _chooseToken from './_chooseToken';
 import _createFullPath from './_createFullPath';
 import _generateAuthForm from './_generateAuthForm';
@@ -64,6 +70,7 @@ Object.assign(ClassyResource.prototype, {
   _addCreateMethods,
   _addCustomMethods,
   _addListMethods,
+  _addRetrieveMethods,
   _chooseToken,
   _createFullPath,
   _generateAuthForm,

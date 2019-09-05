@@ -79,6 +79,9 @@
             "ticket-types",
             "transactions"
         ],
+        "retrieves": [
+            "designations"
+        ],
         "path": "/campaigns",
         "custom": {
             "methods": {

@@ -52,7 +52,14 @@ Each resource can contain several basic methods (retrieve, update, delete). Each
 - `del()`
 - `create{RelatedResource}()` e.g., `createCampaign()`
 - `list{RelatedResources}()` e.g. `listCampaigns()`
+- `retrieve{RelatedResource}(parentId, resourceId)` e.g. `campaigns.retrieveDesignation()`
 - Other/specialized e.g., `publish()`, `unpublish()`, & `deactivate()`
+
+## Running examples
+
+- install babel-node if you don't have it in your environment
+- run `cp .env.example .env` and fill in the necessary env vars
+- in the console, run: `babel-node example/filename.js`
 
 ## Contributing
 

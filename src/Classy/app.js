@@ -6,14 +6,15 @@ import _ from 'lodash';
  */
 export default function app() {
   const _this = this;
-  const promise = new Promise((resolve, reject) => {
+
+  return new Promise((resolve, reject) => {
     this.timeoutId = undefined;
 
     const timeout = () => {
       _this.timeoutId = setTimeout(tokenTicker, _.get(_this, 'appToken.expires_in', 0) * 900);
     };
 
-    const tokenTicker = () => {
+    function tokenTicker() {
       this.getAppToken().then((response) => {
         clearTimeout(_this.timeoutId);
 
@@ -30,6 +31,4 @@ export default function app() {
 
     timeout();
   });
-
-  return promise;
 }

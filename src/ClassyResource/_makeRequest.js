@@ -11,7 +11,6 @@ import request from 'request';
  * @return {promise}         Promise based on API request
  */
 export default function _makeRequest(path, method, headers, form, data) {
-  const _this = this;
   let forceQs = null;
 
   if (data.noLog) {

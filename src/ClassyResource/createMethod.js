@@ -25,7 +25,6 @@ export default function createMethod(spec) {
   return (...args) => {
 
     /** Extract data from function arguments */
-    const _this = this;
     const urlData = this._populateUrlParams(urlParams, args);
     const data = utils.getDataFromArgs(args);
 
@@ -36,7 +35,7 @@ export default function createMethod(spec) {
 
       if (!arg) {
         throw new Error(
-          'Classy: Argument "' + urlParams[i] + '" required, but got: ' + arg +
+          'Classy: Argument "' + param + '" required, but got: ' + arg +
           ' (on API request to ' + requestMethod + ' ' + commandPath(urlData) + ')'
         );
       }

@@ -31,4 +31,4 @@ gulp.task('watch', () => {
   gulp.watch(config.paths.js.src, ['babel']);
 });
 
-gulp.task('default', gulp.series('babel', 'clean'), (done) => done());
+gulp.task('default', gulp.series('clean', 'babel'), (done) => done());

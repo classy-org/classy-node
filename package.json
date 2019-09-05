@@ -9,7 +9,8 @@
     "snyk-test": "./node_modules/.bin/snyk test",
     "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",
     "snyk-protect": "./node_modules/.bin/snyk protect",
-    "prepublish": "./node_modules/.bin/gulp",
+    "prepublish": "yarn build",
+    "build": "./node_modules/.bin/gulp",
     "snyk-wizard": "node ./node_modules/.bin/snyk wizard"
   },
   "keywords": [

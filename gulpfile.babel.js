@@ -1,9 +1,7 @@
 import gulp from 'gulp';
 import append from 'gulp-add-src';
 import babel from 'gulp-babel';
-import mocha from 'gulp-mocha';
 import del from 'del';
-import runSequence from 'run-sequence';
 
 var config = {
   paths: {
@@ -14,19 +12,23 @@ var config = {
   }
 };
 
-gulp.task('clean', () => del(config.paths.js.dist));
+gulp.task('clean', done => {
+  del(config.paths.js.dist);
+  done();
+});
 
-gulp.task('babel', () => {
+gulp.task('babel', (done) => {
+
   gulp.src(config.paths.js.src)
     .pipe(babel())
     .pipe(append('src/resources.json'))
     .pipe(gulp.dest(config.paths.js.dist));
+
+  done();
 });
 
 gulp.task('watch', () => {
   gulp.watch(config.paths.js.src, ['babel']);
 });
 
-gulp.task('default', () => {
-  runSequence('clean', ['babel']);
-});
+gulp.task('default', gulp.series('babel', 'clean'), (done) => done());

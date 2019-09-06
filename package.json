@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "test": "mocha --require @babel/register",
-    "coverage": "nyc --require @babel/register --reporter=lcov --reporter=text-summary mocha | coveralls",
+    "coverage": "nyc --require @babel/register --reporter=lcov --reporter=text-summary mocha",
     "snyk-test": "./node_modules/.bin/snyk test",
     "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",
     "snyk-protect": "./node_modules/.bin/snyk protect",
@@ -31,9 +31,6 @@
     "url": "git://github.com/classy-org/classy-node.git"
   },
   "bugs": "https://github.com/classy-org/classy-node/issues",
-  "engines": {
-    "node": "10.15.2"
-  },
   "main": "dist/Classy/main.js",
   "license": "MIT",
   "dependencies": {

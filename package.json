@@ -9,9 +9,10 @@
     "snyk-test": "./node_modules/.bin/snyk test",
     "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",
     "snyk-protect": "./node_modules/.bin/snyk protect",
-    "prepublish": "yarn lint && yarn build",
+    "prepublish": "yarn lint && yarn build && yarn docs",
     "build": "./node_modules/.bin/gulp",
-    "snyk-wizard": "node ./node_modules/.bin/snyk wizard"
+    "snyk-wizard": "node ./node_modules/.bin/snyk wizard",
+    "docs": "cp README.md ./docs && babel-node scripts/docs.js"
   },
   "keywords": [
     "classy",
@@ -59,6 +60,10 @@
     "coveralls": "^3.0.6",
     "del": "^5.1.0",
     "dotenv": "^8.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "fs.promises": "^0.1.2",
     "gulp": "^4.0.2",
     "gulp-add-src": "^1.0.0",

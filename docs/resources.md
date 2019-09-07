@@ -4,7 +4,7 @@
 ### Creates
 #### POST /activity/:id/comments
 ```javascript
-classy.activity.createComment(activityId, data).then(data => {
+classy.activity.createComment(activityId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -14,7 +14,7 @@ classy.activity.createComment(activityId, data).then(data => {
 ### Basics
 #### DELETE /answers/:id
 ```javascript
-classy.answers.del(id).then(() => {
+classy.answers.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -24,14 +24,14 @@ classy.answers.del(id).then(() => {
 ### Basics
 #### GET /appeal-set/:id
 ```javascript
-classy.appealSet.retrieve(id).then(() => {
+classy.appealSet.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /appeal-set/:id
 ```javascript
-classy.appealSet.update(id, data).then(() => {
+classy.appealSet.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -41,14 +41,14 @@ classy.appealSet.update(id, data).then(() => {
 ### Basics
 #### GET /assets/:id
 ```javascript
-classy.assets.retrieve(id).then(() => {
+classy.assets.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /assets/:id
 ```javascript
-classy.assets.update(id, data).then(() => {
+classy.assets.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -64,14 +64,14 @@ classy.assets.listChildren(assetId, options).then(data => {
 ### Custom
 #### POST /assets/:id/process
 ```javascript
-classy.assets.process(id).then(data => {
+classy.assets.process(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /assets/url
 ```javascript
-classy.assets.url().then(data => {
+classy.assets.url(, options).then(data => {
   // do something with custom response
 })
 ```
@@ -81,21 +81,21 @@ classy.assets.url().then(data => {
 ### Basics
 #### POST /blocks/:id
 ```javascript
-classy.blocks.create(id, data).then(() => {
+classy.blocks.create(id, data, options).then(() => {
     // do something after create
 })
 ```
 
 #### GET /blocks/:id
 ```javascript
-classy.blocks.retrieve(id).then(() => {
+classy.blocks.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /blocks/:id
 ```javascript
-classy.blocks.update(id, data).then(() => {
+classy.blocks.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -105,21 +105,21 @@ classy.blocks.update(id, data).then(() => {
 ### Basics
 #### GET /campaign-credential-sets/:id
 ```javascript
-classy.campaignCredentialSets.retrieve(id).then(() => {
+classy.campaignCredentialSets.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /campaign-credential-sets/:id
 ```javascript
-classy.campaignCredentialSets.update(id, data).then(() => {
+classy.campaignCredentialSets.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /campaign-credential-sets/:id
 ```javascript
-classy.campaignCredentialSets.del(id).then(() => {
+classy.campaignCredentialSets.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -129,14 +129,14 @@ classy.campaignCredentialSets.del(id).then(() => {
 ### Basics
 #### GET /campaigns/:id
 ```javascript
-classy.campaigns.retrieve(id).then(() => {
+classy.campaigns.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /campaigns/:id
 ```javascript
-classy.campaigns.update(id, data).then(() => {
+classy.campaigns.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -299,7 +299,7 @@ classy.campaigns.listDesignations(campaignId, options).then(data => {
 ### Retrieves
 #### GET /campaigns/:id/designations
 ```javascript
-classy.campaigns.retrieveDesignation(campaignId, designationId).then(data => {
+classy.campaigns.retrieveDesignation(campaignId, designationId, options).then(data => {
   // do something with list
 })
 ```
@@ -307,105 +307,105 @@ classy.campaigns.retrieveDesignation(campaignId, designationId).then(data => {
 ### Creates
 #### POST /campaigns/:id/credential-sets
 ```javascript
-classy.campaigns.createCredentialSet(campaignId, data).then(data => {
+classy.campaigns.createCredentialSet(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/donation-matching-plans
 ```javascript
-classy.campaigns.createDonationMatchingPlan(campaignId, data).then(data => {
+classy.campaigns.createDonationMatchingPlan(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/ecards
 ```javascript
-classy.campaigns.createEcard(campaignId, data).then(data => {
+classy.campaigns.createEcard(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/faqs
 ```javascript
-classy.campaigns.createFaq(campaignId, data).then(data => {
+classy.campaigns.createFaq(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/feed-items
 ```javascript
-classy.campaigns.createFeedItem(campaignId, data).then(data => {
+classy.campaigns.createFeedItem(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/fundraising-teams
 ```javascript
-classy.campaigns.createFundraisingTeam(campaignId, data).then(data => {
+classy.campaigns.createFundraisingTeam(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/fundraising-pages
 ```javascript
-classy.campaigns.createFundraisingPage(campaignId, data).then(data => {
+classy.campaigns.createFundraisingPage(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/messages
 ```javascript
-classy.campaigns.createMessage(campaignId, data).then(data => {
+classy.campaigns.createMessage(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/posts
 ```javascript
-classy.campaigns.createPost(campaignId, data).then(data => {
+classy.campaigns.createPost(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/promo-codes
 ```javascript
-classy.campaigns.createPromoCode(campaignId, data).then(data => {
+classy.campaigns.createPromoCode(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/updates
 ```javascript
-classy.campaigns.createUpdate(campaignId, data).then(data => {
+classy.campaigns.createUpdate(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/stories
 ```javascript
-classy.campaigns.createStorie(campaignId, data).then(data => {
+classy.campaigns.createStorie(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/questions
 ```javascript
-classy.campaigns.createQuestion(campaignId, data).then(data => {
+classy.campaigns.createQuestion(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/ticket-types
 ```javascript
-classy.campaigns.createTicketType(campaignId, data).then(data => {
+classy.campaigns.createTicketType(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /campaigns/:id/transactions
 ```javascript
-classy.campaigns.createTransaction(campaignId, data).then(data => {
+classy.campaigns.createTransaction(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -413,112 +413,112 @@ classy.campaigns.createTransaction(campaignId, data).then(data => {
 ### Custom
 #### POST /campaigns/:id/publish
 ```javascript
-classy.campaigns.publish(id).then(data => {
+classy.campaigns.publish(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /campaigns/:id/unpublish
 ```javascript
-classy.campaigns.unpublish(id).then(data => {
+classy.campaigns.unpublish(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /campaigns/:id/deactivate
 ```javascript
-classy.campaigns.deactivate(id).then(data => {
+classy.campaigns.deactivate(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /campaigns/:id/reactivate
 ```javascript
-classy.campaigns.reactivate(id).then(data => {
+classy.campaigns.reactivate(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /campaigns/:id/appeal-set
 ```javascript
-classy.campaigns.createAppealSet(id).then(data => {
+classy.campaigns.createAppealSet(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /campaigns/:id/actions/mailchimp-subscribe
 ```javascript
-classy.campaigns.createMailchimpSubscribeAction(id).then(data => {
+classy.campaigns.createMailchimpSubscribeAction(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/appeal-set
 ```javascript
-classy.campaigns.retrieveAppealSet(id).then(data => {
+classy.campaigns.retrieveAppealSet(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/themes
 ```javascript
-classy.campaigns.retrieveTheme(id).then(data => {
+classy.campaigns.retrieveTheme(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/overview
 ```javascript
-classy.campaigns.retrieveOverview(id).then(data => {
+classy.campaigns.retrieveOverview(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/customUrl
 ```javascript
-classy.campaigns.retrieveCustomUrl(id).then(data => {
+classy.campaigns.retrieveCustomUrl(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/feed-items/all
 ```javascript
-classy.campaigns.listAllFeedItems(id).then(data => {
+classy.campaigns.listAllFeedItems(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/promo-codes/available
 ```javascript
-classy.campaigns.listAvailablePromoCodes(id).then(data => {
+classy.campaigns.listAvailablePromoCodes(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /campaigns/:id/promo-codes/unavailable
 ```javascript
-classy.campaigns.listUnavailablePromoCodes(id).then(data => {
+classy.campaigns.listUnavailablePromoCodes(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /campaigns/:id/designations/:designationId
 ```javascript
-classy.campaigns.addDesignation(id, designationId).then(data => {
+classy.campaigns.addDesignation(id, designationId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### PUT /campaigns/:id/designations/:designationId
 ```javascript
-classy.campaigns.updateDesignation(id, designationId).then(data => {
+classy.campaigns.updateDesignation(id, designationId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### DELETE /campaigns/:id/designations/:designationId
 ```javascript
-classy.campaigns.deleteDesignation(id, designationId).then(data => {
+classy.campaigns.deleteDesignation(id, designationId, options).then(data => {
   // do something with custom response
 })
 ```
@@ -528,21 +528,21 @@ classy.campaigns.deleteDesignation(id, designationId).then(data => {
 ### Basics
 #### GET /comments/:id
 ```javascript
-classy.comments.retrieve(id).then(() => {
+classy.comments.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /comments/:id
 ```javascript
-classy.comments.del(id).then(() => {
+classy.comments.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### PUT /comments/:id
 ```javascript
-classy.comments.update(id, data).then(() => {
+classy.comments.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -558,7 +558,7 @@ classy.comments.listLikes(commentId, options).then(data => {
 ### Creates
 #### POST /comments/:id/likes
 ```javascript
-classy.comments.createLike(commentId, data).then(data => {
+classy.comments.createLike(commentId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -568,14 +568,14 @@ classy.comments.createLike(commentId, data).then(data => {
 ### Basics
 #### GET /dedications/:id
 ```javascript
-classy.dedications.retrieve(id).then(() => {
+classy.dedications.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /dedications/:id
 ```javascript
-classy.dedications.update(id, data).then(() => {
+classy.dedications.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -585,14 +585,14 @@ classy.dedications.update(id, data).then(() => {
 ### Basics
 #### GET /designations/:id
 ```javascript
-classy.designations.retrieve(id).then(() => {
+classy.designations.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /designations/:id
 ```javascript
-classy.designations.update(id, data).then(() => {
+classy.designations.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -608,14 +608,14 @@ classy.designations.update(id, data).then(() => {
 ### Basics
 #### GET /donation-matching-plans/:id
 ```javascript
-classy.donationMatchingPlans.retrieve(id).then(() => {
+classy.donationMatchingPlans.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /donation-matching-plans/:id
 ```javascript
-classy.donationMatchingPlans.update(id, data).then(() => {
+classy.donationMatchingPlans.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -625,21 +625,21 @@ classy.donationMatchingPlans.update(id, data).then(() => {
 ### Basics
 #### GET /ecards/:id
 ```javascript
-classy.ecards.retrieve(id).then(() => {
+classy.ecards.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /ecards/:id
 ```javascript
-classy.ecards.update(id, data).then(() => {
+classy.ecards.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /ecards/:id
 ```javascript
-classy.ecards.del(id).then(() => {
+classy.ecards.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -649,14 +649,14 @@ classy.ecards.del(id).then(() => {
 ### Custom
 #### POST /events/resend-receipt/:id
 ```javascript
-classy.events.resendReceipt(id).then(data => {
+classy.events.resendReceipt(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /events/resend-dedication/:id
 ```javascript
-classy.events.resendDedication(id).then(data => {
+classy.events.resendDedication(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -666,21 +666,21 @@ classy.events.resendDedication(id).then(data => {
 ### Basics
 #### GET /faqs/:id
 ```javascript
-classy.faqs.retrieve(id).then(() => {
+classy.faqs.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /faqs/:id
 ```javascript
-classy.faqs.del(id).then(() => {
+classy.faqs.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### PUT /faqs/:id
 ```javascript
-classy.faqs.update(id, data).then(() => {
+classy.faqs.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -690,21 +690,21 @@ classy.faqs.update(id, data).then(() => {
 ### Basics
 #### GET /feed-items/:id
 ```javascript
-classy.feedItems.retrieve(id).then(() => {
+classy.feedItems.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /feed-items/:id
 ```javascript
-classy.feedItems.update(id, data).then(() => {
+classy.feedItems.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /feed-items/:id
 ```javascript
-classy.feedItems.del(id).then(() => {
+classy.feedItems.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -727,14 +727,14 @@ classy.feedItems.listLikes(feedItemId, options).then(data => {
 ### Creates
 #### POST /feed-items/:id/comments
 ```javascript
-classy.feedItems.createComment(feedItemId, data).then(data => {
+classy.feedItems.createComment(feedItemId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /feed-items/:id/likes
 ```javascript
-classy.feedItems.createLike(feedItemId, data).then(data => {
+classy.feedItems.createLike(feedItemId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -744,21 +744,21 @@ classy.feedItems.createLike(feedItemId, data).then(data => {
 ### Basics
 #### GET /fundraising-pages/:id
 ```javascript
-classy.fundraisingPages.retrieve(id).then(() => {
+classy.fundraisingPages.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /fundraising-pages/:id
 ```javascript
-classy.fundraisingPages.update(id, data).then(() => {
+classy.fundraisingPages.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /fundraising-pages/:id
 ```javascript
-classy.fundraisingPages.del(id).then(() => {
+classy.fundraisingPages.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -816,42 +816,42 @@ classy.fundraisingPages.listSoftCredits(fundraisingPageId, options).then(data =>
 ### Creates
 #### POST /fundraising-pages/:id/posts
 ```javascript
-classy.fundraisingPages.createPost(fundraisingPageId, data).then(data => {
+classy.fundraisingPages.createPost(fundraisingPageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-pages/:id/updates
 ```javascript
-classy.fundraisingPages.createUpdate(fundraisingPageId, data).then(data => {
+classy.fundraisingPages.createUpdate(fundraisingPageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-pages/:id/stories
 ```javascript
-classy.fundraisingPages.createStorie(fundraisingPageId, data).then(data => {
+classy.fundraisingPages.createStorie(fundraisingPageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-pages/:id/transfers
 ```javascript
-classy.fundraisingPages.createTransfer(fundraisingPageId, data).then(data => {
+classy.fundraisingPages.createTransfer(fundraisingPageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-pages/:id/feed-items
 ```javascript
-classy.fundraisingPages.createFeedItem(fundraisingPageId, data).then(data => {
+classy.fundraisingPages.createFeedItem(fundraisingPageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-pages/:id/answers
 ```javascript
-classy.fundraisingPages.createAnswer(fundraisingPageId, data).then(data => {
+classy.fundraisingPages.createAnswer(fundraisingPageId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -859,7 +859,7 @@ classy.fundraisingPages.createAnswer(fundraisingPageId, data).then(data => {
 ### Custom
 #### GET /fundraising-pages/:id/overview
 ```javascript
-classy.fundraisingPages.retrieveOverview(id).then(data => {
+classy.fundraisingPages.retrieveOverview(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -869,14 +869,14 @@ classy.fundraisingPages.retrieveOverview(id).then(data => {
 ### Basics
 #### GET /fundraising-team-policies/:id
 ```javascript
-classy.fundraisingTeamPolicies.retrieve(id).then(() => {
+classy.fundraisingTeamPolicies.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /fundraising-team-policies/:id
 ```javascript
-classy.fundraisingTeamPolicies.update(id, data).then(() => {
+classy.fundraisingTeamPolicies.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -886,21 +886,21 @@ classy.fundraisingTeamPolicies.update(id, data).then(() => {
 ### Basics
 #### GET /fundraising-teams/:id
 ```javascript
-classy.fundraisingTeams.retrieve(id).then(() => {
+classy.fundraisingTeams.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /fundraising-teams/:id
 ```javascript
-classy.fundraisingTeams.del(id).then(() => {
+classy.fundraisingTeams.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### PUT /fundraising-teams/:id
 ```javascript
-classy.fundraisingTeams.update(id, data).then(() => {
+classy.fundraisingTeams.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -972,49 +972,49 @@ classy.fundraisingTeams.listSoftCredits(fundraisingTeamId, options).then(data =>
 ### Creates
 #### POST /fundraising-teams/:id/posts
 ```javascript
-classy.fundraisingTeams.createPost(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createPost(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-teams/:id/updates
 ```javascript
-classy.fundraisingTeams.createUpdate(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createUpdate(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-teams/:id/stories
 ```javascript
-classy.fundraisingTeams.createStorie(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createStorie(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-teams/:id/transfers
 ```javascript
-classy.fundraisingTeams.createTransfer(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createTransfer(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-teams/:id/feed-items
 ```javascript
-classy.fundraisingTeams.createFeedItem(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createFeedItem(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-teams/:id/fundraising-pages
 ```javascript
-classy.fundraisingTeams.createFundraisingPage(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createFundraisingPage(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /fundraising-teams/:id/answers
 ```javascript
-classy.fundraisingTeams.createAnswer(fundraisingTeamId, data).then(data => {
+classy.fundraisingTeams.createAnswer(fundraisingTeamId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1022,14 +1022,14 @@ classy.fundraisingTeams.createAnswer(fundraisingTeamId, data).then(data => {
 ### Custom
 #### GET /fundraising-teams/:id/overview
 ```javascript
-classy.fundraisingTeams.retrieveOverview(id).then(data => {
+classy.fundraisingTeams.retrieveOverview(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /fundraising-teams/:id/feed-items/all
 ```javascript
-classy.fundraisingTeams.listAllFeedItems(id).then(data => {
+classy.fundraisingTeams.listAllFeedItems(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -1039,7 +1039,7 @@ classy.fundraisingTeams.listAllFeedItems(id).then(data => {
 ### Basics
 #### DELETE /likes/:id
 ```javascript
-classy.likes.del(id).then(() => {
+classy.likes.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -1049,14 +1049,14 @@ classy.likes.del(id).then(() => {
 ### Basics
 #### PUT /mailchimp-accounts/:id
 ```javascript
-classy.mailchimpAccounts.update(id, data).then(() => {
+classy.mailchimpAccounts.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /mailchimp-accounts/:id
 ```javascript
-classy.mailchimpAccounts.del(id).then(() => {
+classy.mailchimpAccounts.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -1069,7 +1069,7 @@ classy.mailchimpAccounts.del(id).then(() => {
 ### Basics
 #### GET /member/:id
 ```javascript
-classy.member.retrieve(id).then(() => {
+classy.member.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
@@ -1101,7 +1101,7 @@ classy.member.listFundraisingPages(memberId, options).then(data => {
 ### Basics
 #### GET /members/:id
 ```javascript
-classy.members.retrieve(id).then(() => {
+classy.members.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
@@ -1154,7 +1154,7 @@ classy.members.listRecurringDonationPlans(memberId, options).then(data => {
 ### Basics
 #### GET /message-attachments/:id
 ```javascript
-classy.messageAttachments.retrieve(id).then(() => {
+classy.messageAttachments.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
@@ -1165,7 +1165,7 @@ classy.messageAttachments.retrieve(id).then(() => {
 ### Basics
 #### GET /message-blocks/:id
 ```javascript
-classy.messageBlocks.retrieve(id).then(() => {
+classy.messageBlocks.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
@@ -1176,21 +1176,21 @@ classy.messageBlocks.retrieve(id).then(() => {
 ### Basics
 #### GET /messages/:id
 ```javascript
-classy.messages.retrieve(id).then(() => {
+classy.messages.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /messages/:id
 ```javascript
-classy.messages.update(id, data).then(() => {
+classy.messages.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /messages/:id
 ```javascript
-classy.messages.del(id).then(() => {
+classy.messages.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -1213,21 +1213,21 @@ classy.messages.listSupporters(messageId, options).then(data => {
 ### Creates
 #### POST /messages/:id/blocks
 ```javascript
-classy.messages.createBlock(messageId, data).then(data => {
+classy.messages.createBlock(messageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /messages/:id/attachments
 ```javascript
-classy.messages.createAttachment(messageId, data).then(data => {
+classy.messages.createAttachment(messageId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /messages/:id/recipients
 ```javascript
-classy.messages.createRecipient(messageId, data).then(data => {
+classy.messages.createRecipient(messageId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1235,56 +1235,56 @@ classy.messages.createRecipient(messageId, data).then(data => {
 ### Custom
 #### POST /messages/:id/send
 ```javascript
-classy.messages.sendMessage(id).then(data => {
+classy.messages.sendMessage(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /messages/:id/test
 ```javascript
-classy.messages.sendTest(id).then(data => {
+classy.messages.sendTest(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### PUT /messages/:id/blocks/:blockId
 ```javascript
-classy.messages.updateBlocks(id, blockId).then(data => {
+classy.messages.updateBlocks(id, blockId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### DELETE /messages/:id/blocks/:blockId
 ```javascript
-classy.messages.removeBlocks(id, blockId).then(data => {
+classy.messages.removeBlocks(id, blockId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### PUT /messages/:id/attachments/:attachmentId
 ```javascript
-classy.messages.updateAttachments(id, attachmentId).then(data => {
+classy.messages.updateAttachments(id, attachmentId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### DELETE /messages/:id/attachments/:attachmentId
 ```javascript
-classy.messages.removeAttachments(id, attachmentId).then(data => {
+classy.messages.removeAttachments(id, attachmentId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### PUT /messages/:id/recipients
 ```javascript
-classy.messages.modifyRecipients(id).then(data => {
+classy.messages.modifyRecipients(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /messages/:id/recipients/remove
 ```javascript
-classy.messages.removeRecipients(id).then(data => {
+classy.messages.removeRecipients(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -1294,7 +1294,7 @@ classy.messages.removeRecipients(id).then(data => {
 ### Basics
 #### GET /message-templates/:id
 ```javascript
-classy.messageTemplates.retrieve(id).then(() => {
+classy.messageTemplates.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
@@ -1305,7 +1305,7 @@ classy.messageTemplates.retrieve(id).then(() => {
 ### Custom
 #### POST /oauth/auth
 ```javascript
-classy.oauth.auth().then(data => {
+classy.oauth.auth(, options).then(data => {
   // do something with custom response
 })
 ```
@@ -1315,14 +1315,14 @@ classy.oauth.auth().then(data => {
 ### Basics
 #### GET /organizations/:id
 ```javascript
-classy.organizations.retrieve(id).then(() => {
+classy.organizations.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### POST /organizations/:id
 ```javascript
-classy.organizations.create(id, data).then(() => {
+classy.organizations.create(id, data, options).then(() => {
     // do something after create
 })
 ```
@@ -1422,42 +1422,42 @@ classy.organizations.listIntegrations(organizationId, options).then(data => {
 ### Creates
 #### POST /organizations/:id/campaigns
 ```javascript
-classy.organizations.createCampaign(organizationId, data).then(data => {
+classy.organizations.createCampaign(organizationId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /organizations/:id/credential-sets
 ```javascript
-classy.organizations.createCredentialSet(organizationId, data).then(data => {
+classy.organizations.createCredentialSet(organizationId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /organizations/:id/designations
 ```javascript
-classy.organizations.createDesignation(organizationId, data).then(data => {
+classy.organizations.createDesignation(organizationId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /organizations/:id/notifications
 ```javascript
-classy.organizations.createNotification(organizationId, data).then(data => {
+classy.organizations.createNotification(organizationId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /organizations/:id/messages
 ```javascript
-classy.organizations.createMessage(organizationId, data).then(data => {
+classy.organizations.createMessage(organizationId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /organizations/:id/supporters
 ```javascript
-classy.organizations.createSupporter(organizationId, data).then(data => {
+classy.organizations.createSupporter(organizationId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1465,77 +1465,77 @@ classy.organizations.createSupporter(organizationId, data).then(data => {
 ### Custom
 #### PUT /organizations/:id/branding
 ```javascript
-classy.organizations.updateBranding(id).then(data => {
+classy.organizations.updateBranding(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### PUT /organizations/:id/engagement-settings
 ```javascript
-classy.organizations.updateEngagementSettings(id).then(data => {
+classy.organizations.updateEngagementSettings(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /organizations/:id/mailchimp-account
 ```javascript
-classy.organizations.retrieveMailchimpAccount(id).then(data => {
+classy.organizations.retrieveMailchimpAccount(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /organizations/:id/mailchimp-list
 ```javascript
-classy.organizations.retrieveMailchimpList(id).then(data => {
+classy.organizations.retrieveMailchimpList(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /organizations/:id/mailchimp-list/:mailchimpListId/mailchimp-category
 ```javascript
-classy.organizations.retrieveMailchimpListCategory(id, mailchimpListId).then(data => {
+classy.organizations.retrieveMailchimpListCategory(id, mailchimpListId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /organizations/:id/mailchimp-subscribe
 ```javascript
-classy.organizations.createMailchimpSubscribeAction(id).then(data => {
+classy.organizations.createMailchimpSubscribeAction(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /organizations/:id/mailchimp-list/:mailchimpListId/mailchimp-category/:mailchimpCategoryId/mailchimp-interest
 ```javascript
-classy.organizations.retrieveMailchimpListInterest(id, mailchimpListId, mailchimpCategoryId).then(data => {
+classy.organizations.retrieveMailchimpListInterest(id, mailchimpListId, mailchimpCategoryId, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /organizations/:id/plan-features
 ```javascript
-classy.organizations.retrievePlanFeatures(id).then(data => {
+classy.organizations.retrievePlanFeatures(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### GET /organizations/:id/security-settings
 ```javascript
-classy.organizations.retrieveSecuritySettings(id).then(data => {
+classy.organizations.retrieveSecuritySettings(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /organizations/:id/mailchimp-account
 ```javascript
-classy.organizations.createMailchimpAccount(id).then(data => {
+classy.organizations.createMailchimpAccount(id, options).then(data => {
   // do something with custom response
 })
 ```
 
 #### POST /organizations/:id/members
 ```javascript
-classy.organizations.createUnclaimedAccount(id).then(data => {
+classy.organizations.createUnclaimedAccount(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -1545,21 +1545,21 @@ classy.organizations.createUnclaimedAccount(id).then(data => {
 ### Basics
 #### GET /organization-credential-sets/:id
 ```javascript
-classy.organizationCredentialSets.retrieve(id).then(() => {
+classy.organizationCredentialSets.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /organization-credential-sets/:id
 ```javascript
-classy.organizationCredentialSets.update(id, data).then(() => {
+classy.organizationCredentialSets.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /organization-credential-sets/:id
 ```javascript
-classy.organizationCredentialSets.del(id).then(() => {
+classy.organizationCredentialSets.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -1569,21 +1569,21 @@ classy.organizationCredentialSets.del(id).then(() => {
 ### Basics
 #### GET /organization-notifications/:id
 ```javascript
-classy.organizationNotifications.retrieve(id).then(() => {
+classy.organizationNotifications.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /organization-notifications/:id
 ```javascript
-classy.organizationNotifications.update(id, data).then(() => {
+classy.organizationNotifications.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /organization-notifications/:id
 ```javascript
-classy.organizationNotifications.del(id).then(() => {
+classy.organizationNotifications.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -1596,7 +1596,7 @@ classy.organizationNotifications.del(id).then(() => {
 ### Custom
 #### GET /policy-check/campaign/:id/admin
 ```javascript
-classy.policyCheck.campaignAdmin(id).then(data => {
+classy.policyCheck.campaignAdmin(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -1606,21 +1606,21 @@ classy.policyCheck.campaignAdmin(id).then(data => {
 ### Basics
 #### GET /posts/:id
 ```javascript
-classy.posts.retrieve(id).then(() => {
+classy.posts.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /posts/:id
 ```javascript
-classy.posts.del(id).then(() => {
+classy.posts.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### PUT /posts/:id
 ```javascript
-classy.posts.update(id, data).then(() => {
+classy.posts.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1643,14 +1643,14 @@ classy.posts.listLikes(postId, options).then(data => {
 ### Creates
 #### POST /posts/:id/comments
 ```javascript
-classy.posts.createComment(postId, data).then(data => {
+classy.posts.createComment(postId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /posts/:id/likes
 ```javascript
-classy.posts.createLike(postId, data).then(data => {
+classy.posts.createLike(postId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1660,14 +1660,14 @@ classy.posts.createLike(postId, data).then(data => {
 ### Basics
 #### GET /promo-codes/:id
 ```javascript
-classy.promoCodes.retrieve(id).then(() => {
+classy.promoCodes.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /promo-codes/:id
 ```javascript
-classy.promoCodes.update(id, data).then(() => {
+classy.promoCodes.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1692,21 +1692,21 @@ classy.promoCodes.listPromoCodeConfigurations(promoCodeId, options).then(data =>
 ### Basics
 #### GET /promo-code-configurations/:id
 ```javascript
-classy.promoCodeConfigurations.retrieve(id).then(() => {
+classy.promoCodeConfigurations.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /promo-code-configurations/:id
 ```javascript
-classy.promoCodeConfigurations.del(id).then(() => {
+classy.promoCodeConfigurations.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### POST /promo-code-configurations/:id
 ```javascript
-classy.promoCodeConfigurations.create(id, data).then(() => {
+classy.promoCodeConfigurations.create(id, data, options).then(() => {
     // do something after create
 })
 ```
@@ -1716,21 +1716,21 @@ classy.promoCodeConfigurations.create(id, data).then(() => {
 ### Basics
 #### GET /updates/:id
 ```javascript
-classy.updates.retrieve(id).then(() => {
+classy.updates.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /updates/:id
 ```javascript
-classy.updates.del(id).then(() => {
+classy.updates.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### PUT /updates/:id
 ```javascript
-classy.updates.update(id, data).then(() => {
+classy.updates.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1753,14 +1753,14 @@ classy.updates.listLikes(updateId, options).then(data => {
 ### Creates
 #### POST /updates/:id/comments
 ```javascript
-classy.updates.createComment(updateId, data).then(data => {
+classy.updates.createComment(updateId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /updates/:id/likes
 ```javascript
-classy.updates.createLike(updateId, data).then(data => {
+classy.updates.createLike(updateId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1772,21 +1772,21 @@ classy.updates.createLike(updateId, data).then(data => {
 ### Basics
 #### GET /stories/:id
 ```javascript
-classy.stories.retrieve(id).then(() => {
+classy.stories.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### DELETE /stories/:id
 ```javascript
-classy.stories.del(id).then(() => {
+classy.stories.del(id, options).then(() => {
     // do something after del
 })
 ```
 
 #### PUT /stories/:id
 ```javascript
-classy.stories.update(id, data).then(() => {
+classy.stories.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1802,7 +1802,7 @@ classy.stories.listLikes(storyId, options).then(data => {
 ### Creates
 #### POST /stories/:id/likes
 ```javascript
-classy.stories.createLike(storyId, data).then(data => {
+classy.stories.createLike(storyId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1812,21 +1812,21 @@ classy.stories.createLike(storyId, data).then(data => {
 ### Basics
 #### GET /questions/:id
 ```javascript
-classy.questions.retrieve(id).then(() => {
+classy.questions.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /questions/:id
 ```javascript
-classy.questions.update(id, data).then(() => {
+classy.questions.update(id, data, options).then(() => {
     // do something after update
 })
 ```
 
 #### DELETE /questions/:id
 ```javascript
-classy.questions.del(id).then(() => {
+classy.questions.del(id, options).then(() => {
     // do something after del
 })
 ```
@@ -1844,14 +1844,14 @@ classy.questions.listAnswers(questionId, options).then(data => {
 ### Basics
 #### GET /recurring-donation-plans/:id
 ```javascript
-classy.recurringDonationPlans.retrieve(id).then(() => {
+classy.recurringDonationPlans.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /recurring-donation-plans/:id
 ```javascript
-classy.recurringDonationPlans.update(id, data).then(() => {
+classy.recurringDonationPlans.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1869,14 +1869,14 @@ classy.recurringDonationPlans.listTransactions(recurringDonationPlanId, options)
 ### Basics
 #### GET /registrations/:id
 ```javascript
-classy.registrations.retrieve(id).then(() => {
+classy.registrations.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /registrations/:id
 ```javascript
-classy.registrations.update(id, data).then(() => {
+classy.registrations.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1892,7 +1892,7 @@ classy.registrations.listAnswers(registrationId, options).then(data => {
 ### Creates
 #### POST /registrations/:id/answers
 ```javascript
-classy.registrations.createAnswer(registrationId, data).then(data => {
+classy.registrations.createAnswer(registrationId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1902,14 +1902,14 @@ classy.registrations.createAnswer(registrationId, data).then(data => {
 ### Basics
 #### GET /soft-credit-transfers/:id
 ```javascript
-classy.softCreditTransfers.retrieve(id).then(() => {
+classy.softCreditTransfers.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### POST /soft-credit-transfers/:id
 ```javascript
-classy.softCreditTransfers.create(id, data).then(() => {
+classy.softCreditTransfers.create(id, data, options).then(() => {
     // do something after create
 })
 ```
@@ -1919,14 +1919,14 @@ classy.softCreditTransfers.create(id, data).then(() => {
 ### Basics
 #### GET /supporters/:id
 ```javascript
-classy.supporters.retrieve(id).then(() => {
+classy.supporters.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /supporters/:id
 ```javascript
-classy.supporters.update(id, data).then(() => {
+classy.supporters.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1934,7 +1934,7 @@ classy.supporters.update(id, data).then(() => {
 ### Custom
 #### POST /supporters/:id/mailchimp-subscribe
 ```javascript
-classy.supporters.createMailchimpSubscribeAction(id).then(data => {
+classy.supporters.createMailchimpSubscribeAction(id, options).then(data => {
   // do something with custom response
 })
 ```
@@ -1944,14 +1944,14 @@ classy.supporters.createMailchimpSubscribeAction(id).then(data => {
 ### Basics
 #### GET /ticket-types/:id
 ```javascript
-classy.ticketTypes.retrieve(id).then(() => {
+classy.ticketTypes.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /ticket-types/:id
 ```javascript
-classy.ticketTypes.update(id, data).then(() => {
+classy.ticketTypes.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -1976,14 +1976,14 @@ classy.ticketTypes.listPromoCodeConfigurations(ticketTypeId, options).then(data 
 ### Basics
 #### GET /transactions/:id
 ```javascript
-classy.transactions.retrieve(id).then(() => {
+classy.transactions.retrieve(id, options).then(() => {
     // do something after retrieve
 })
 ```
 
 #### PUT /transactions/:id
 ```javascript
-classy.transactions.update(id, data).then(() => {
+classy.transactions.update(id, data, options).then(() => {
     // do something after update
 })
 ```
@@ -2020,21 +2020,21 @@ classy.transactions.listAnswers(transactionId, options).then(data => {
 ### Creates
 #### POST /transactions/:id/dedications
 ```javascript
-classy.transactions.createDedication(transactionId, data).then(data => {
+classy.transactions.createDedication(transactionId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /transactions/:id/acknowledgements
 ```javascript
-classy.transactions.createAcknowledgement(transactionId, data).then(data => {
+classy.transactions.createAcknowledgement(transactionId, options).then(data => {
   // do something with created entity
 })
 ```
 
 #### POST /transactions/:id/hard-credit-transfers
 ```javascript
-classy.transactions.createHardCreditTransfer(transactionId, data).then(data => {
+classy.transactions.createHardCreditTransfer(transactionId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -2044,7 +2044,7 @@ classy.transactions.createHardCreditTransfer(transactionId, data).then(data => {
 ### Basics
 #### PUT /transaction-items/:id
 ```javascript
-classy.transactionItems.update(id, data).then(() => {
+classy.transactionItems.update(id, data, options).then(() => {
     // do something after update
 })
 ```

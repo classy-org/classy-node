@@ -58,16 +58,13 @@ function addBasicMethodsOverride(resource, file) {
     fs.appendFileSync(file, '\n### Basics');
     methods.forEach(function(method) {
       const methodData = basicMethods[method];
-      const args = ['create', 'update', 'list'].includes(method)
-        ? 'id, data'
-        : 'id';
-
+      
       const methodPath = `${resourceName}.${method}`;
       methodPaths.push(methodPath);
 
       fs.appendFileSync(file, `\n#### ${methodData.method} /${resourcePathName}/:id\n`);
       fs.appendFileSync(file, createCodeBlock(`
-        classy.${methodPath}(${args}, options).then(() => {
+        classy.${methodPath}(id, options).then(() => {
             // do something after ${method}
         })  
       `));

@@ -13,8 +13,8 @@ const expect = chai.expect;
 const assert = chai.assert;
 
 describe('ClassyResource', () => {
-  let classy,
-    resource;
+  let classy;
+  let resource;
 
   beforeEach(() => {
     classy = new Classy({
@@ -54,6 +54,18 @@ describe('ClassyResource', () => {
   });
 
   describe('createMethod', () => {
+    let app;
+
+    beforeEach(() => {
+      app = nock('https://api.classy.org')
+        .persist()
+        .post('/oauth2/auth')
+        .reply(200, { expires_in: 10 });
+    });
+
+    afterEach(() => {
+      app.persist(false);
+    });
 
     it('should fail without required params', () => {
 
@@ -67,9 +79,6 @@ describe('ClassyResource', () => {
     });
 
     it('should hit correct URL when called', () => {
-      nock('https://api.classy.org')
-        .post('/oauth2/auth')
-        .reply(200, { expires_in: 10 })
 
       const method = resource.createMethod({
         method: 'GET',
@@ -87,9 +96,6 @@ describe('ClassyResource', () => {
     });
 
     it('should hit correct URL using custom basePath when called', () => {
-      nock('https://api.classy.org')
-        .post('/oauth2/auth')
-        .reply(200, { expires_in: 10 })
 
       const method = resource.createMethod({
         method: 'GET',
@@ -108,9 +114,6 @@ describe('ClassyResource', () => {
     });
 
     it('should hit correct URL when called without params', () => {
-      nock('https://api.classy.org')
-        .post('/oauth2/auth')
-        .reply(200, { expires_in: 10 })
 
       const method = resource.createMethod({
         method: 'GET',
@@ -128,9 +131,6 @@ describe('ClassyResource', () => {
     });
 
     it('should not include ?token=* in request params', () => {
-      nock('https://api.classy.org')
-        .post('/oauth2/auth')
-        .reply(200, { expires_in: 10 })
 
       const method = resource.createMethod({
         method: 'GET',
@@ -151,15 +151,18 @@ describe('ClassyResource', () => {
     });
 
     it('should handle non-200 responses as errors', () => {
-      nock('https://api.classy.org')
+      const app = nock('https://api.classy.org')
+        .persist()
         .post('/oauth2/auth')
-        .reply(200, { expires_in: 10 })
+        .reply(200, { expires_in: 10 });
 
       const method = resource.createMethod({
         method: 'GET',
         path: '/test'
       });
+
       const result = { prop: true };
+
       const scope = nock('https://api.classy.org')
         .get('/2.0/test/test')
         .reply(404);
@@ -183,7 +186,7 @@ describe('ClassyResource', () => {
 
       return method({ token: 'app' })
         .catch((error) => {
-          expect(error.message).to.equal('[object Object]');
+          expect(error.message).to.equal('{"test":"oh no!"}');
         });
 
     });

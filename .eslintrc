@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": [2, "always"],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "import/no-useless-path-segments": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-unexpected-multiline": 2,
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-unused-vars": ["error", { "args": "none", "varsIgnorePattern": "[iI]gnored" }]
+  }
+}

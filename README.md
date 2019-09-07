@@ -6,7 +6,7 @@ Request access and learn more by visiting [developers.classy.org](https://develo
 
 ## Docs
 
-[View Full Documentation with Available Methods](https://classy-org.github.io/classy-node/#/resources)
+[View Full Documentation with Available Methods](https://classy-org.github.io/classy-node)
 
 ## Installation
 

@@ -4,6 +4,10 @@ Built for the creativity and flexibility of the world's most innovative minds, c
 
 Request access and learn more by visiting [developers.classy.org](https://developers.classy.org/overview/welcome).
 
+## Docs
+
+[View Full Documentation with Available Methods](https://classy-org.github.io/classy-node/#/resources)
+
 ## Installation
 
 `npm install classy-node`

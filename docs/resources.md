@@ -31,7 +31,7 @@ classy.appealSet.retrieve(id, options).then(() => {
 
 #### PUT /appeal-set/:id
 ```javascript
-classy.appealSet.update(id, data, options).then(() => {
+classy.appealSet.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -48,7 +48,7 @@ classy.assets.retrieve(id, options).then(() => {
 
 #### PUT /assets/:id
 ```javascript
-classy.assets.update(id, data, options).then(() => {
+classy.assets.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -81,7 +81,7 @@ classy.assets.url(, options).then(data => {
 ### Basics
 #### POST /blocks/:id
 ```javascript
-classy.blocks.create(id, data, options).then(() => {
+classy.blocks.create(id, options).then(() => {
     // do something after create
 })
 ```
@@ -95,7 +95,7 @@ classy.blocks.retrieve(id, options).then(() => {
 
 #### PUT /blocks/:id
 ```javascript
-classy.blocks.update(id, data, options).then(() => {
+classy.blocks.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -112,7 +112,7 @@ classy.campaignCredentialSets.retrieve(id, options).then(() => {
 
 #### PUT /campaign-credential-sets/:id
 ```javascript
-classy.campaignCredentialSets.update(id, data, options).then(() => {
+classy.campaignCredentialSets.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -136,7 +136,7 @@ classy.campaigns.retrieve(id, options).then(() => {
 
 #### PUT /campaigns/:id
 ```javascript
-classy.campaigns.update(id, data, options).then(() => {
+classy.campaigns.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -542,7 +542,7 @@ classy.comments.del(id, options).then(() => {
 
 #### PUT /comments/:id
 ```javascript
-classy.comments.update(id, data, options).then(() => {
+classy.comments.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -575,7 +575,7 @@ classy.dedications.retrieve(id, options).then(() => {
 
 #### PUT /dedications/:id
 ```javascript
-classy.dedications.update(id, data, options).then(() => {
+classy.dedications.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -592,7 +592,7 @@ classy.designations.retrieve(id, options).then(() => {
 
 #### PUT /designations/:id
 ```javascript
-classy.designations.update(id, data, options).then(() => {
+classy.designations.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -615,7 +615,7 @@ classy.donationMatchingPlans.retrieve(id, options).then(() => {
 
 #### PUT /donation-matching-plans/:id
 ```javascript
-classy.donationMatchingPlans.update(id, data, options).then(() => {
+classy.donationMatchingPlans.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -632,7 +632,7 @@ classy.ecards.retrieve(id, options).then(() => {
 
 #### PUT /ecards/:id
 ```javascript
-classy.ecards.update(id, data, options).then(() => {
+classy.ecards.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -680,7 +680,7 @@ classy.faqs.del(id, options).then(() => {
 
 #### PUT /faqs/:id
 ```javascript
-classy.faqs.update(id, data, options).then(() => {
+classy.faqs.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -697,7 +697,7 @@ classy.feedItems.retrieve(id, options).then(() => {
 
 #### PUT /feed-items/:id
 ```javascript
-classy.feedItems.update(id, data, options).then(() => {
+classy.feedItems.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -751,7 +751,7 @@ classy.fundraisingPages.retrieve(id, options).then(() => {
 
 #### PUT /fundraising-pages/:id
 ```javascript
-classy.fundraisingPages.update(id, data, options).then(() => {
+classy.fundraisingPages.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -876,7 +876,7 @@ classy.fundraisingTeamPolicies.retrieve(id, options).then(() => {
 
 #### PUT /fundraising-team-policies/:id
 ```javascript
-classy.fundraisingTeamPolicies.update(id, data, options).then(() => {
+classy.fundraisingTeamPolicies.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -900,7 +900,7 @@ classy.fundraisingTeams.del(id, options).then(() => {
 
 #### PUT /fundraising-teams/:id
 ```javascript
-classy.fundraisingTeams.update(id, data, options).then(() => {
+classy.fundraisingTeams.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1049,7 +1049,7 @@ classy.likes.del(id, options).then(() => {
 ### Basics
 #### PUT /mailchimp-accounts/:id
 ```javascript
-classy.mailchimpAccounts.update(id, data, options).then(() => {
+classy.mailchimpAccounts.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1183,7 +1183,7 @@ classy.messages.retrieve(id, options).then(() => {
 
 #### PUT /messages/:id
 ```javascript
-classy.messages.update(id, data, options).then(() => {
+classy.messages.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1322,7 +1322,7 @@ classy.organizations.retrieve(id, options).then(() => {
 
 #### POST /organizations/:id
 ```javascript
-classy.organizations.create(id, data, options).then(() => {
+classy.organizations.create(id, options).then(() => {
     // do something after create
 })
 ```
@@ -1552,7 +1552,7 @@ classy.organizationCredentialSets.retrieve(id, options).then(() => {
 
 #### PUT /organization-credential-sets/:id
 ```javascript
-classy.organizationCredentialSets.update(id, data, options).then(() => {
+classy.organizationCredentialSets.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1576,7 +1576,7 @@ classy.organizationNotifications.retrieve(id, options).then(() => {
 
 #### PUT /organization-notifications/:id
 ```javascript
-classy.organizationNotifications.update(id, data, options).then(() => {
+classy.organizationNotifications.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1620,7 +1620,7 @@ classy.posts.del(id, options).then(() => {
 
 #### PUT /posts/:id
 ```javascript
-classy.posts.update(id, data, options).then(() => {
+classy.posts.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1667,7 +1667,7 @@ classy.promoCodes.retrieve(id, options).then(() => {
 
 #### PUT /promo-codes/:id
 ```javascript
-classy.promoCodes.update(id, data, options).then(() => {
+classy.promoCodes.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1706,7 +1706,7 @@ classy.promoCodeConfigurations.del(id, options).then(() => {
 
 #### POST /promo-code-configurations/:id
 ```javascript
-classy.promoCodeConfigurations.create(id, data, options).then(() => {
+classy.promoCodeConfigurations.create(id, options).then(() => {
     // do something after create
 })
 ```
@@ -1730,7 +1730,7 @@ classy.updates.del(id, options).then(() => {
 
 #### PUT /updates/:id
 ```javascript
-classy.updates.update(id, data, options).then(() => {
+classy.updates.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1786,7 +1786,7 @@ classy.stories.del(id, options).then(() => {
 
 #### PUT /stories/:id
 ```javascript
-classy.stories.update(id, data, options).then(() => {
+classy.stories.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1819,7 +1819,7 @@ classy.questions.retrieve(id, options).then(() => {
 
 #### PUT /questions/:id
 ```javascript
-classy.questions.update(id, data, options).then(() => {
+classy.questions.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1851,7 +1851,7 @@ classy.recurringDonationPlans.retrieve(id, options).then(() => {
 
 #### PUT /recurring-donation-plans/:id
 ```javascript
-classy.recurringDonationPlans.update(id, data, options).then(() => {
+classy.recurringDonationPlans.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1876,7 +1876,7 @@ classy.registrations.retrieve(id, options).then(() => {
 
 #### PUT /registrations/:id
 ```javascript
-classy.registrations.update(id, data, options).then(() => {
+classy.registrations.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1909,7 +1909,7 @@ classy.softCreditTransfers.retrieve(id, options).then(() => {
 
 #### POST /soft-credit-transfers/:id
 ```javascript
-classy.softCreditTransfers.create(id, data, options).then(() => {
+classy.softCreditTransfers.create(id, options).then(() => {
     // do something after create
 })
 ```
@@ -1926,7 +1926,7 @@ classy.supporters.retrieve(id, options).then(() => {
 
 #### PUT /supporters/:id
 ```javascript
-classy.supporters.update(id, data, options).then(() => {
+classy.supporters.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1951,7 +1951,7 @@ classy.ticketTypes.retrieve(id, options).then(() => {
 
 #### PUT /ticket-types/:id
 ```javascript
-classy.ticketTypes.update(id, data, options).then(() => {
+classy.ticketTypes.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -1983,7 +1983,7 @@ classy.transactions.retrieve(id, options).then(() => {
 
 #### PUT /transactions/:id
 ```javascript
-classy.transactions.update(id, data, options).then(() => {
+classy.transactions.update(id, options).then(() => {
     // do something after update
 })
 ```
@@ -2044,7 +2044,7 @@ classy.transactions.createHardCreditTransfer(transactionId, options).then(data =
 ### Basics
 #### PUT /transaction-items/:id
 ```javascript
-classy.transactionItems.update(id, data, options).then(() => {
+classy.transactionItems.update(id, options).then(() => {
     // do something after update
 })
 ```

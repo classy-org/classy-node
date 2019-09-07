@@ -1,2 +1,2 @@
-* [Home](../README.md)
+* [Home]()
 * [Resources](resources.md)

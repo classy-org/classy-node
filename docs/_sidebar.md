@@ -1,2 +1,2 @@
-* [Home]()
+* [Home](/)
 * [Resources](resources.md)

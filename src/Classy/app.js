@@ -1,4 +1,7 @@
 import _ from 'lodash';
+/**
+ * eslint-ignore
+ */
 
 /**
  * Kick things off by getting an app token, setting it to this.appToken,
@@ -6,15 +9,15 @@ import _ from 'lodash';
  */
 export default function app() {
   const _this = this;
-
-  return new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     this.timeoutId = undefined;
 
     const timeout = () => {
+      // eslint-disable-next-line no-use-before-define
       _this.timeoutId = setTimeout(tokenTicker, _.get(_this, 'appToken.expires_in', 0) * 900);
     };
 
-    function tokenTicker() {
+    const tokenTicker = () => {
       this.getAppToken().then((response) => {
         clearTimeout(_this.timeoutId);
 
@@ -31,4 +34,7 @@ export default function app() {
 
     timeout();
   });
+
+  return promise;
 }
+

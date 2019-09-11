@@ -48,6 +48,7 @@
             "feed-items",
             "fundraising-pages",
             "fundraising-teams",
+            "groups",
             "messages",
             "message-stats",
             "posts",
@@ -60,7 +61,8 @@
             "soft-credits",
             "ticket-types",
             "transactions",
-            "designations"
+            "designations",
+            "unassigned-designations"
         ],
         "creates": [
             "credential-sets",
@@ -70,6 +72,7 @@
             "feed-items",
             "fundraising-teams",
             "fundraising-pages",
+            "groups",
             "messages",
             "posts",
             "promo-codes",
@@ -257,6 +260,10 @@
             }
         },
         "path": "/fundraising-teams"
+    },
+    "Groups": {
+        "basic": ["update", "del"],
+        "path": "/groups"
     },
     "Likes": {
         "basic": [ "del" ],

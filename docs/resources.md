@@ -205,6 +205,13 @@ classy.campaigns.listFundraisingTeams(campaignId, options).then(data => {
 })
 ```
 
+#### GET /campaigns/:id/groups
+```javascript
+classy.campaigns.listGroups(campaignId, options).then(data => {
+  // do something with list
+})
+```
+
 #### GET /campaigns/:id/messages
 ```javascript
 classy.campaigns.listMessages(campaignId, options).then(data => {
@@ -296,6 +303,13 @@ classy.campaigns.listDesignations(campaignId, options).then(data => {
 })
 ```
 
+#### GET /campaigns/:id/unassigned-designations
+```javascript
+classy.campaigns.listUnassignedDesignations(campaignId, options).then(data => {
+  // do something with list
+})
+```
+
 ### Retrieves
 #### GET /campaigns/:id/designations
 ```javascript
@@ -350,6 +364,13 @@ classy.campaigns.createFundraisingTeam(campaignId, options).then(data => {
 #### POST /campaigns/:id/fundraising-pages
 ```javascript
 classy.campaigns.createFundraisingPage(campaignId, options).then(data => {
+  // do something with created entity
+})
+```
+
+#### POST /campaigns/:id/groups
+```javascript
+classy.campaigns.createGroup(campaignId, options).then(data => {
   // do something with created entity
 })
 ```
@@ -1031,6 +1052,23 @@ classy.fundraisingTeams.retrieveOverview(id, options).then(data => {
 ```javascript
 classy.fundraisingTeams.listAllFeedItems(id, options).then(data => {
   // do something with custom response
+})
+```
+
+## Groups
+
+### Basics
+#### PUT /groups/:id
+```javascript
+classy.groups.update(id, options).then(() => {
+    // do something after update
+})
+```
+
+#### DELETE /groups/:id
+```javascript
+classy.groups.del(id, options).then(() => {
+    // do something after del
 })
 ```
 

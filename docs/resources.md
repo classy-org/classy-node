@@ -1072,6 +1072,14 @@ classy.groups.del(id, options).then(() => {
 })
 ```
 
+### Lists
+#### GET /groups/:id/designations
+```javascript
+classy.groups.listDesignations(groupId, options).then(data => {
+  // do something with list
+})
+```
+
 ## Likes
 
 ### Basics

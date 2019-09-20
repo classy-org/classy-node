@@ -263,6 +263,7 @@
     },
     "Groups": {
         "basic": ["update", "del"],
+        "lists": ["designations"],
         "path": "/groups"
     },
     "Likes": {

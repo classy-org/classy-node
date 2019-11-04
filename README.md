@@ -61,6 +61,22 @@ Each resource can contain several basic methods (retrieve, update, delete). Each
 - run `cp .env.example .env` and fill in the necessary env vars
 - in the console, run: `babel-node example/filename.js`
 
+## Using Bugsnag
+
+We've added the ability to pass an instantiated bugsnag instance in when instantiating Classy Node so that more specific information surrounding errors can be populated into the passed in bugsnag's dashboard.
+
+```
+var Classy = require('classy-node');
+
+var bugsnag = Bugsnag({ . . . });
+
+var classy = new Classy({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  bugsnag: bugsnag
+});
+```
+
 ## Contributing
 
 When submitting a pull request, please make sure you've written [good commit messages](http://chris.beams.io/posts/git-commit/) that include references to issues and clearly describe what the commit achieves. Use the commit body to explain what you did and why you did it. Thanks!

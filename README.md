@@ -65,6 +65,8 @@ Each resource can contain several basic methods (retrieve, update, delete). Each
 
 We've added the ability to specify an errorLogger when instantiating Classy Node so that more specific information surrounding errors can be passed back to the clients and used.
 
+This is different from requestDebug in that it will expose data related to errors on requests as well as from Classy Node in addition to other various information (where the error occured, params passed in to the failing method, etc.).
+
 ```
 let bugsnag = null;
 let errorLogger = (error, other) => {

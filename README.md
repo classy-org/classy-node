@@ -63,7 +63,7 @@ Each resource can contain several basic methods (retrieve, update, delete). Each
 
 ## Using errorLogger (w/bugsnag)
 
-We've added the ability to pass an instantiated bugsnag instance in when instantiating Classy Node so that more specific information surrounding errors can be populated into the passed in bugsnag's dashboard.
+We've added the ability to specify an errorLogger when instantiating Classy Node so that more specific information surrounding errors can be passed back to the clients and used.
 
 ```
 let bugsnag = null;

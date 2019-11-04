@@ -69,18 +69,16 @@ export default function _makeRequest(path, method, headers, form, data) {
           }
 
           /**
-           * Bugsnag the error if bugsnag is defined
+           * Pass the error to _errorLogger if defined
            */
-          if (this._bugsnag && this._bugsnag.notify) {
-            this._bugsnag.notify(error, {
-              metaData: {
-                location: '_makeRequest.js',
-                action: '_makeRequest - request()',
-                originalError: err,
-                response: response,
-                body: body,
-                requestParams: requestParams
-              }
+          if (this._errorLogger) {
+            this._errorLogger(error, {
+              location: '_makeRequest.js',
+              action: '_makeRequest - request()',
+              originalError: err,
+              response: response,
+              body: body,
+              requestParams: requestParams
             });
           }
 
@@ -99,21 +97,19 @@ export default function _makeRequest(path, method, headers, form, data) {
     return promise;
   } catch (e) {
     /**
-     * Bugsnag the error if bugsnag is defined
+     * Pass the error to _errorLogger if defined
      */
-    if (this._bugsnag && this._bugsnag.notify) {
-      this._bugsnag.notify(e, {
-        metaData: {
-          location: '_makeRequest.js',
-          action: '_makeRequest()',
-          response: response,
-          params: {
-            path: path,
-            method: method,
-            headers: headers,
-            form: form,
-            data: data
-          }
+    if (this._errorLogger) {
+      this._errorLogger(e, {
+        location: '_makeRequest.js',
+        action: '_makeRequest()',
+        response: response,
+        params: {
+          path: path,
+          method: method,
+          headers: headers,
+          form: form,
+          data: data
         }
       });
     }

@@ -13,14 +13,12 @@ export default function _refreshAppToken() {
           resolve(response);
         }, (error) => {
           /**
-           * If bugsnag is defined then report the error
+           * Pass the error to _errorLogger if defined
            */
-          if (this._bugsnag && this._bugsnag.notify) {
-            this._bugsnag.notify(error, {
-              metaData: {
-                location: '_refreshAppToken.js',
-                action: '_refreshAppToken() - getAppToken()'
-              }
+          if (this._errorLogger) {
+            this._errorLogger(error, {
+              location: '_refreshAppToken.js',
+              action: '_refreshAppToken() - getAppToken()'
             });
           }
 
@@ -34,14 +32,12 @@ export default function _refreshAppToken() {
     return promise;
   } catch (e) {
    /**
-     * Bugsnag the error if bugsnag is defined
+     * Pass the error to _errorLogger if defined
      */
-    if (this._bugsnag && this._bugsnag.notify) {
-      this._bugsnag.notify(e, {
-        metaData: {
-          location: '_refreshAppToken.js',
-          action: '_refreshAppToken()'
-        }
+    if (this._errorLogger) {
+      this._errorLogger(e, {
+        location: '_refreshAppToken.js',
+        action: '_refreshAppToken()'
       });
     }
 

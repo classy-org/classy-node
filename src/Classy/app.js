@@ -29,12 +29,10 @@ export default function app() {
         clearTimeout(_this.timeoutId);
         console.error('App token failure');
 
-        if (_this.bugsnag && _this.bugsnag.notify) {
-          _this.bugsnag.notify(error, {
-            metaData: {
-              location: 'app.js',
-              action: 'tokenTicker - getAppToken()'
-            }
+        if (_this.errorLogger) {
+          _this.errorLogger(error, {
+            location: 'app.js',
+            action: 'tokenTicker - getAppToken()'
           });
         }
 

@@ -7,11 +7,16 @@ import { default as Bugsnag } from '@bugsnag/js';
 dotenv.config();
 
 let bugsnag = null;
+let errorLogger = (error, other) => {
+  console.log('An error occured', error, other);
+};
 
 if (process.env.BUGSNAG_API_KEY) {
   bugsnag = Bugsnag({
     apiKey: process.env.BUGSNAG_API_KEY
   });
+
+  errorLogger = (error, other) => bugsnag.notify(error, { metaData: other });
 }
 
 const classy = new Classy({
@@ -19,7 +24,7 @@ const classy = new Classy({
   clientSecret: process.env.CLIENT_SECRET,
   baseUrl: 'https://stagingapi.stayclassy.org',
   requestDebug: true,
-  bugsnag: bugsnag
+  errorLogger: errorLogger
 });
 
 const app = classy.app();

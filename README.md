@@ -61,19 +61,30 @@ Each resource can contain several basic methods (retrieve, update, delete). Each
 - run `cp .env.example .env` and fill in the necessary env vars
 - in the console, run: `babel-node example/filename.js`
 
-## Using Bugsnag
+## Using errorLogger (w/bugsnag)
 
 We've added the ability to pass an instantiated bugsnag instance in when instantiating Classy Node so that more specific information surrounding errors can be populated into the passed in bugsnag's dashboard.
 
 ```
-var Classy = require('classy-node');
+let bugsnag = null;
+let errorLogger = (error, other) => {
+  console.log('An error occured', error, other);
+};
 
-var bugsnag = Bugsnag({ . . . });
+if (process.env.BUGSNAG_API_KEY) {
+  bugsnag = Bugsnag({
+    apiKey: process.env.BUGSNAG_API_KEY
+  });
 
-var classy = new Classy({
+  errorLogger = (error, other) => bugsnag.notify(error, { metaData: other });
+}
+
+const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  bugsnag: bugsnag
+  baseUrl: 'https://stagingapi.stayclassy.org',
+  requestDebug: true,
+  errorLogger: errorLogger
 });
 ```
 

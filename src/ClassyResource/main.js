@@ -24,9 +24,9 @@ export default class ClassyResource {
       });
     }
 
-    /** Bugsnag */
-    if (this._classy.bugsnag) {
-      this._bugsnag = this._classy.bugsnag;
+    /** Set up Error Logger (if defined) */
+    if (this._classy.errorLogger) {
+      this._errorLogger = this._classy.errorLogger;
     }
 
     /** Add basic methods */

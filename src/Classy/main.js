@@ -58,10 +58,13 @@ class Classy {
     );
 
     /**
-     * Utilize bugsnag if passed in as a param
+     * Add the ability to define an error logger.
+     *
+     * This differs from requestDebug in that it will log all errors that
+     * occur within classy-node (related to the request or not).
      */
-    if (config.bugsnag) {
-      this.bugsnag = config.bugsnag;
+    if (config.errorLogger) {
+      this.errorLogger = config.errorLogger;
     }
 
     this._prepResources();

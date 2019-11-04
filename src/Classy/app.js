@@ -28,6 +28,16 @@ export default function app() {
       }, (error) => {
         clearTimeout(_this.timeoutId);
         console.error('App token failure');
+
+        if (_this.bugsnag && _this.bugsnag.notify) {
+          _this.bugsnag.notify(error, {
+            metaData: {
+              location: 'app.js',
+              action: 'tokenTicker - getAppToken()'
+            }
+          });
+        }
+
         reject(error);
       });
     };

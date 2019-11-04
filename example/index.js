@@ -2,15 +2,24 @@
 
 import Classy from '../src/Classy/main';
 import dotenv from 'dotenv';
-import colors from 'colors';
+import { default as Bugsnag } from '@bugsnag/js';
 
 dotenv.config();
+
+let bugsnag = null;
+
+if (process.env.BUGSNAG_API_KEY) {
+  bugsnag = Bugsnag({
+    apiKey: process.env.BUGSNAG_API_KEY
+  });
+}
 
 const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  baseUrl: 'https://gateway.classy.loc',
-  requestDebug: true
+  baseUrl: 'https://stagingapi.stayclassy.org',
+  requestDebug: true,
+  bugsnag: bugsnag
 });
 
 const app = classy.app();

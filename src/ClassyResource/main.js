@@ -24,6 +24,11 @@ export default class ClassyResource {
       });
     }
 
+    /** Bugsnag */
+    if (this._classy.bugsnag) {
+      this._bugsnag = this._classy.bugsnag;
+    }
+
     /** Add basic methods */
     if (urlData.basic) {
       this._addBasicMethods(urlData.basic);

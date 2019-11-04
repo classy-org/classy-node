@@ -57,9 +57,15 @@ class Classy {
       DEFAULT_STRICT_SSL
     );
 
+    /**
+     * Utilize bugsnag if passed in as a param
+     */
+    if (config.bugsnag) {
+      this.bugsnag = config.bugsnag;
+    }
+
     this._prepResources();
   }
-
 };
 
 import _prepResources from './_prepResources';

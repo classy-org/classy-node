@@ -84,7 +84,7 @@ if (process.env.BUGSNAG_API_KEY) {
 const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  baseUrl: 'https://stagingapi.stayclassy.org',
+  baseUrl:  process.env.BASE_URL,
   requestDebug: true,
   errorLogger: errorLogger
 });

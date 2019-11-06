@@ -42,21 +42,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
   if (method === 'GET') {
     requestParams.qs = data;
   } else {
-    try {
-      requestParams.body = JSON.stringify(data);
-    } catch (e) {
-      /**
-       * Pass the error to _errorLogger if defined
-       */
-      if (this._errorLogger) {
-        this._errorLogger(e, {
-          data,
-          requestParams
-        });
-
-        throw e;
-      }
-    }
+    requestParams.body = JSON.stringify(data);
   }
 
   if (forceQs) {

@@ -172,7 +172,6 @@ describe('Classy', () => {
   });
 
   describe('setApptoken', () => {
-
     it('should set app token when asked', () => {
       const classy = new Classy({
         clientId: 'client_id_str',
@@ -187,7 +186,6 @@ describe('Classy', () => {
       classy.setAppToken(token);
 
       expect(classy.appToken).to.equal(token);
-
     });
 
     it('should expire app token after a bit', () => {
@@ -210,5 +208,4 @@ describe('Classy', () => {
       clock.uninstall();
     });
   });
-
 });

@@ -104,7 +104,7 @@ export default function _makeRequest(path, method, headers, form, data) {
         location: '_makeRequest.js',
         action: '_makeRequest()',
         response: response,
-        params: {
+        requestParams: {
           path: path,
           method: method,
           headers: headers,

@@ -53,6 +53,8 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
           data,
           requestParams
         });
+
+        throw e;
       }
     }
   }

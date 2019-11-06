@@ -5,8 +5,6 @@ import sinonChai from 'sinon-chai';
 
 import Classy from '../src/Classy/main';
 import ClassyResource from '../src/ClassyResource/main';
-import resources from '../src/resources';
-import _ from 'lodash';
 
 chai.use(sinonChai);
 const expect = chai.expect;

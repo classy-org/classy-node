@@ -4,7 +4,7 @@
   "description": "Classy API wrapper",
   "scripts": {
     "lint": "eslint ./src",
-    "test": "mocha --require @babel/register",
+    "test": "mocha --require @babel/register --exit",
     "coverage": "nyc --require @babel/register --reporter=lcov --reporter=text-summary mocha",
     "snyk-test": "./node_modules/.bin/snyk test",
     "snyk-unpublished": "./node_modules/.bin/snyk test-unpublished",

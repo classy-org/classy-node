@@ -87,7 +87,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
                * We omit the body from the returned response
                * since it's JSONified.
                *
-               * In-order to make it easier for clients to filter out confidential
+               * In-order to make it easier for clients to filter out sensitive
                * data we include the body as a non-JSONified object.
                */
               response: Object.assign(
@@ -127,7 +127,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
              * We omit the body from the returned response
              * since it's JSONified.
              *
-             * In-order to make it easier for clients to filter out confidential
+             * In-order to make it easier for clients to filter out sensitive
              * data we include the body as a non-JSONified object.
              */
             response: Object.assign(

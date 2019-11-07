@@ -61,6 +61,35 @@ Each resource can contain several basic methods (retrieve, update, delete). Each
 - run `cp .env.example .env` and fill in the necessary env vars
 - in the console, run: `babel-node example/filename.js`
 
+## Using errorLogger (w/bugsnag)
+
+We've added the ability to specify an errorLogger when instantiating Classy Node so that more specific information surrounding errors can be passed back to the clients and used.
+
+This is different from requestDebug in that it will expose data related to errors on requests as well as from Classy Node in addition to other various information (where the error occured, params passed in to the failing method, etc.).
+
+```
+let bugsnag = null;
+let errorLogger = (error, other) => {
+  console.log('An error occured', error, other);
+};
+
+if (process.env.BUGSNAG_API_KEY) {
+  bugsnag = Bugsnag({
+    apiKey: process.env.BUGSNAG_API_KEY
+  });
+
+  errorLogger = (error, other) => bugsnag.notify(error, { metaData: other });
+}
+
+const classy = new Classy({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  baseUrl: process.env.BASE_URL,
+  requestDebug: true,
+  errorLogger: errorLogger
+});
+```
+
 ## Contributing
 
 When submitting a pull request, please make sure you've written [good commit messages](http://chris.beams.io/posts/git-commit/) that include references to issues and clearly describe what the commit achieves. Use the commit body to explain what you did and why you did it. Thanks!

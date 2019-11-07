@@ -57,9 +57,18 @@ class Classy {
       DEFAULT_STRICT_SSL
     );
 
+    /**
+     * Add the ability to define an error logger.
+     *
+     * This differs from requestDebug in that it will log all errors that
+     * occur within classy-node (related to the request or not).
+     */
+    if (config.errorLogger) {
+      this.errorLogger = config.errorLogger;
+    }
+
     this._prepResources();
   }
-
 };
 
 import _prepResources from './_prepResources';

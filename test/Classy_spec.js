@@ -55,6 +55,7 @@ describe('Classy', () => {
   it('should create instance and override defaults', () => {
     resources.Campaigns.basePath = 'newapi';
     resources.Messages.basePath  = 'anotherservice';
+
     const classy = new Classy({
       clientId: 'client_id_str',
       clientSecret: 'client_secret_str',
@@ -110,17 +111,18 @@ describe('Classy', () => {
 
   it('should default requestDebugAction to console.log', () => {
     let stub = sinon.stub(console, 'log');
+
     const classy = new Classy({
       clientId: 'client_id_str',
       clientSecret: 'client_secret_str'
     });
+
     classy.requestDebugAction(null, 'data');
     expect(stub).to.have.been.calledWith('data');
     console.log.restore();
   });
 
   describe('app', () => {
-
     it('should kick off the app token cycle', function() {
       return this.skip();
 
@@ -135,7 +137,8 @@ describe('Classy', () => {
         access_token: 'c66aa4fb5bf14cfa8b4bf9eef0b825d5',
         expires_in: 1
       };
-      const scope = nock('https://api.classy.org', {
+
+      nock('https://api.classy.org', {
         reqheaders: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -147,15 +150,15 @@ describe('Classy', () => {
     });
 
     it('should error in the app token cycle', function() {
-      return this.skip();
-      
       const classy = new Classy({
         clientId: 'client_id_str',
         clientSecret: 'client_secret_str',
         requestDebug: false
       });
+
       const result = {};
-      const scope = nock('https://api.classy.org', {
+
+      nock('https://api.classy.org', {
         reqheaders: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -169,20 +172,20 @@ describe('Classy', () => {
   });
 
   describe('setApptoken', () => {
-
     it('should set app token when asked', () => {
       const classy = new Classy({
         clientId: 'client_id_str',
         clientSecret: 'client_secret_str',
         requestDebug: false
       });
+
       const token = {
         expires_in: 10
       };
+
       classy.setAppToken(token);
 
       expect(classy.appToken).to.equal(token);
-
     });
 
     it('should expire app token after a bit', () => {
@@ -192,9 +195,11 @@ describe('Classy', () => {
         clientSecret: 'client_secret_str',
         requestDebug: false
       });
+
       const token = {
         expires_in: 10
       };
+
       classy.setAppToken(token);
       clock.tick(10001);
 
@@ -203,5 +208,4 @@ describe('Classy', () => {
       clock.uninstall();
     });
   });
-
 });

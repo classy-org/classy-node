@@ -5,8 +5,6 @@ import sinonChai from 'sinon-chai';
 
 import Classy from '../src/Classy/main';
 import ClassyResource from '../src/ClassyResource/main';
-import resources from '../src/resources';
-import _ from 'lodash';
 
 chai.use(sinonChai);
 const expect = chai.expect;
@@ -16,12 +14,19 @@ describe('ClassyResource', () => {
   let classy;
   let resource;
 
+  let errorLoggerStub = sinon.stub();
+  let onRequestDebugStub = sinon.stub();
+
   beforeEach(() => {
+    errorLoggerStub.reset();
+    onRequestDebugStub.reset();
+
     classy = new Classy({
       clientId: 'client_id_str',
       clientSecret: 'client_secret_str',
       requestDebug: true,
-      onRequestDebug: sinon.stub()
+      onRequestDebug: onRequestDebugStub,
+      errorLogger: errorLoggerStub
     });
 
     resource = new ClassyResource(classy, {
@@ -30,16 +35,18 @@ describe('ClassyResource', () => {
   });
 
   it('should hit auth URLs', () => {
-
     const authResource = new ClassyResource(classy, {
       path: '/oauth2'
     });
+
     const method = authResource.createMethod({
       method: 'POST',
       path: '/auth'
     });
+
     const result = { prop: true };
-    const scope = nock('https://api.classy.org', {
+
+    nock('https://api.classy.org', {
       reqheaders: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -50,7 +57,6 @@ describe('ClassyResource', () => {
     }).then((response) => {
       expect(response.prop).to.be.true;
     });
-
   });
 
   describe('createMethod', () => {
@@ -68,7 +74,6 @@ describe('ClassyResource', () => {
     });
 
     it('should fail without required params', () => {
-
       const method = resource.createMethod({
         path: '/{id}/test'
       });
@@ -79,65 +84,69 @@ describe('ClassyResource', () => {
     });
 
     it('should hit correct URL when called', () => {
-
       const method = resource.createMethod({
         method: 'GET',
         path: '/{id}/test'
       });
+
       const result = { prop: true };
-      const scope = nock('https://api.classy.org')
+
+      nock('https://api.classy.org')
         .get('/2.0/test/1/test')
         .reply(200, result);
 
       return method('1', { token: 'app' }).then((response) => {
         expect(response.prop).to.be.true;
+        expect(errorLoggerStub).to.not.have.been.called;
       });
-
     });
 
     it('should hit correct URL using custom basePath when called', () => {
-
       const method = resource.createMethod({
         method: 'GET',
         path: '/{id}/test',
         basePath: '3.0'
       });
+
       const result = { prop: true };
-      const scope = nock('https://api.classy.org')
+
+      nock('https://api.classy.org')
         .get('/3.0/test/1/test')
         .reply(200, result);
 
       return method('1', { token: 'app' }).then((response) => {
         expect(response.prop).to.be.true;
+        expect(errorLoggerStub).to.not.have.been.called;
       });
-
     });
 
     it('should hit correct URL when called without params', () => {
-
       const method = resource.createMethod({
         method: 'GET',
         path: '/subtest'
       });
+
       const result = { prop: true };
-      const scope = nock('https://api.classy.org')
+
+      nock('https://api.classy.org')
         .get('/2.0/test/subtest')
         .reply(200, result);
 
       return method({ token: 'app' }).then((response) => {
         expect(response.prop).to.be.true;
+        expect(errorLoggerStub).to.not.have.been.called;
       });
-
     });
 
     it('should not include ?token=* in request params', () => {
-
       const method = resource.createMethod({
         method: 'GET',
         path: '/subtest'
       });
+
       const result = { prop: true };
-      const scope = nock('https://api.classy.org')
+
+      nock('https://api.classy.org')
         .get('/2.0/test/subtest?test=test')
         .reply(200, result);
 
@@ -146,12 +155,13 @@ describe('ClassyResource', () => {
         test: 'test'
       }).then((response) => {
         expect(response.prop).to.be.true;
+        expect(errorLoggerStub).to.not.have.been.called;
       });
 
     });
 
     it('should handle non-200 responses as errors', () => {
-      const app = nock('https://api.classy.org')
+      nock('https://api.classy.org')
         .persist()
         .post('/oauth2/auth')
         .reply(200, { expires_in: 10 });
@@ -161,9 +171,7 @@ describe('ClassyResource', () => {
         path: '/test'
       });
 
-      const result = { prop: true };
-
-      const scope = nock('https://api.classy.org')
+      nock('https://api.classy.org')
         .get('/2.0/test/test')
         .reply(404);
 
@@ -174,41 +182,55 @@ describe('ClassyResource', () => {
     });
 
     it('should handle response errors', () => {
-
       const method = resource.createMethod({
         method: 'GET',
         path: '/test'
       });
-      const result = { prop: true };
-      const scope = nock('https://api.classy.org')
+
+      nock('https://api.classy.org')
         .get('/2.0/test/test')
         .replyWithError({ test: 'oh no!' });
 
       return method({ token: 'app' })
         .catch((error) => {
           expect(error.message).to.equal('{"test":"oh no!"}');
+          expect(errorLoggerStub).to.have.been.called;
         });
-
     });
 
-    it('should use the provided debugging function', function() {
-      return this.skip();
-
+    it('should use the provided debugging function and errorLogger on error', function() {
       const method = resource.createMethod({
         method: 'GET',
         path: '/test'
       });
+
+      nock('https://api.classy.org')
+        .get('/2.0/test/test')
+        .replyWithError({ test: 'oh no, an error!' });
+
+      return method({ token: 'app' }).catch(() => {
+        expect(onRequestDebugStub).to.have.been.called;
+        expect(errorLoggerStub).to.have.been.called;
+      });
+    });
+
+    it('should use the provided debugging function and not errorLogger on success', function() {
+      const method = resource.createMethod({
+        method: 'GET',
+        path: '/test'
+      });
+
       const result = { prop: true };
-      const scope = nock('https://api.classy.org')
+
+      nock('https://api.classy.org')
         .get('/2.0/test/test')
         .reply(200, result);
 
-      return method({ token: 'app' }).then(response => {
-        expect(classy.requestDebugAction).to.have.been.called;
+      return method({ token: 'app' }).catch(() => {
+        expect(onRequestDebugStub).to.have.been.called;
+        expect(errorLoggerStub).to.not.have.been.called;
       });
-
     });
-
   });
 
   describe('_createFullPath', () => {
@@ -269,7 +291,6 @@ describe('ClassyResource', () => {
   });
 
   describe('_generateAuthForm', () => {
-
     it('should generate an auth form from username args', () => {
       const authForm = resource._generateAuthForm([{
         username: 'test',
@@ -294,7 +315,5 @@ describe('ClassyResource', () => {
 
       expect(authForm['3rd_client_id']).to.equal('test');
     });
-
   });
-
 });

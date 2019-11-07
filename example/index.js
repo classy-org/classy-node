@@ -2,15 +2,29 @@
 
 import Classy from '../src/Classy/main';
 import dotenv from 'dotenv';
-import colors from 'colors';
+import { default as Bugsnag } from '@bugsnag/js';
 
 dotenv.config();
+
+let bugsnag = null;
+let errorLogger = (error, other) => {
+  console.log('An error occured', error, other);
+};
+
+if (process.env.BUGSNAG_API_KEY) {
+  bugsnag = Bugsnag({
+    apiKey: process.env.BUGSNAG_API_KEY
+  });
+
+  errorLogger = (error, other) => bugsnag.notify(error, { metaData: other });
+}
 
 const classy = new Classy({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  baseUrl: 'https://gateway.classy.loc',
-  requestDebug: true
+  baseUrl: process.env.BASE_URL,
+  requestDebug: true,
+  errorLogger: errorLogger
 });
 
 const app = classy.app();

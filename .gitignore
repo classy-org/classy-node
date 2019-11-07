@@ -6,4 +6,5 @@
 /npm-debug.log
 .idea
 .nyc_output
+.vscode
 

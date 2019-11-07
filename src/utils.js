@@ -2,6 +2,29 @@ import _ from 'lodash';
 
 export const utils = {
   /**
+   * https://stackoverflow.com/a/33369954
+   *
+   * Used to determine whether an object is JSON or not
+   */
+  isJson: (item) => {
+      item = typeof item !== 'string'
+          ? JSON.stringify(item)
+          : item;
+
+      try {
+          item = JSON.parse(item);
+      } catch (e) {
+          return false;
+      }
+
+      if (typeof item === 'object' && item !== null) {
+          return true;
+      }
+
+      return false;
+  },
+
+  /**
    * https://gist.github.com/padolsey/6008842
    * Outputs a new function with interpolated object property values.
    * Use like so:

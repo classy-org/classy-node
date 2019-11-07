@@ -69,7 +69,7 @@ This is different from requestDebug in that it will expose data related to error
 
 NOTE:
 
-Error data returned has the potential to contain sensitive data. We attempt to provide the data in a non-JSONified manor whenever possible to aid with the omitting or filtering of sensitive information based on common keys (access_key, secret_key, etc.) if you're using a third party or non-secure means for storing error logs.
+Error data returned has the potential to contain sensitive data. We attempt to provide the data in a non-JSONified manor whenever possible to aid with the omitting or filtering of sensitive information based on object keys (commonly access_key, secret_key, etc.) if you're using a third party or non-secure means for storing error logs.
 
 ```
 let bugsnag = null;

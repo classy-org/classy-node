@@ -2,8 +2,8 @@ import _ from 'lodash';
 
 export const utils = {
   /**
-   * This method will attempt to parse the given data and return the passed in
-   * data if it cannot.
+   * This method will attempt to return parsed JSON data and will return
+   * the original data if it fails to do so.
    */
   tryParse: (data) => {
     try {

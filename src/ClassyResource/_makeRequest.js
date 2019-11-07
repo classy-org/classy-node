@@ -94,7 +94,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
                 {},
                 _.omit(response, 'body'),
                 {
-                  body: utils.isJson(body) ? JSON.parse(body) : body
+                  body: utils.tryParse(body)
                 }
               )
             });
@@ -134,7 +134,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
               {},
               _.omit(response, 'body'),
               {
-                body: utils.isJson(body) ? JSON.parse(body) : body
+                body: utils.tryParse(body)
               }
             )
           });

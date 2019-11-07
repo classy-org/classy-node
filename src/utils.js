@@ -2,26 +2,15 @@ import _ from 'lodash';
 
 export const utils = {
   /**
-   * https://stackoverflow.com/a/33369954
-   *
-   * Used to determine whether an object is JSON or not
+   * This method will attempt to parse the given data and return the passed in
+   * data if it cannot.
    */
-  isJson: (item) => {
-      item = typeof item !== 'string'
-          ? JSON.stringify(item)
-          : item;
-
-      try {
-          item = JSON.parse(item);
-      } catch (e) {
-          return false;
-      }
-
-      if (typeof item === 'object' && item !== null) {
-          return true;
-      }
-
-      return false;
+  tryParse: (data) => {
+    try {
+      return JSON.parse(data);
+    } catch (err) {
+      return data;
+    }
   },
 
   /**

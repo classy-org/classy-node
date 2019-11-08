@@ -28,7 +28,9 @@ export const utils = {
    * To get a new object with the object at test2 parsed.
    *
    */
-  jsonParseChildren: (object, keyArray) => {
+  jsonParseChildren: (object, keyArray = []) => {
+    if (!object || !_.isObject(object)) return object;
+
     return Object.assign(
       {},
       _.omit(object, keyArray),

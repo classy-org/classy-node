@@ -90,13 +90,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
                * In-order to make it easier for clients to filter out sensitive
                * data we include the body as a non-JSONified object.
                */
-              response: Object.assign(
-                {},
-                _.omit(response, 'body'),
-                {
-                  body: utils.tryParse(body)
-                }
-              )
+              response: utils.jsonParseChildren(response, ['body'])
             });
           }
 
@@ -130,13 +124,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
              * In-order to make it easier for clients to filter out sensitive
              * data we include the body as a non-JSONified object.
              */
-            response: Object.assign(
-              {},
-              _.omit(response, 'body'),
-              {
-                body: utils.tryParse(body)
-              }
-            )
+            response: utils.jsonParseChildren(response, ['body'])
           });
         }
 

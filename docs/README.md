@@ -67,6 +67,10 @@ We've added the ability to specify an errorLogger when instantiating Classy Node
 
 This is different from requestDebug in that it will expose data related to errors on requests as well as from Classy Node in addition to other various information (where the error occured, params passed in to the failing method, etc.).
 
+NOTE:
+
+Error data returned has the potential to contain sensitive data. We attempt to provide the data in a non-JSONified manner whenever possible to aid with the omitting or filtering of sensitive information based on object keys (commonly access_key, secret_key, etc.) if you're using a third party or non-secure means for storing error logs.
+
 ```
 let bugsnag = null;
 let errorLogger = (error, other) => {

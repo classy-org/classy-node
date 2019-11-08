@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import request from 'request';
 
+import { utils } from '../utils';
+
 /**
  * Makes a request to Classy's API.
  *
@@ -49,9 +51,9 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
     requestParams.qs = _.merge(requestParams.qs || {}, forceQs);
   }
 
-  try {
-    const promise = new Promise((resolve, reject) => {
-      request(requestParams, (err, response, body) => {
+  const promise = new Promise((resolve, reject) => {
+    request(requestParams, (err, response, body) => {
+      try {
         if (err || !/^2/.test('' + response.statusCode)) {
           let error;
 
@@ -73,12 +75,22 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
            */
           if (this._errorLogger) {
             this._errorLogger(error, {
-              location: '_makeRequest.js',
-              action: '_makeRequest - request()',
               originalError: err,
-              response,
-              body,
-              requestParams
+              params: {
+                path,
+                method,
+                headers,
+                form,
+                data
+              },
+              /**
+               * We omit the body from the returned response
+               * since it's JSONified.
+               *
+               * In-order to make it easier for clients to filter out sensitive
+               * data we include the body as a non-JSONified object.
+               */
+              response: utils.jsonParseChildren(response, ['body'])
             });
           }
 
@@ -91,23 +103,35 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
 
           resolve(body);
         }
-      });
+      } catch (e) {
+        /**
+         * Pass the error to _errorLogger if defined
+         */
+        if (this._errorLogger) {
+          this._errorLogger(e, {
+            originalError: err,
+            params: {
+              path,
+              method,
+              headers,
+              form,
+              data
+            },
+            /**
+             * We omit the body from the returned response
+             * since it's JSONified.
+             *
+             * In-order to make it easier for clients to filter out sensitive
+             * data we include the body as a non-JSONified object.
+             */
+            response: utils.jsonParseChildren(response, ['body'])
+          });
+        }
+
+        reject(e);
+      }
     });
+  });
 
-    return promise;
-  } catch (e) {
-    /**
-     * Pass the error to _errorLogger if defined
-     */
-    if (this._errorLogger) {
-      this._errorLogger(e, {
-        location: '_makeRequest.js',
-        action: '_makeRequest()',
-        response: response,
-        requestParams
-      });
-    }
-
-    throw e;
-  }
+  return promise;
 }

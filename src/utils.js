@@ -2,6 +2,48 @@ import _ from 'lodash';
 
 export const utils = {
   /**
+   * This method will attempt to return parsed JSON data and will return
+   * the original data if it fails to do so.
+   */
+  tryParse: (data) => {
+    try {
+      return JSON.parse(data);
+    } catch (err) {
+      return data;
+    }
+  },
+
+  /**
+   *
+   * The purpose of this method is to parse potentially JSONified
+   * subfields of objects.
+   *
+   * For example, if you had the object:
+   * {
+   *  test: { object1: 'value' },
+   *  test2: "{ "object1": "'value'" }"
+   * }
+   *
+   * You could call this method like jsonParseChildren(object, ["test2"]);
+   * To get a new object with the object at test2 parsed.
+   *
+   */
+  jsonParseChildren: (object, keyArray = []) => {
+    if (!object || !_.isObject(object)) return object;
+
+    return Object.assign(
+      {},
+      _.omit(object, keyArray),
+      _.reduce(keyArray, (aggregate, key) => {
+          aggregate[key] = utils.tryParse(object[key]);
+          return aggregate;
+        },
+        {}
+      )
+    );
+  },
+
+  /**
    * https://gist.github.com/padolsey/6008842
    * Outputs a new function with interpolated object property values.
    * Use like so:

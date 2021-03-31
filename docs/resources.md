@@ -1634,6 +1634,37 @@ classy.organizationNotifications.del(id, options).then(() => {
 })
 ```
 
+## StaffNotificationsSettings
+
+### Basics
+#### GET /staff-notifications-settings/:id
+```javascript
+classy.staffNotificationsSettings.list(id, options).then(() => {
+    // do something after list
+})
+```
+
+#### POST /staff-notifications-settings/:id
+```javascript
+classy.staffNotificationsSettings.create(id, options).then(() => {
+    // do something after create
+})
+```
+
+#### PUT /staff-notifications-settings/:id
+```javascript
+classy.staffNotificationsSettings.update(id, options).then(() => {
+    // do something after update
+})
+```
+
+#### DELETE /staff-notifications-settings/:id
+```javascript
+classy.staffNotificationsSettings.del(id, options).then(() => {
+    // do something after del
+})
+```
+
 ## Ping
 
 ### Custom

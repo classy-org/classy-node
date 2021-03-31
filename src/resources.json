@@ -470,6 +470,10 @@
         "path": "/organization-notifications",
         "basic": ["retrieve", "update", "del"]
     },
+    "StaffNotificationsSettings": {
+        "path": "/staff-notification-settings",
+        "basic": ["list", "create", "update", "del"]
+    },
     "Ping": {
         "path": "/ping",
         "custom": {

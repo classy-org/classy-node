@@ -89,6 +89,7 @@ export default function createMethod(spec) {
       if (response === 'member') {
 
         let baseUrl = this._classy.baseUrl;
+
         //  Gateway url to support okta based member token
         if (_.get(data, 'token.is_okta_token', false)) {
           baseUrl = this._classy.oktaBaseUrl;

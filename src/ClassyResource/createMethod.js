@@ -87,12 +87,14 @@ export default function createMethod(spec) {
       }
 
       if (response === 'member') {
+        const baseUrl = this._classy.useOkta ? this._classy.oktaBaseUrl : this._classy.baseUrl;
+
         const memberToken = _.get(data, 'token.access_token', false);
         delete data.token;
 
         requestHeaders.Authorization = 'Bearer ' + memberToken;
 
-        return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
+        return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data, baseUrl);
       }
 
     }, (error) => {

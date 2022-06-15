@@ -57,12 +57,6 @@ class Classy {
       DEFAULT_STRICT_SSL
     );
 
-    this.useOkta = (
-      !_.isUndefined(config.useOkta) ?
-      config.useOkta :
-      false
-    );
-
     this.oktaBaseUrl = (
       !_.isUndefined(config.oktaBaseUrl) ?
       config.oktaBaseUrl :

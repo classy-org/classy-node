@@ -12,7 +12,7 @@ import { utils } from '../utils';
  * @param  {object} form    Request form (optional)
  * @return {promise}         Promise based on API request
  */
-export default function _makeRequest(path, method, headers = {}, form, data = {}, baseUrl = null) {
+export default function _makeRequest(path, method, headers = {}, form, data = {}) {
   let forceQs = null;
 
   if (data.noLog) {
@@ -32,7 +32,7 @@ export default function _makeRequest(path, method, headers = {}, form, data = {}
     : undefined;
 
   const requestParams = {
-    baseUrl: baseUrl ? baseUrl : this.baseUrl,
+    baseUrl: this.baseUrl,
     uri: path,
     method: method,
     headers: headers,

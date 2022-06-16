@@ -88,11 +88,11 @@ export default function createMethod(spec) {
 
       if (response === 'member') {
 
-        let baseUrl = this._classy.baseUrl;
+        this.baseUrl  = this._classy.baseUrl;
 
         //  Gateway url to support okta based member token
         if (_.get(data, 'token.is_okta_token', false)) {
-          baseUrl = this._classy.oktaBaseUrl;
+          this.baseUrl  = this._classy.oktaBaseUrl;
         }
 
         const memberToken = _.get(data, 'token.access_token', false);
@@ -100,7 +100,7 @@ export default function createMethod(spec) {
 
         requestHeaders.Authorization = 'Bearer ' + memberToken;
 
-        return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data, baseUrl);
+        return this._makeRequest(requestPath, requestMethod, requestHeaders, form, data);
       }
 
     }, (error) => {

@@ -59,9 +59,9 @@ class Classy {
 
     // This is Gatewayurl to support Okta token. In case of Okta token, all api calls using member token should 
     // go from Gateway url 
-    this.oktaBaseUrl = (
-      !_.isUndefined(config.oktaBaseUrl) ?
-      config.oktaBaseUrl :
+    this.gatewayUrl = (
+      !_.isUndefined(config.gatewayUrl) ?
+      config.gatewayUrl :
       ''
     );
 

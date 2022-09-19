@@ -91,7 +91,7 @@ export default function createMethod(spec) {
 
         // This flags suggested that access token created from Okta and baseUrl should be Gateway URL like AWSGatewayUrl
         if (_.get(data, 'token.is_okta_token', false)) {
-          this.baseUrl  = this._classy.oktaBaseUrl;
+          this.baseUrl  = this._classy.gatewayUrl;
         }
 
         const memberToken = _.get(data, 'token.access_token', false);

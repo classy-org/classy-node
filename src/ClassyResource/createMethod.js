@@ -61,6 +61,7 @@ export default function createMethod(spec) {
       };
 
       let requestHeaders = this._classy.headers || _.merge(DEFAULT_REQUEST_HEADERS, spec.headers);
+      this.baseUrl  = this._classy.baseUrl;
 
       if (requestMethod == 'POST'
         || requestMethod == 'PUT'
@@ -87,6 +88,12 @@ export default function createMethod(spec) {
       }
 
       if (response === 'member') {
+
+        // This flags suggested that access token created from Okta and baseUrl should be Gateway URL like AWSGatewayUrl
+        if (_.get(data, 'token.is_okta_token', false)) {
+          this.baseUrl  = this._classy.gatewayUrl;
+        }
+
         const memberToken = _.get(data, 'token.access_token', false);
         delete data.token;
 

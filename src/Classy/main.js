@@ -57,6 +57,14 @@ class Classy {
       DEFAULT_STRICT_SSL
     );
 
+    // This is Gatewayurl to support Okta token. In case of Okta token, all api calls using member token should 
+    // go from Gateway url 
+    this.gatewayUrl = (
+      !_.isUndefined(config.gatewayUrl) ?
+      config.gatewayUrl :
+      ''
+    );
+
     /**
      * Add the ability to define an error logger.
      *
